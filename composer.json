@@ -1,5 +1,5 @@
 {
-    "name": "clawrock/magento2-debug",
+    "name": "indrisepos/magento2-debug",
     "description": "Magento 2 debug module based on Magento 1 Profiler with some extra features.",
     "type": "magento2-module",
     "license": [
