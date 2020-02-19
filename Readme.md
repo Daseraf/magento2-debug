@@ -8,9 +8,11 @@ Module for debugging Magento 2 performance. It works without overwriting any cor
 
 ## Installation
 1. Enable developer mode `php bin/magento deploy:mode:set developer`
-2. Install module via composer `composer require --dev clawrock/magento2-debug`
-3. Register module `php bin/magento setup:upgrade`
-4. Enable profiler in configuration: `Stores -> Configuration -> Advanced -> Debug`
+2. Register git repository `composer config repositories.dbg git https://github.com/indrisepos/magento2-debug.git`
+3. Install module via composer `composer require indrisepos/magento2-debug [--update-no-dev]`
+4. Register module `php bin/magento setup:upgrade`
+5. Enable profiler in configuration: `Stores -> Configuration -> Advanced -> Debug`
+6. Clear cache `php bin/magento c:c`
 
 ## Configuration
 All settings have only default scope and config type pool is set to environment for better integration with `php bin/magento app:config:dump`
