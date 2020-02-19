@@ -66,7 +66,7 @@ class Block implements LoggableInterface
      */
     public function getId(): string
     {
-        return $this->id;
+        return (string)$this->id;
     }
 
     /**
@@ -82,7 +82,7 @@ class Block implements LoggableInterface
      */
     public function getClass(): string
     {
-        return $this->class;
+        return (string)$this->class;
     }
 
     /**
@@ -90,7 +90,7 @@ class Block implements LoggableInterface
      */
     public function getModule(): string
     {
-        return $this->module;
+        return (string)$this->module;
     }
 
     /**
@@ -98,7 +98,7 @@ class Block implements LoggableInterface
      */
     public function getRenderTime(): float
     {
-        return $this->renderTime;
+        return (float)$this->renderTime;
     }
 
     /**
