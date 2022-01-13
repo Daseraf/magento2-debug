@@ -102,7 +102,7 @@ class DatabaseCollector implements CollectorInterface
 
     public function getDuplicatedQueries(): array
     {
-        return array_column($this->dataCollector->getData(self::QUERIES)[DatabaseInfo::DUPLICATED_QUERIES], 'query');
+        return $this->dataCollector->getData(self::QUERIES)[DatabaseInfo::DUPLICATED_QUERIES] ?? [];
     }
 
     /**

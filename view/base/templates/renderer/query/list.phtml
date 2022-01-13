@@ -6,15 +6,24 @@ $prefix = $block->getPrefix();
     <thead>
         <tr>
             <th class="nowrap">#</th>
+            <th class="nowrap"><?= $block->escapeHtml(__('Query Count')) ?></th>
             <th class="nowrap"><?= $block->escapeHtml(__('Time')) ?></th>
             <th style="width: 100%;"><?= $block->escapeHtml(__('Info')) ?></th>
         </tr>
     </thead>
     <tbody>
         <?php /** @var \Zend_Db_Profiler_Query $query */ ?>
-        <?php foreach ($block->getQueries() as $index => $query): ?>
+        <?php foreach ($block->getQueries() as $index => $data): ?>
+        <?php if ($data instanceof \Zend_Db_Profiler_Query): ?>
+            <?php $query = $data; ?>
+            <?php $count = 1; ?>
+        <?php else: ?>
+            <?php $query = $data['query']; ?>
+            <?php $count = $data['count']; ?>
+        <?php endif; ?>
             <tr>
                 <td class="nowrap"><?= /* @noEscape */ ++$index ?> </td>
+                <td class="nowrap"><?= /* @noEscape */ $count ?> </td>
                 <td class="nowrap">
                     <?= /* @noEscape */ $block->getFormatter()->microtime($query->getElapsedSecs()); ?> ms
                 </td>
