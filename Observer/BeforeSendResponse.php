@@ -27,8 +27,8 @@ class BeforeSendResponse implements ObserverInterface
 
     public function execute(Observer $observer)
     {
-        $request  = $observer->getRequest();
-        $response = $observer->getResponse();
+        $request  = $observer->getEvent()->getRequest();
+        $response = $observer->getEvent()->getResponse();
         if ($this->isProfilerAction($request) || !$this->config->isEnabled()) {
             return;
         }
@@ -38,6 +38,10 @@ class BeforeSendResponse implements ObserverInterface
 
     private function isProfilerAction(\Magento\Framework\HTTP\PhpEnvironment\Request $request)
     {
+        if (preg_match('/\/_debug\/profiler*/s', $request->getPathInfo())) {
+            return true;
+        }
+
         return $request->getModuleName() === '_debug' || $request->getModuleName() === 'debug';
     }
 }

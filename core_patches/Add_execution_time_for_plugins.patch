@@ -1,0 +1,99 @@
+Index: vendor/magento/framework/Interception/Interceptor.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/magento/framework/Interception/Interceptor.php b/vendor/magento/framework/Interception/Interceptor.php
+--- a/vendor/magento/framework/Interception/Interceptor.php	(revision 0398de7809ee7896956d14d323b5cfd388e89c4f)
++++ b/vendor/magento/framework/Interception/Interceptor.php	(date 1642622045423)
+@@ -117,8 +117,16 @@
+                 // Call 'before' listeners
+                 foreach ($currentPluginInfo[DefinitionInterface::LISTENER_BEFORE] as $code) {
+                     $pluginInstance = $pluginList->getPlugin($type, $code);
++                    $timeStart = microtime(true);
+                     $pluginMethod = 'before' . $capMethod;
+                     $beforeResult = $pluginInstance->$pluginMethod($this, ...array_values($arguments));
++                    $timeEnd = microtime(true);
++                    $pluginClass = get_class($pluginInstance);
++
++                    $pluginExecutionTime[DefinitionInterface::LISTENER_BEFORE][$pluginClass] = [
++                        $method => [$code => [$timeEnd - $timeStart]]
++                    ];
++                    $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
+ 
+                     if ($beforeResult !== null) {
+                         $arguments = (array)$beforeResult;
+@@ -132,7 +140,14 @@
+                 $pluginInfo = $pluginList->getNext($type, $method, $code);
+                 $pluginInstance = $pluginList->getPlugin($type, $code);
+                 $pluginMethod = 'around' . $capMethod;
++                $timeStart = microtime(true);
+                 $result = $pluginInstance->$pluginMethod($subject, $next, ...array_values($arguments));
++                $timeEnd = microtime(true);
++                $pluginClass = get_class($pluginInstance);
++                $pluginExecutionTime[DefinitionInterface::LISTENER_AROUND][$pluginClass] = [
++                    $method => [$code => [$timeEnd - $timeStart]]
++                ];
++                $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
+             } else {
+                 // Call original method
+                 $result = $subject->___callParent($method, $arguments);
+@@ -143,7 +158,14 @@
+                 foreach ($currentPluginInfo[DefinitionInterface::LISTENER_AFTER] as $code) {
+                     $pluginInstance = $pluginList->getPlugin($type, $code);
+                     $pluginMethod = 'after' . $capMethod;
++                    $timeStart = microtime(true);
+                     $result = $pluginInstance->$pluginMethod($subject, $result, ...array_values($arguments));
++                    $timeEnd = microtime(true);
++                    $pluginClass = get_class($pluginInstance);
++                    $pluginExecutionTime[DefinitionInterface::LISTENER_AFTER][$pluginClass] = [
++                        $method => [$code => [$timeEnd - $timeStart]]
++                    ];
++                    $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
+                 }
+             }
+ 
+Index: vendor/magento/framework/Interception/PluginList/PluginList.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/magento/framework/Interception/PluginList/PluginList.php b/vendor/magento/framework/Interception/PluginList/PluginList.php
+--- a/vendor/magento/framework/Interception/PluginList/PluginList.php	(revision 0398de7809ee7896956d14d323b5cfd388e89c4f)
++++ b/vendor/magento/framework/Interception/PluginList/PluginList.php	(date 1642596292062)
+@@ -92,6 +92,8 @@
+      */
+     private $pluginListGenerator;
+ 
++    private $execution = [];
++
+     /**
+      * Constructor
+      *
+@@ -137,6 +139,26 @@
+         $this->pluginListGenerator = $pluginListGenerator ?: $this->_objectManager->get(PluginListGenerator::class);
+     }
+ 
++    /**
++     * @param array $data
++     * @return void
++     */
++    public function setPluginExecutionTime(array $data)
++    {
++        $definition = array_key_first($data);
++
++        if (empty($this->execution)) {
++            $this->execution = [
++                DefinitionInterface::LISTENER_BEFORE => [],
++                DefinitionInterface::LISTENER_AROUND => [],
++                DefinitionInterface::LISTENER_AFTER => [],
++            ];
++        }
++
++
++        $this->execution[$definition] = array_merge_recursive($this->execution[$definition], $data[$definition]);
++    }
++
+     /**
+      * Collect parent types configuration for requested type
+      *

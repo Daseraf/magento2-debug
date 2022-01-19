@@ -29,13 +29,32 @@ class Plugin
      */
     private $type;
 
-    public function __construct(string $class, string $name, int $sortOrder, string $method, string $type)
-    {
+    /**
+     * @var float
+     */
+    private $executionTime;
+
+    /**
+     * @var int
+     */
+    private $executionCount;
+
+    public function __construct(
+        string $class,
+        string $name,
+        int $sortOrder,
+        string $method,
+        string $type,
+        float $executionTime = 0,
+        int $executionCount = 0
+    ) {
         $this->class = $class;
         $this->name = $name;
         $this->sortOrder = $sortOrder;
         $this->method = $method;
         $this->type = $type;
+        $this->executionTime = $executionTime;
+        $this->executionCount = $executionCount;
     }
 
     /**
@@ -76,5 +95,21 @@ class Plugin
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * @return float
+     */
+    public function getExecutionTime(): float
+    {
+        return $this->executionTime;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExecutionCount(): int
+    {
+        return $this->executionCount;
     }
 }

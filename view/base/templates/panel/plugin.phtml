@@ -16,16 +16,22 @@ $collector = $block->getCollector();
         <div class="tab">
             <h3 class="tab-title">
                 <?= $block->escapeHtml(__('BEFORE')) ?>
-                <span class="badge"><?= /* @noEscape */ $collector->getBeforePluginsCount(); ?></span>
+                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getBeforePluginsExecutionTime(); ?> ms</span>
+                <span class="badge">Count: <?= /* @noEscape */ $collector->getBeforePluginsCount(); ?></span>
             </h3>
             <div class="tab-content">
                 <table class="auto">
                     <?php foreach ($collector->getBeforePlugins() as $type => $plugins): ?>
                         <thead>
                             <tr>
-                                <th><?= /* @noEscape */$type; ?></th>
+                                <th><?= /* @noEscape */$type; ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 1) ?> ms
+                                </th>
                                 <th><?= $block->escapeHtml(__('Name')) ?></th>
                                 <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +41,8 @@ $collector = $block->getCollector();
                                     <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
                                     <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                     <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -44,16 +52,23 @@ $collector = $block->getCollector();
         </div>
         <div class="tab">
             <h3 class="tab-title">
-                <?= $block->escapeHtml(__('AROUND')) ?> <span class="badge"><?= /* @noEscape */ $collector->getAroundPluginsCount() ?></span>
+                <?= $block->escapeHtml(__('AROUND')) ?>
+                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAroundPluginsExecutionTime(); ?> ms</span>
+                <span class="badge">Count: <?= /* @noEscape */ $collector->getAroundPluginsCount() ?></span>
             </h3>
             <div class="tab-content">
                 <table class="auto">
                     <?php foreach ($collector->getAroundPlugins() as $type => $plugins): ?>
                         <thead>
                             <tr>
-                                <th><?= /* @noEscape */ $type; ?></th>
+                                <th><?= /* @noEscape */$type; ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 2) ?> ms
+                                </th>
                                 <th><?= $block->escapeHtml(__('Name')) ?></th>
                                 <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,6 +78,8 @@ $collector = $block->getCollector();
                                     <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
                                     <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                     <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -72,16 +89,23 @@ $collector = $block->getCollector();
         </div>
         <div class="tab">
             <h3 class="tab-title">
-                <?= $block->escapeHtml(__('AFTER')) ?> <span class="badge"><?= /* @noEscape */ $collector->getAfterPluginsCount() ?></span>
+                <?= $block->escapeHtml(__('AFTER')) ?>
+                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAfterPluginsExecutionTime(); ?> ms</span>
+                <span class="badge">Count: <?= /* @noEscape */ $collector->getAfterPluginsCount() ?></span>
             </h3>
             <div class="tab-content">
                 <table class="auto">
                     <?php foreach ($collector->getAfterPlugins() as $type => $plugins): ?>
                         <thead>
                             <tr>
-                                <th><?= /* @noEscape */ $type; ?></th>
+                                <th><?= /* @noEscape */$type; ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 4) ?> ms
+                                </th>
                                 <th><?= $block->escapeHtml(__('Name')) ?></th>
                                 <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,6 +115,8 @@ $collector = $block->getCollector();
                                     <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
                                     <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                     <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

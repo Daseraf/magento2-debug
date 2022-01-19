@@ -2,6 +2,8 @@
 
 namespace ClawRock\Debug\Model\Collector;
 
+use Magento\Framework\Interception\DefinitionInterface;
+
 class PluginCollector implements CollectorInterface, LateCollectorInterface
 {
     const NAME = 'plugin';
@@ -9,6 +11,11 @@ class PluginCollector implements CollectorInterface, LateCollectorInterface
     const BEFORE = 'before';
     const AROUND = 'around';
     const AFTER  = 'after';
+    const TOTAL_EXECUTION_TIME  = 'total_execution_time';
+    const BEFORE_EXECUTION_TIME  = 'before_execution_time';
+    const AROUND_EXECUTION_TIME  = 'around_execution_time';
+    const AFTER_EXECUTION_TIME  = 'after_execution_time';
+    const EXECUTION_TIME_BY_TYPES  = 'execution_time_by_types';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -25,14 +32,21 @@ class PluginCollector implements CollectorInterface, LateCollectorInterface
      */
     private $pluginInfo;
 
+    /**
+     * @var \ClawRock\Debug\Helper\Formatter
+     */
+    private $formatter;
+
     public function __construct(
         \ClawRock\Debug\Helper\Config $config,
         \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Info\PluginInfo $pluginInfo
+        \ClawRock\Debug\Model\Info\PluginInfo $pluginInfo,
+        \ClawRock\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
         $this->pluginInfo = $pluginInfo;
+        $this->formatter = $formatter;
     }
 
     public function collect(): CollectorInterface
@@ -46,6 +60,11 @@ class PluginCollector implements CollectorInterface, LateCollectorInterface
             self::BEFORE => $this->pluginInfo->getBeforePlugins(),
             self::AROUND => $this->pluginInfo->getAroundPlugins(),
             self::AFTER => $this->pluginInfo->getAfterPlugins(),
+            self::TOTAL_EXECUTION_TIME => $this->pluginInfo->getPluginsExecutionTime(),
+            self::BEFORE_EXECUTION_TIME => $this->pluginInfo->getPluginsExecutionTime(DefinitionInterface::LISTENER_BEFORE),
+            self::AROUND_EXECUTION_TIME => $this->pluginInfo->getPluginsExecutionTime(DefinitionInterface::LISTENER_AROUND),
+            self::AFTER_EXECUTION_TIME => $this->pluginInfo->getPluginsExecutionTime(DefinitionInterface::LISTENER_AFTER),
+            self::EXECUTION_TIME_BY_TYPES => $this->pluginInfo->getTypesExecutionList(),
         ]);
 
         return $this;
@@ -93,6 +112,42 @@ class PluginCollector implements CollectorInterface, LateCollectorInterface
         return array_sum(array_map('count', $this->getAfterPlugins()));
     }
 
+    public function getPluginsExecutionTime(): string
+    {
+        return $this->formatter->microtime($this->pluginInfo->getPluginsExecutionTime());
+    }
+
+    public function getBeforePluginsExecutionTime(): string
+    {
+        $aroundPluginsExecutionTime = $this->dataCollector->getData(self::BEFORE_EXECUTION_TIME) ?? 0;
+
+        return $this->formatter->microtime($aroundPluginsExecutionTime);
+    }
+
+    public function getAfterPluginsExecutionTime(): string
+    {
+        $aroundPluginsExecutionTime = $this->dataCollector->getData(self::AFTER_EXECUTION_TIME) ?? 0;
+
+        return $this->formatter->microtime($aroundPluginsExecutionTime);
+    }
+
+    public function getAroundPluginsExecutionTime(): string
+    {
+        $aroundPluginsExecutionTime = $this->dataCollector->getData(self::AROUND_EXECUTION_TIME) ?? 0;
+
+        return $this->formatter->microtime($aroundPluginsExecutionTime);
+    }
+
+    public function getTypePluginsExecutionTime($type, $definition): string
+    {
+        $typesExecutionList = $this->dataCollector->getData(self::EXECUTION_TIME_BY_TYPES) ?? [];
+        if (isset($typesExecutionList[$definition][$type])) {
+            return $this->formatter->microtime($typesExecutionList[$definition][$type]);
+        }
+
+        return '0';
+    }
+
     /**
      * @return bool
      */
@@ -121,5 +176,10 @@ class PluginCollector implements CollectorInterface, LateCollectorInterface
     public function getStatus(): string
     {
         return self::STATUS_DEFAULT;
+    }
+
+    public function formatTime($value): string
+    {
+        return $this->formatter->microtime($value);
     }
 }
