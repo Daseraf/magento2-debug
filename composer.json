@@ -25,6 +25,7 @@
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
+        "enable-patching": true,
         "patches": {
             "magento/framework": {
                 "Add_execution_time_for_plugins": "core_patches/Add_execution_time_for_plugins.patch"
