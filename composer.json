@@ -31,7 +31,7 @@
         "enable-patching": true,
         "patches": {
             "magento/framework": {
-                "Add_execution_time_for_plugins": "https://github.com/Daseraf/magento2-debug/blob/master/core_patches/Add_execution_time_for_plugins.patch"
+                "Add_execution_time_for_plugins": "./ore_patches/Add_execution_time_for_plugins.patch"
             }
         }
     },
