@@ -23,6 +23,9 @@
         "sebastian/phpcpd": "^3.0",
         "php-coveralls/php-coveralls": "^2.1"
     },
+    "config": {
+        "preferred-install": "source"
+    },
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
