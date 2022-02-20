@@ -7,7 +7,7 @@ use Magento\Framework\View\Element\Template;
 
 class LayoutGraphRenderer implements RendererInterface
 {
-    const TEMPLATE = 'ClawRock_Debug::renderer/layout/graph.phtml';
+    public const TEMPLATE = 'ClawRock_Debug::renderer/layout/graph.phtml';
 
     /**
      * @var \ClawRock\Debug\Model\ValueObject\Block[]
@@ -80,7 +80,7 @@ class LayoutGraphRenderer implements RendererInterface
                     'block' => $block,
                     'layoutRenderTime' => $this->totalRenderTime,
                     'children' => $children,
-                    'prefix' => ''
+                    'prefix' => '',
                 ]);
             }
         }
@@ -91,8 +91,8 @@ class LayoutGraphRenderer implements RendererInterface
     /**
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      * @param \ClawRock\Debug\Model\ValueObject\Block $block
-     * @param string                                  $prefix
-     * @param bool                                    $sibling
+     * @param string $prefix
+     * @param bool $sibling
      * @return array
      */
     private function resolveChildren(Block $block, string $prefix = '', bool $sibling = false)
@@ -114,9 +114,10 @@ class LayoutGraphRenderer implements RendererInterface
                 'block' => $child,
                 'layoutRenderTime' => $this->totalRenderTime,
                 'prefix' => $prefix,
-                'children' => $childChildren
+                'children' => $childChildren,
             ]);
         }
+
         return $children;
     }
 }

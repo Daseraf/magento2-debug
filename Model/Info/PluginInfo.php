@@ -24,7 +24,7 @@ class PluginInfo
     private $totalExecutionTimeList;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $alreadySorted = false;
 
@@ -40,9 +40,8 @@ class PluginInfo
 
     public function __construct(
         \Magento\Framework\Interception\PluginList\PluginList $pluginList,
-        \ClawRock\Debug\Helper\Debug                          $debug
-    )
-    {
+        \ClawRock\Debug\Helper\Debug $debug
+    ) {
         $this->pluginList = $pluginList;
         $this->debug = $debug;
     }
@@ -156,7 +155,7 @@ class PluginInfo
                 $executionTimeByDefinition = $executionTime[$definitionType];
                 $pluginList = [];
 
-                foreach ((array)$plugins as $name) {
+                foreach ((array) $plugins as $name) {
                     if (!isset($inherited[$type][$name])) {
                         continue;
                     }

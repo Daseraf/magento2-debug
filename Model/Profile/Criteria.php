@@ -137,11 +137,11 @@ class Criteria
                 return false;
             }
 
-            if (!property_exists($this, $property) || empty($this->$property)) {
+            if (!property_exists($this, $property) || empty($this->{$property})) {
                 continue;
             }
 
-            if ($value != $this->$property) {
+            if ($value != $this->{$property}) {
                 return false;
             }
         }

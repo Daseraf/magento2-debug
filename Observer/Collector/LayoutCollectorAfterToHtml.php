@@ -30,7 +30,7 @@ class LayoutCollectorAfterToHtml implements ObserverInterface
 
         $block->addData([
             LayoutCollector::BLOCK_STOP_RENDER_KEY => $renderedTimestamp,
-            LayoutCollector::RENDER_TIME     => $renderTime,
+            LayoutCollector::RENDER_TIME => $renderTime,
         ]);
 
         $this->layoutCollector->log(new Block($block));

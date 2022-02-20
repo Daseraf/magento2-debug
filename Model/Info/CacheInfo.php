@@ -6,10 +6,10 @@ use ClawRock\Debug\Model\ValueObject\CacheAction;
 
 class CacheInfo
 {
-    const STATS_TOTAL = 'stats_total';
-    const STATS_HIT   = 'stats_hit';
-    const STATS_MISS  = 'stats_miss';
-    const STATS_SAVE  = 'stats_save';
+    public const STATS_TOTAL = 'stats_total';
+    public const STATS_HIT = 'stats_hit';
+    public const STATS_MISS = 'stats_miss';
+    public const STATS_SAVE = 'stats_save';
 
     /**
      * @var \Magento\Framework\App\Cache
@@ -67,9 +67,9 @@ class CacheInfo
         if ($this->stats === null) {
             $this->stats = [
                 self::STATS_TOTAL => count($cacheLog),
-                self::STATS_HIT   => 0,
-                self::STATS_MISS  => 0,
-                self::STATS_SAVE  => 0,
+                self::STATS_HIT => 0,
+                self::STATS_MISS => 0,
+                self::STATS_SAVE => 0,
             ];
 
             /** @var \ClawRock\Debug\Model\ValueObject\CacheAction $action */

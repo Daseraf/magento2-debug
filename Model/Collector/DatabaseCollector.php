@@ -6,11 +6,11 @@ use ClawRock\Debug\Model\Info\DatabaseInfo;
 
 class DatabaseCollector implements CollectorInterface
 {
-    const NAME = 'database';
+    public const NAME = 'database';
 
-    const TOTAL_TIME  = 'total_time';
-    const QUERY_COUNT = 'query_count';
-    const QUERIES     = 'queries';
+    public const TOTAL_TIME = 'total_time';
+    public const QUERY_COUNT = 'query_count';
+    public const QUERIES = 'queries';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -47,9 +47,9 @@ class DatabaseCollector implements CollectorInterface
     public function collect(): CollectorInterface
     {
         $this->dataCollector->setData([
-            self::TOTAL_TIME  => $this->databaseInfo->getTotalTime(),
+            self::TOTAL_TIME => $this->databaseInfo->getTotalTime(),
             self::QUERY_COUNT => $this->databaseInfo->getQueriesCount(),
-            self::QUERIES     => $this->databaseInfo->getQueries(),
+            self::QUERIES => $this->databaseInfo->getQueries(),
         ]);
 
         return $this;

@@ -6,7 +6,7 @@ use Magento\Framework\View\Element\Template;
 
 class TraceRenderer implements RendererInterface
 {
-    const TEMPLATE = 'ClawRock_Debug::renderer/trace.phtml';
+    public const TEMPLATE = 'ClawRock_Debug::renderer/trace.phtml';
 
     /**
      * @var string

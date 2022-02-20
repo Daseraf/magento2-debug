@@ -16,8 +16,8 @@ class File
     }
 
     /**
-     * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
+     * @return string
      */
     public function getProfileDirectory()
     {
@@ -25,8 +25,8 @@ class File
     }
 
     /**
-     * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
+     * @return string
      */
     public function getProfileIndex()
     {
@@ -41,8 +41,8 @@ class File
 
     /**
      * @param $token
-     * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
+     * @return string
      */
     public function getProfileFilename($token)
     {

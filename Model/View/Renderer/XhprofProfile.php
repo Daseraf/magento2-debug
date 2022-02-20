@@ -20,14 +20,21 @@ class XhprofProfile
     private const NO_PARENT = '__xhgui_top__';
 
     private $data;
+
     private $collapsed;
+
     private $indexed;
+
     private $visited;
+
     private $links;
+
     private $nodes;
 
     private $keys = ['ct', 'wt', 'cpu', 'mu', 'pmu'];
+
     private $exclusiveKeys = ['ewt', 'ecpu', 'emu', 'epmu'];
+
     private $functionCount;
 
     public function __construct(array $profile, $convert = true)
@@ -42,98 +49,6 @@ class XhprofProfile
         if (!empty($profile['profile']) && $convert) {
             $this->process();
         }
-    }
-
-    /**
-     * Convert the raw data into a flatter list that is easier to use.
-     *
-     * This removes some of the parentage detail as all calls of a given
-     * method are aggregated. We are not able to maintain a full tree structure
-     * in any case, as xhprof only keeps one level of detail.
-     */
-    private function process(): void
-    {
-        $result = [];
-        foreach ($this->data['profile'] as $name => $values) {
-            [$parent, $func] = $this->splitName($name);
-            // normalize, fill all missing keys
-            $values += [
-                'ct' => 0,
-                'wt' => 0,
-                'cpu' => 0,
-                'mu' => 0,
-                'pmu' => 0,
-            ];
-
-            // Generate collapsed data.
-            if (isset($result[$func])) {
-                $result[$func] = $this->_sumKeys($result[$func], $values);
-                $result[$func]['parents'][] = $parent;
-            } else {
-                $result[$func] = $values;
-                $result[$func]['parents'] = [$parent];
-            }
-
-            // Build the indexed data.
-            if ($parent === null) {
-                $parent = self::NO_PARENT;
-            }
-            if (!isset($this->indexed[$parent])) {
-                $this->indexed[$parent] = [];
-            }
-            $this->indexed[$parent][$func] = $values;
-        }
-        $this->collapsed = $result;
-    }
-
-    /**
-     * Sum up the values in $this->_keys;
-     *
-     * @param array $a The first set of profile data
-     * @param array $b the second set of profile data
-     * @return array merged profile data
-     */
-    protected function _sumKeys($a, $b)
-    {
-        foreach ($this->keys as $key) {
-            if (!isset($a[$key])) {
-                $a[$key] = 0;
-            }
-            $a[$key] += $b[$key] ?? 0;
-        }
-
-        return $a;
-    }
-
-    protected function _diffKeys($a, $b, $includeSelf = true)
-    {
-        $keys = $this->keys;
-        if ($includeSelf) {
-            $keys = array_merge($keys, $this->exclusiveKeys);
-        }
-        foreach ($keys as $key) {
-            $a[$key] -= $b[$key];
-        }
-
-        return $a;
-    }
-
-    protected function _diffPercentKeys($a, $b, $includeSelf = true)
-    {
-        $out = [];
-        $keys = $this->keys;
-        if ($includeSelf) {
-            $keys = array_merge($keys, $this->exclusiveKeys);
-        }
-        foreach ($keys as $key) {
-            if ($b[$key] != 0) {
-                $out[$key] = $a[$key] / $b[$key];
-            } else {
-                $out[$key] = -1;
-            }
-        }
-
-        return $out;
     }
 
     /**
@@ -216,7 +131,7 @@ class XhprofProfile
      *
      * @param string $pattern the pattern to look for
      * @return array|null an list of matching functions
-     *    or null
+     *                    or null
      */
     public function getWatched($pattern)
     {
@@ -248,11 +163,11 @@ class XhprofProfile
      * inclusive values for all properties.
      *
      * @param string $symbol the name of the function/method to find
-     *    relatives for
+     *                       relatives for
      * @param string $metric the metric to compare $threshold with
      * @param float $threshold The threshold to exclude child functions at. Any
-     *   function that represents less than this percentage of the current metric
-     *   will be filtered out.
+     *                         function that represents less than this percentage of the current metric
+     *                         will be filtered out.
      * @return array List of (parent, current, children)
      */
     public function getRelatives($symbol, $metric = null, $threshold = 0)
@@ -277,63 +192,6 @@ class XhprofProfile
     }
 
     /**
-     * Get the parent methods for a given symbol.
-     *
-     * @param string $symbol the name of the function/method to find
-     *    parents for
-     * @return array List of parents
-     */
-    protected function _getParents($symbol)
-    {
-        $parents = [];
-        $current = $this->collapsed[$symbol];
-        foreach ($current['parents'] as $parent) {
-            if (isset($this->collapsed[$parent])) {
-                $parents[] = ['function' => $parent] + $this->collapsed[$parent];
-            }
-        }
-
-        return $parents;
-    }
-
-    /**
-     * Find symbols that are the children of the given name.
-     *
-     * @param string $symbol the name of the function to find children of
-     * @param string $metric the metric to compare $threshold with
-     * @param float $threshold The threshold to exclude functions at. Any
-     *   function that represents less than
-     * @return array an array of child methods
-     */
-    protected function _getChildren($symbol, $metric = null, $threshold = 0)
-    {
-        $children = [];
-        if (!isset($this->indexed[$symbol])) {
-            return $children;
-        }
-
-        $total = 0;
-        if (isset($metric)) {
-            $top = $this->indexed[self::NO_PARENT];
-            // Not always 'main()'
-            $mainFunc = current($top);
-            $total = $mainFunc[$metric];
-        }
-
-        foreach ($this->indexed[$symbol] as $name => $data) {
-            if (
-                $metric && $total > 0 && $threshold > 0 &&
-                ($this->collapsed[$name][$metric] / $total) < $threshold
-            ) {
-                continue;
-            }
-            $children[] = $data + ['function' => $name];
-        }
-
-        return $children;
-    }
-
-    /**
      * Extracts a single dimension of data
      * from a profile run.
      *
@@ -344,7 +202,7 @@ class XhprofProfile
      * @param string $dimension The dimension to extract
      * @param int $limit Number of elements to pull
      * @return array array of data with name = function name and
-     *   value = the dimension
+     *               value = the dimension
      */
     public function extractDimension($dimension, $limit)
     {
@@ -464,7 +322,7 @@ class XhprofProfile
      *
      * @param string $name the name to split
      * @return array An array of parent, child. parent will be null if there
-     *    is no parent.
+     *               is no parent.
      */
     public function splitName($name)
     {
@@ -536,38 +394,20 @@ class XhprofProfile
     }
 
     /**
-     * Get the max value for any give metric.
-     *
-     * @param string $metric the metric to get a max value for
-     */
-    protected function _maxValue($metric)
-    {
-        return array_reduce(
-            $this->collapsed,
-            static function ($result, $item) use ($metric) {
-                if ($item[$metric] > $result) {
-                    return $item[$metric];
-                }
-
-                return $result;
-            },
-            0
-        );
-    }
-
-    /**
      * Return a structured array suitable for generating callgraph visualizations.
      *
      * Functions whose inclusive time is less than 2% of the total time will
      * be excluded from the callgraph data.
      *
+     * @param mixed $metric
+     * @param mixed $threshold
      * @return array
      */
     public function getCallgraph($metric = 'wt', $threshold = 0.01)
     {
         $valid = array_merge($this->keys, $this->exclusiveKeys);
         if (!in_array($metric, $valid)) {
-            throw new Exception("Unknown metric '$metric'. Cannot generate callgraph.");
+            throw new Exception("Unknown metric '${metric}'. Cannot generate callgraph.");
         }
         $this->calculateSelf();
 
@@ -589,6 +429,180 @@ class XhprofProfile
         unset($this->visited, $this->nodes, $this->links);
 
         return $out;
+    }
+
+    public function toArray()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Sum up the values in $this->_keys;
+     *
+     * @param array $a The first set of profile data
+     * @param array $b the second set of profile data
+     * @return array merged profile data
+     */
+    protected function _sumKeys($a, $b)
+    {
+        foreach ($this->keys as $key) {
+            if (!isset($a[$key])) {
+                $a[$key] = 0;
+            }
+            $a[$key] += $b[$key] ?? 0;
+        }
+
+        return $a;
+    }
+
+    protected function _diffKeys($a, $b, $includeSelf = true)
+    {
+        $keys = $this->keys;
+        if ($includeSelf) {
+            $keys = array_merge($keys, $this->exclusiveKeys);
+        }
+        foreach ($keys as $key) {
+            $a[$key] -= $b[$key];
+        }
+
+        return $a;
+    }
+
+    protected function _diffPercentKeys($a, $b, $includeSelf = true)
+    {
+        $out = [];
+        $keys = $this->keys;
+        if ($includeSelf) {
+            $keys = array_merge($keys, $this->exclusiveKeys);
+        }
+        foreach ($keys as $key) {
+            if ($b[$key] != 0) {
+                $out[$key] = $a[$key] / $b[$key];
+            } else {
+                $out[$key] = -1;
+            }
+        }
+
+        return $out;
+    }
+
+    /**
+     * Get the parent methods for a given symbol.
+     *
+     * @param string $symbol the name of the function/method to find
+     *                       parents for
+     * @return array List of parents
+     */
+    protected function _getParents($symbol)
+    {
+        $parents = [];
+        $current = $this->collapsed[$symbol];
+        foreach ($current['parents'] as $parent) {
+            if (isset($this->collapsed[$parent])) {
+                $parents[] = ['function' => $parent] + $this->collapsed[$parent];
+            }
+        }
+
+        return $parents;
+    }
+
+    /**
+     * Find symbols that are the children of the given name.
+     *
+     * @param string $symbol the name of the function to find children of
+     * @param string $metric the metric to compare $threshold with
+     * @param float $threshold The threshold to exclude functions at. Any
+     *                         function that represents less than
+     * @return array an array of child methods
+     */
+    protected function _getChildren($symbol, $metric = null, $threshold = 0)
+    {
+        $children = [];
+        if (!isset($this->indexed[$symbol])) {
+            return $children;
+        }
+
+        $total = 0;
+        if (isset($metric)) {
+            $top = $this->indexed[self::NO_PARENT];
+            // Not always 'main()'
+            $mainFunc = current($top);
+            $total = $mainFunc[$metric];
+        }
+
+        foreach ($this->indexed[$symbol] as $name => $data) {
+            if (
+                $metric && $total > 0 && $threshold > 0 &&
+                ($this->collapsed[$name][$metric] / $total) < $threshold
+            ) {
+                continue;
+            }
+            $children[] = $data + ['function' => $name];
+        }
+
+        return $children;
+    }
+
+    /**
+     * Get the max value for any give metric.
+     *
+     * @param string $metric the metric to get a max value for
+     */
+    protected function _maxValue($metric)
+    {
+        return array_reduce(
+            $this->collapsed,
+            static function ($result, $item) use ($metric) {
+                if ($item[$metric] > $result) {
+                    return $item[$metric];
+                }
+
+                return $result;
+            },
+            0
+        );
+    }
+
+    /**
+     * Convert the raw data into a flatter list that is easier to use.
+     *
+     * This removes some of the parentage detail as all calls of a given
+     * method are aggregated. We are not able to maintain a full tree structure
+     * in any case, as xhprof only keeps one level of detail.
+     */
+    private function process(): void
+    {
+        $result = [];
+        foreach ($this->data['profile'] as $name => $values) {
+            [$parent, $func] = $this->splitName($name);
+            // normalize, fill all missing keys
+            $values += [
+                'ct' => 0,
+                'wt' => 0,
+                'cpu' => 0,
+                'mu' => 0,
+                'pmu' => 0,
+            ];
+
+            // Generate collapsed data.
+            if (isset($result[$func])) {
+                $result[$func] = $this->_sumKeys($result[$func], $values);
+                $result[$func]['parents'][] = $parent;
+            } else {
+                $result[$func] = $values;
+                $result[$func]['parents'] = [$parent];
+            }
+
+            // Build the indexed data.
+            if ($parent === null) {
+                $parent = self::NO_PARENT;
+            }
+            if (!isset($this->indexed[$parent])) {
+                $this->indexed[$parent] = [];
+            }
+            $this->indexed[$parent][$func] = $values;
+        }
+        $this->collapsed = $result;
     }
 
     private function callgraphData($parentName, $main, $metric, $threshold, $parentIndex = null): void
@@ -636,10 +650,5 @@ class XhprofProfile
                 $this->callgraphData($childName, $main, $metric, $threshold, $index);
             }
         }
-    }
-
-    public function toArray()
-    {
-        return $this->data;
     }
 }

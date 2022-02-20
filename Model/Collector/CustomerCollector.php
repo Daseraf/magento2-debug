@@ -4,16 +4,16 @@ namespace ClawRock\Debug\Model\Collector;
 
 class CustomerCollector implements CollectorInterface
 {
-    const NAME = 'customer';
+    public const NAME = 'customer';
 
-    const LOGGED_IN               = 'logged_in';
-    const CUSTOMER_ID             = 'customer_id';
-    const CUSTOMER_EMAIL          = 'customer_email';
-    const CUSTOMER_NAME           = 'customer_name';
-    const CUSTOMER_GROUP_ID       = 'customer_group_id';
-    const CUSTOMER_GROUP_CODE     = 'customer_group_code';
-    const CUSTOMER_TAX_CLASS_ID   = 'customer_tax_class_id';
-    const CUSTOMER_TAX_CLASS_NAME = 'customer_tax_class_name';
+    public const LOGGED_IN = 'logged_in';
+    public const CUSTOMER_ID = 'customer_id';
+    public const CUSTOMER_EMAIL = 'customer_email';
+    public const CUSTOMER_NAME = 'customer_name';
+    public const CUSTOMER_GROUP_ID = 'customer_group_id';
+    public const CUSTOMER_GROUP_CODE = 'customer_group_code';
+    public const CUSTOMER_TAX_CLASS_ID = 'customer_tax_class_id';
+    public const CUSTOMER_TAX_CLASS_NAME = 'customer_tax_class_name';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -43,13 +43,13 @@ class CustomerCollector implements CollectorInterface
     public function collect(): CollectorInterface
     {
         $this->dataCollector->setData([
-            self::LOGGED_IN               => $this->customerInfo->isLoggedIn(),
-            self::CUSTOMER_ID             => $this->customerInfo->getCustomer()->getId(),
-            self::CUSTOMER_EMAIL          => $this->customerInfo->getCustomer()->getEmail(),
-            self::CUSTOMER_NAME           => $this->customerInfo->getCustomer()->getName(),
-            self::CUSTOMER_GROUP_ID       => $this->customerInfo->getCustomer()->getGroupId(),
-            self::CUSTOMER_GROUP_CODE     => $this->customerInfo->getGroup()->getCode(),
-            self::CUSTOMER_TAX_CLASS_ID   => $this->customerInfo->getCustomer()->getTaxClassId(),
+            self::LOGGED_IN => $this->customerInfo->isLoggedIn(),
+            self::CUSTOMER_ID => $this->customerInfo->getCustomer()->getId(),
+            self::CUSTOMER_EMAIL => $this->customerInfo->getCustomer()->getEmail(),
+            self::CUSTOMER_NAME => $this->customerInfo->getCustomer()->getName(),
+            self::CUSTOMER_GROUP_ID => $this->customerInfo->getCustomer()->getGroupId(),
+            self::CUSTOMER_GROUP_CODE => $this->customerInfo->getGroup()->getCode(),
+            self::CUSTOMER_TAX_CLASS_ID => $this->customerInfo->getCustomer()->getTaxClassId(),
             self::CUSTOMER_TAX_CLASS_NAME => $this->customerInfo->getGroup()->getTaxClassName(),
         ]);
 
@@ -97,8 +97,8 @@ class CustomerCollector implements CollectorInterface
     }
 
     /**
-     * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @return bool
      */
     public function isEnabled(): bool
     {

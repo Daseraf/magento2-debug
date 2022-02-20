@@ -2,7 +2,6 @@
 
 namespace ClawRock\Debug\Controller\Profiler;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
 use ClawRock\Debug\Model\Profiler;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;

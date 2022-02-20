@@ -7,24 +7,24 @@ namespace ClawRock\Debug\Model\Collector;
  */
 class ConfigCollector implements CollectorInterface
 {
-    const NAME = 'config';
+    public const NAME = 'config';
 
-    const STORE_ID             = 'store_id';
-    const STORE_NAME           = 'store_name';
-    const STORE_CODE           = 'store_code';
-    const WEBSITE_ID           = 'website_id';
-    const WEBSITE_NAME     = 'website_name';
-    const WEBSITE_CODE     = 'website_code';
-    const DEVELOPER_MODE   = 'developer_mode';
-    const TOKEN            = 'token';
-    const VERSION          = 'version';
-    const MODULES          = 'modules';
-    const XDEBUG_ENABLED   = 'xdebug_enabled';
-    const EACCEL_ENABLED   = 'eaccel_enabled';
-    const APC_ENABLED      = 'apc_enabled';
-    const XCACHE_ENABLED   = 'xcache_enabled';
-    const WINCACHE_ENABLED = 'wincache_enabled';
-    const OPCACHE_ENABLED  = 'zend_opcache_enabled';
+    public const STORE_ID = 'store_id';
+    public const STORE_NAME = 'store_name';
+    public const STORE_CODE = 'store_code';
+    public const WEBSITE_ID = 'website_id';
+    public const WEBSITE_NAME = 'website_name';
+    public const WEBSITE_CODE = 'website_code';
+    public const DEVELOPER_MODE = 'developer_mode';
+    public const TOKEN = 'token';
+    public const VERSION = 'version';
+    public const MODULES = 'modules';
+    public const XDEBUG_ENABLED = 'xdebug_enabled';
+    public const EACCEL_ENABLED = 'eaccel_enabled';
+    public const APC_ENABLED = 'apc_enabled';
+    public const XCACHE_ENABLED = 'xcache_enabled';
+    public const WINCACHE_ENABLED = 'wincache_enabled';
+    public const OPCACHE_ENABLED = 'zend_opcache_enabled';
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
@@ -82,22 +82,22 @@ class ConfigCollector implements CollectorInterface
     public function collect(): CollectorInterface
     {
         $this->dataCollector->setData([
-            self::STORE_ID         => $this->storeManager->getStore()->getId(),
-            self::STORE_NAME       => $this->storeManager->getStore()->getName(),
-            self::STORE_CODE       => $this->storeManager->getStore()->getCode(),
-            self::WEBSITE_ID       => $this->storeManager->getWebsite()->getId(),
-            self::WEBSITE_NAME     => $this->storeManager->getWebsite()->getName(),
-            self::WEBSITE_CODE     => $this->storeManager->getWebsite()->getCode(),
-            self::DEVELOPER_MODE   => $this->magentoInfo->isDeveloperMode(),
-            self::TOKEN            => $this->httpStorage->getResponse()->getHeader('X-Debug-Token')->getFieldValue(),
-            self::VERSION          => $this->magentoInfo->getVersion(),
-            self::MODULES          => $this->magentoInfo->getModules(),
-            self::XDEBUG_ENABLED   => $this->extensionInfo->isXdebugEnabled(),
-            self::EACCEL_ENABLED   => $this->extensionInfo->isEAcceleratorEnabled(),
-            self::APC_ENABLED      => $this->extensionInfo->isApcEnabled(),
-            self::XCACHE_ENABLED   => $this->extensionInfo->isXCacheEnabled(),
+            self::STORE_ID => $this->storeManager->getStore()->getId(),
+            self::STORE_NAME => $this->storeManager->getStore()->getName(),
+            self::STORE_CODE => $this->storeManager->getStore()->getCode(),
+            self::WEBSITE_ID => $this->storeManager->getWebsite()->getId(),
+            self::WEBSITE_NAME => $this->storeManager->getWebsite()->getName(),
+            self::WEBSITE_CODE => $this->storeManager->getWebsite()->getCode(),
+            self::DEVELOPER_MODE => $this->magentoInfo->isDeveloperMode(),
+            self::TOKEN => $this->httpStorage->getResponse()->getHeader('X-Debug-Token')->getFieldValue(),
+            self::VERSION => $this->magentoInfo->getVersion(),
+            self::MODULES => $this->magentoInfo->getModules(),
+            self::XDEBUG_ENABLED => $this->extensionInfo->isXdebugEnabled(),
+            self::EACCEL_ENABLED => $this->extensionInfo->isEAcceleratorEnabled(),
+            self::APC_ENABLED => $this->extensionInfo->isApcEnabled(),
+            self::XCACHE_ENABLED => $this->extensionInfo->isXCacheEnabled(),
             self::WINCACHE_ENABLED => $this->extensionInfo->isWinCacheEnabled(),
-            self::OPCACHE_ENABLED  => $this->extensionInfo->isZendOpcacheEnabled(),
+            self::OPCACHE_ENABLED => $this->extensionInfo->isZendOpcacheEnabled(),
         ]);
 
         return $this;

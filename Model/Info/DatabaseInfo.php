@@ -4,10 +4,10 @@ namespace ClawRock\Debug\Model\Info;
 
 class DatabaseInfo
 {
-    const PROFILE    = 'profile';
+    public const PROFILE = 'profile';
 
-    const ALL_QUERIES        = 'all';
-    const DUPLICATED_QUERIES = 'duplicated';
+    public const ALL_QUERIES = 'all';
+    public const DUPLICATED_QUERIES = 'duplicated';
 
     /**
      * @var \Magento\Framework\App\ResourceConnection

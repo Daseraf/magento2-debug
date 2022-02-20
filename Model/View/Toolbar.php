@@ -3,13 +3,12 @@
 namespace ClawRock\Debug\Model\View;
 
 use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Model\Profiler;
 use Magento\Framework\App\Area;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Toolbar implements ArgumentInterface
 {
-    const COLLECTOR_PLACEHOLDER = 'debug.toolbar.collectors.%s';
+    public const COLLECTOR_PLACEHOLDER = 'debug.toolbar.collectors.%s';
 
     /**
      * @var \ClawRock\Debug\Api\Data\ProfileInterface

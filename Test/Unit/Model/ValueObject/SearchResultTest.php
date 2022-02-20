@@ -52,7 +52,7 @@ class SearchResultTest extends TestCase
             $statusCode,
             $fileSize,
             $parentToken,
-            $requestTime
+            $requestTime,
         ]);
 
         $this->assertEquals($searchResult, $searchResultFromCsv);

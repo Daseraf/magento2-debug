@@ -36,8 +36,8 @@ class Injector
             $toolbarBlock = $this->layout->createBlock(Template::class, 'debug.toolbar');
             $toolbarBlock->setTemplate('ClawRock_Debug::profiler/toolbar/js.phtml')->setData([
                 'view_model' => $this->viewModel,
-                'token'     => $token,
-                'request'   => $request,
+                'token' => $token,
+                'request' => $request,
             ]);
 
             /** @var Template $jsBlock */

@@ -3,10 +3,10 @@
 namespace ClawRock\Debug\Plugin\Collector;
 
 use ClawRock\Debug\Helper\Config;
+use ClawRock\Debug\Model\Config\Source\XhprofFlags;
 use ClawRock\Debug\Model\Info\CallmapInfo;
 use Magento\Framework\App\Http;
 use Magento\Framework\App\ResponseInterface;
-use ClawRock\Debug\Model\Config\Source\XhprofFlags;
 
 /**
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -17,6 +17,7 @@ class CallmapCollectorPlugin
      * @var Config
      */
     private $config;
+
     /**
      * @var CallmapInfo
      */
@@ -40,7 +41,7 @@ class CallmapCollectorPlugin
      */
     public function beforeLaunch(Http $subject)
     {
-        if(!$this->config->isCallmapCollectorEnabled()) {
+        if (!$this->config->isCallmapCollectorEnabled()) {
             return;
         }
 
@@ -59,7 +60,7 @@ class CallmapCollectorPlugin
      */
     public function afterLaunch(Http $subject, ResponseInterface $result)
     {
-        if(!$this->config->isCallmapCollectorEnabled()) {
+        if (!$this->config->isCallmapCollectorEnabled()) {
             return $result;
         }
 

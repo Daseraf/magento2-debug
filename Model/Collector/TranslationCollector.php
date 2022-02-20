@@ -6,11 +6,11 @@ use ClawRock\Debug\Logger\LoggableInterface;
 
 class TranslationCollector implements CollectorInterface, LoggerCollectorInterface
 {
-    const NAME = 'translation';
+    public const NAME = 'translation';
 
-    const TRANSLATIONS = 'translations';
-    const DEFINED = 'defined';
-    const MISSING = 'missing';
+    public const TRANSLATIONS = 'translations';
+    public const DEFINED = 'defined';
+    public const MISSING = 'missing';
 
     /**
      * @var \ClawRock\Debug\Helper\Config

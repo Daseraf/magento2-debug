@@ -6,16 +6,16 @@ use Magento\Framework\Interception\DefinitionInterface;
 
 class PluginCollector implements CollectorInterface, LateCollectorInterface
 {
-    const NAME = 'plugin';
+    public const NAME = 'plugin';
 
-    const BEFORE = 'before';
-    const AROUND = 'around';
-    const AFTER  = 'after';
-    const TOTAL_EXECUTION_TIME  = 'total_execution_time';
-    const BEFORE_EXECUTION_TIME  = 'before_execution_time';
-    const AROUND_EXECUTION_TIME  = 'around_execution_time';
-    const AFTER_EXECUTION_TIME  = 'after_execution_time';
-    const EXECUTION_TIME_BY_TYPES  = 'execution_time_by_types';
+    public const BEFORE = 'before';
+    public const AROUND = 'around';
+    public const AFTER = 'after';
+    public const TOTAL_EXECUTION_TIME = 'total_execution_time';
+    public const BEFORE_EXECUTION_TIME = 'before_execution_time';
+    public const AROUND_EXECUTION_TIME = 'around_execution_time';
+    public const AFTER_EXECUTION_TIME = 'after_execution_time';
+    public const EXECUTION_TIME_BY_TYPES = 'execution_time_by_types';
 
     /**
      * @var \ClawRock\Debug\Helper\Config

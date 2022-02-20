@@ -12,7 +12,7 @@ class RequestTimePlugin
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      *
      * @param \ClawRock\Debug\Api\ProfileRepositoryInterface $subject
-     * @param \ClawRock\Debug\Api\Data\ProfileInterface      $profile
+     * @param \ClawRock\Debug\Api\Data\ProfileInterface $profile
      * @return array
      */
     public function beforeSave(ProfileRepositoryInterface $subject, ProfileInterface $profile)

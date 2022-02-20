@@ -22,7 +22,7 @@ class ConfigTest extends TestCase
     private $appStateMock;
 
     /**
-     * @var ScopeConfigInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject|ScopeConfigInterface
      */
     private $scopeConfigMock;
 

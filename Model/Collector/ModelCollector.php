@@ -8,14 +8,14 @@ use ClawRock\Debug\Model\ValueObject\ModelAction;
 
 class ModelCollector implements CollectorInterface, LoggerCollectorInterface
 {
-    const NAME = 'model';
+    public const NAME = 'model';
 
-    const LOAD_CALL_THRESHOLD = 20;
+    public const LOAD_CALL_THRESHOLD = 20;
 
-    const TOTAL_TIME = 'total_time';
-    const METRICS    = 'metrics';
-    const LOG        = 'log';
-    const LOAD_LOOPS = 'load_loops';
+    public const TOTAL_TIME = 'total_time';
+    public const METRICS = 'metrics';
+    public const LOG = 'log';
+    public const LOAD_LOOPS = 'load_loops';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -53,9 +53,9 @@ class ModelCollector implements CollectorInterface, LoggerCollectorInterface
     {
         $totalTime = 0;
         $metrics = [
-            ModelAction::LOAD      => 0,
-            ModelAction::SAVE      => 0,
-            ModelAction::DELETE    => 0,
+            ModelAction::LOAD => 0,
+            ModelAction::SAVE => 0,
+            ModelAction::DELETE => 0,
             ModelAction::LOOP_LOAD => 0,
         ];
         $traceList = [];
@@ -98,8 +98,8 @@ class ModelCollector implements CollectorInterface, LoggerCollectorInterface
 
         $this->dataCollector->setData([
             self::TOTAL_TIME => $totalTime,
-            self::METRICS    => $metrics,
-            self::LOG        => $this->dataLogger->getLogs(),
+            self::METRICS => $metrics,
+            self::LOG => $this->dataLogger->getLogs(),
             self::LOAD_LOOPS => $loadLoops,
         ]);
 

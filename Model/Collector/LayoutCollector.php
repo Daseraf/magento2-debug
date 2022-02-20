@@ -6,22 +6,22 @@ use ClawRock\Debug\Logger\LoggableInterface;
 
 class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
 {
-    const NAME = 'layout';
+    public const NAME = 'layout';
 
-    const BLOCK_PROFILER_ID_KEY        = 'debug_profiler_id';
-    const BLOCK_START_RENDER_KEY       = 'debug_start_render';
-    const BLOCK_STOP_RENDER_KEY        = 'debug_stop_render';
-    const BLOCK_RENDER_TIME_KEY        = 'debug_render_time';
-    const BLOCK_HASH_KEY               = 'debug_hash';
-    const BLOCK_PARENT_PROFILER_ID_KEY = 'debug_profiler_parent_id';
+    public const BLOCK_PROFILER_ID_KEY = 'debug_profiler_id';
+    public const BLOCK_START_RENDER_KEY = 'debug_start_render';
+    public const BLOCK_STOP_RENDER_KEY = 'debug_stop_render';
+    public const BLOCK_RENDER_TIME_KEY = 'debug_render_time';
+    public const BLOCK_HASH_KEY = 'debug_hash';
+    public const BLOCK_PARENT_PROFILER_ID_KEY = 'debug_profiler_parent_id';
 
-    const HANDLES             = 'handles';
-    const BLOCKS              = 'blocks';
-    const BLOCKS_CREATED      = 'blocks_created';
-    const BLOCKS_RENDERED     = 'blocks_rendered';
-    const BLOCKS_NOT_RENDERED = 'blocks_not_rendered';
-    const TOTAL_RENDER_TIME   = 'total_render_time';
-    const RENDER_TIME         = 'render_time';
+    public const HANDLES = 'handles';
+    public const BLOCKS = 'blocks';
+    public const BLOCKS_CREATED = 'blocks_created';
+    public const BLOCKS_RENDERED = 'blocks_rendered';
+    public const BLOCKS_NOT_RENDERED = 'blocks_not_rendered';
+    public const TOTAL_RENDER_TIME = 'total_render_time';
+    public const RENDER_TIME = 'render_time';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -72,10 +72,10 @@ class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
         }
 
         $this->dataCollector->setData([
-            self::TOTAL_RENDER_TIME   => $renderTime,
-            self::HANDLES             => $this->layoutInfo->getHandles(),
-            self::BLOCKS_CREATED      => $this->layoutInfo->getCreatedBlocks(),
-            self::BLOCKS_RENDERED     => $this->dataLogger->getLogs(),
+            self::TOTAL_RENDER_TIME => $renderTime,
+            self::HANDLES => $this->layoutInfo->getHandles(),
+            self::BLOCKS_CREATED => $this->layoutInfo->getCreatedBlocks(),
+            self::BLOCKS_RENDERED => $this->dataLogger->getLogs(),
             self::BLOCKS_NOT_RENDERED => $this->layoutInfo->getNotRenderedBlocks(),
         ]);
 

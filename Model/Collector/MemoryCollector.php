@@ -4,11 +4,11 @@ namespace ClawRock\Debug\Model\Collector;
 
 class MemoryCollector implements CollectorInterface, LateCollectorInterface
 {
-    const NAME = 'memory';
+    public const NAME = 'memory';
 
-    const REAL_MEMORY_USAGE = 'memory_usage';
-    const TOTAL_MEMORY_USAGE = 'total_memory_usage';
-    const MEMORY_LIMIT = 'memory_limit';
+    public const REAL_MEMORY_USAGE = 'memory_usage';
+    public const TOTAL_MEMORY_USAGE = 'total_memory_usage';
+    public const MEMORY_LIMIT = 'memory_limit';
 
     /**
      * @var \ClawRock\Debug\Helper\Config

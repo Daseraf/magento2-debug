@@ -6,8 +6,8 @@ use Magento\Framework\Option\ArrayInterface;
 
 class ErrorHandler implements ArrayInterface
 {
-    const MAGENTO = '0';
-    const WHOOPS  = 'whoops';
+    public const MAGENTO = '0';
+    public const WHOOPS = 'whoops';
 
     public function toOptionArray()
     {
@@ -21,7 +21,7 @@ class ErrorHandler implements ArrayInterface
     {
         return [
             self::MAGENTO => __('Default'),
-            self::WHOOPS  => __('Whoops'),
+            self::WHOOPS => __('Whoops'),
         ];
     }
 }

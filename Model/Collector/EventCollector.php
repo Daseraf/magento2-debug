@@ -3,18 +3,17 @@
 namespace ClawRock\Debug\Model\Collector;
 
 use ClawRock\Debug\Logger\LoggableInterface;
-use ClawRock\Debug\Model\ValueObject\EventObserver;
 
 class EventCollector implements CollectorInterface, LateCollectorInterface, LoggerCollectorInterface
 {
-    const NAME = 'event';
+    public const NAME = 'event';
 
-    const TIME      = 'time';
-    const EVENTS    = 'events';
-    const OBSERVERS = 'observers';
+    public const TIME = 'time';
+    public const EVENTS = 'events';
+    public const OBSERVERS = 'observers';
 
-    const OBSERVERS_COUNT = 'observers_count';
-    const DISPATCH_COUNT  = 'events_count';
+    public const OBSERVERS_COUNT = 'observers_count';
+    public const DISPATCH_COUNT = 'events_count';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -58,8 +57,8 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
     public function collect(): CollectorInterface
     {
         $this->dataCollector->setData([
-            self::TIME      => 0,
-            self::EVENTS    => [],
+            self::TIME => 0,
+            self::EVENTS => [],
             self::OBSERVERS => [],
         ]);
 
@@ -83,8 +82,8 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
         }
 
         $this->dataCollector->setData([
-            self::TIME      => $time,
-            self::EVENTS    => $events,
+            self::TIME => $time,
+            self::EVENTS => $events,
             self::OBSERVERS => $observers,
         ]);
 

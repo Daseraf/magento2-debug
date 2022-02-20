@@ -54,7 +54,7 @@ class WhoopsPluginTest extends TestCase
         ]);
 
         $this->assertEquals([
-            $bootstrapMock, $exception
+            $bootstrapMock, $exception,
         ], $plugin->beforeCatchException($subjectMock, $bootstrapMock, $exception));
     }
 }

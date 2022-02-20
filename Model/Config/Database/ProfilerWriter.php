@@ -31,11 +31,11 @@ class ProfilerWriter
                     'default' => [
                         'profiler' => [
                             'class' => Profiler::class,
-                            'enabled' => $flag
-                        ]
-                    ]
-                ]
-            ]
+                            'enabled' => $flag,
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         $this->configWriter->saveConfig([ConfigFilePool::APP_ENV => $configGroup]);

@@ -7,15 +7,16 @@ class XhprofFlags implements \Magento\Framework\Data\OptionSourceInterface
     /**
      * @link https://php.net/manual/en/xhprof.constants.php#constant.xhprof-flags-no-builtins
      */
-    const FLAG_NO_BUILTINS = 1;
+    public const FLAG_NO_BUILTINS = 1;
     /**
      * @link https://php.net/manual/en/xhprof.constants.php#constant.xhprof-flags-cpu
      */
-    const FLAG_CPU = 2;
+    public const FLAG_CPU = 2;
     /**
      * @link https://php.net/manual/en/xhprof.constants.php##constant.xhprof-flags-memory
      */
-    const FLAG_MEMORY = 4;
+    public const FLAG_MEMORY = 4;
+
     /**
      * @return array
      */

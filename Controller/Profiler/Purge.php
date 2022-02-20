@@ -36,7 +36,7 @@ class Purge extends Action
             $this->logger->critical($e);
         }
 
-        /** @var  $resultRedirect */
+        /** @var $resultRedirect */
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)
             ->setUrl($this->_redirect->getRefererUrl());
     }

@@ -10,12 +10,12 @@ use Magento\Framework\Profiler as MagentoProfiler;
 
 class Profiler
 {
-    const URL_TOKEN_PARAMETER      = 'token';
-    const URL_PANEL_PARAMETER      = 'panel';
-    const TOOLBAR_FULL_ACTION_NAME = 'debug_profiler_toolbar';
+    public const URL_TOKEN_PARAMETER = 'token';
+    public const URL_PANEL_PARAMETER = 'panel';
+    public const TOOLBAR_FULL_ACTION_NAME = 'debug_profiler_toolbar';
 
     /**
-     * @var null|CollectorInterface[]
+     * @var CollectorInterface[]|null
      */
     private $dataCollectors = null;
 
@@ -93,7 +93,7 @@ class Profiler
         }
 
         try {
-            $profile  = $this->collect($request, $response);
+            $profile = $this->collect($request, $response);
             $this->profileMemoryStorage->write($profile);
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
@@ -123,7 +123,7 @@ class Profiler
     {
         $collectors = $this->getDataCollectors();
 
-        return isset($collectors[$name]) ? $collectors[$name] : false;
+        return $collectors[$name] ?? false;
     }
 
     public function getDataCollectors()
@@ -149,7 +149,7 @@ class Profiler
 
     /**
      * @SuppressWarnings(PHPMD.StaticAccess)
-     * @param \Magento\Framework\HTTP\PhpEnvironment\Request  $request
+     * @param \Magento\Framework\HTTP\PhpEnvironment\Request $request
      * @param \Magento\Framework\HTTP\PhpEnvironment\Response $response
      * @return \ClawRock\Debug\Model\Profile
      */

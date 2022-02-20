@@ -6,11 +6,11 @@ use ClawRock\Debug\Logger\LoggableInterface;
 
 class ModelAction implements LoggableInterface
 {
-    const LOAD   = 'load';
-    const SAVE   = 'save';
-    const DELETE = 'delete';
+    public const LOAD = 'load';
+    public const SAVE = 'save';
+    public const DELETE = 'delete';
 
-    const LOOP_LOAD = 'loop_load';
+    public const LOOP_LOAD = 'loop_load';
 
     /**
      * @var string

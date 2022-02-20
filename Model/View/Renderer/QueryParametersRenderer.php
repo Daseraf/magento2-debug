@@ -36,18 +36,16 @@ class QueryParametersRenderer implements RendererInterface
         $parameters = $this->parameters;
         $i = !array_key_exists(0, $parameters) && array_key_exists(1, $parameters) ? 1 : 0;
 
-        $result = preg_replace_callback('/\?|((?<!:):[a-z0-9_]+)/i', function ($matches) use ($parameters, &$i) {
+        return preg_replace_callback('/\?|((?<!:):[a-z0-9_]+)/i', function ($matches) use ($parameters, &$i) {
             $key = $matches[0];
             if (!array_key_exists($i, $parameters) && (false === $key || !array_key_exists($key, $parameters))) {
                 return $matches[0];
             }
-            $value  = array_key_exists($i, $parameters) ? $parameters[$i] : $parameters[$key];
+            $value = array_key_exists($i, $parameters) ? $parameters[$i] : $parameters[$key];
             $result = $this->resource->getConnection(ResourceConnection::DEFAULT_CONNECTION)->quote($value);
             $i++;
 
             return $result;
         }, $this->query);
-
-        return $result;
     }
 }

@@ -2,10 +2,6 @@
 
 namespace ClawRock\Debug\Model\Info;
 
-use Magento\Customer\Api\Data\CustomerInterface;
-use Magento\Customer\Api\Data\GroupInterface;
-use Magento\Customer\Model\Customer;
-
 class CallmapInfo
 {
     /**

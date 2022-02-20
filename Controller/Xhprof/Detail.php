@@ -2,7 +2,6 @@
 
 namespace ClawRock\Debug\Controller\Xhprof;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
 use ClawRock\Debug\Model\Collector\CallmapCollector;
 use ClawRock\Debug\Model\Profiler;
 use Magento\Framework\App\Action\Action;
@@ -59,7 +58,6 @@ class Detail extends Action
             'panel' => 'xhprof',
             'profiler' => 'detail',
         ], 'debug');
-
 
         $this->profileMemoryStorage->write($profile);
         $collector = $profile->getCollector($panel);

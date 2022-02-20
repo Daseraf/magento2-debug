@@ -22,9 +22,9 @@ class RedirectTest extends TestCase
         $this->assertEquals($method, $redirect->getMethod());
         $this->assertFalse($redirect->isEmpty());
         $this->assertEquals([
-            Redirect::TOKEN       => $token,
-            Redirect::ACTION      => $action,
-            Redirect::METHOD      => $method,
+            Redirect::TOKEN => $token,
+            Redirect::ACTION => $action,
+            Redirect::METHOD => $method,
             Redirect::STATUS_CODE => $statusCode,
             Redirect::STATUS_TEXT => $statusText,
         ], $redirect->toArray());
@@ -36,9 +36,9 @@ class RedirectTest extends TestCase
         $this->assertTrue($redirect->isEmpty());
 
         $redirect = Redirect::createFromArray([
-            Redirect::TOKEN       => $token,
-            Redirect::ACTION      => $action,
-            Redirect::METHOD      => $method,
+            Redirect::TOKEN => $token,
+            Redirect::ACTION => $action,
+            Redirect::METHOD => $method,
             Redirect::STATUS_CODE => $statusCode,
             Redirect::STATUS_TEXT => $statusText,
         ]);
@@ -48,9 +48,9 @@ class RedirectTest extends TestCase
         $this->assertEquals($method, $redirect->getMethod());
         $this->assertFalse($redirect->isEmpty());
         $this->assertEquals([
-            Redirect::TOKEN       => $token,
-            Redirect::ACTION      => $action,
-            Redirect::METHOD      => $method,
+            Redirect::TOKEN => $token,
+            Redirect::ACTION => $action,
+            Redirect::METHOD => $method,
             Redirect::STATUS_CODE => $statusCode,
             Redirect::STATUS_TEXT => $statusText,
         ], $redirect->toArray());

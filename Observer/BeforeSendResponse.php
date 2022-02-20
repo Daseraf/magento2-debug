@@ -27,7 +27,7 @@ class BeforeSendResponse implements ObserverInterface
 
     public function execute(Observer $observer)
     {
-        $request  = $observer->getEvent()->getRequest();
+        $request = $observer->getEvent()->getRequest();
         $response = $observer->getEvent()->getResponse();
         if ($this->isProfilerAction($request) || !$this->config->isEnabled()) {
             return;

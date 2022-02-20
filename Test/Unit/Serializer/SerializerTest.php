@@ -9,6 +9,7 @@ class SerializerTest extends TestCase
 {
     /**
      * @dataProvider serializationProvider
+     * @param mixed $input
      */
     public function testSerialization($input)
     {

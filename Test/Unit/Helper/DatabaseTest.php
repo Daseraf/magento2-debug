@@ -25,7 +25,7 @@ class DatabaseTest extends TestCase
         $this->connectionMock = $this->getMockForAbstractClass(\Magento\Framework\DB\Adapter\AdapterInterface::class);
 
         $this->database = (new ObjectManager($this))->getObject(Database::class, [
-            'resourceConnection' => $this->resourceConnectionMock
+            'resourceConnection' => $this->resourceConnectionMock,
         ]);
     }
 
@@ -66,7 +66,7 @@ class DatabaseTest extends TestCase
      * @dataProvider queryParametersProvider
      *
      * @param string $query
-     * @param array  $parameters
+     * @param array $parameters
      * @param string $result
      */
     public function testReplaceQueryParameters($query, array $parameters, $result)
@@ -78,6 +78,7 @@ class DatabaseTest extends TestCase
         $this->connectionMock->expects($this->exactly($quoteValueCount))->method('quote')
             ->willReturnCallback(function () {
                 $args = func_get_args();
+
                 return $args[0];
             });
 
@@ -88,19 +89,19 @@ class DatabaseTest extends TestCase
     {
         return [
             ['SELECT * FROM core_config_data WHERE path = ?', [
-                'web/secure/base_url'
+                'web/secure/base_url',
             ], 'SELECT * FROM core_config_data WHERE path = web/secure/base_url'],
             ['INSERT INTO `table` (`field1`, `field2`) VALUES (\'2000-01-01 10:00:00\', ?)', [
                 'value',
             ], 'INSERT INTO `table` (`field1`, `field2`) VALUES (\'2000-01-01 10:00:00\', value)'],
             ['SELECT * FROM core_config_data WHERE path = :path', [
-                ':path' => 'web/unsecure/base_url'
+                ':path' => 'web/unsecure/base_url',
             ], 'SELECT * FROM core_config_data WHERE path = web/unsecure/base_url'],
             [
                 'SELECT COUNT(*) FROM table WHERE (url = \'https://example.com/?utm_source=backend\')',
                 [],
                 'SELECT COUNT(*) FROM table WHERE (url = \'https://example.com/?utm_source=backend\')',
-            ]
+            ],
         ];
     }
 }

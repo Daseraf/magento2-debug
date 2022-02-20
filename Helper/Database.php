@@ -35,9 +35,9 @@ class Database
             $queryId = $this->getQueryId($query);
             if (!isset($queries[$queryId])) {
                 $queries[$queryId] = [
-                    'count'      => 0,
+                    'count' => 0,
                     'total_time' => 0,
-                    'query'      => $query,
+                    'query' => $query,
                 ];
             }
             $queries[$queryId]['count']++;
@@ -97,15 +97,13 @@ class Database
     {
         $i = !array_key_exists(0, $parameters) && array_key_exists(1, $parameters) ? 1 : 0;
 
-        $result = preg_replace_callback('/\?|((?<!:):[a-zA-Z]\w*)/i', function ($matches) use ($parameters, &$i) {
-            $value  = isset($parameters[$i])
-                ? $parameters[$i]
-                : (isset($parameters[$matches[0]]) ? $parameters[$matches[0]] : '?');
+        return preg_replace_callback('/\?|((?<!:):[a-zA-Z]\w*)/i', function ($matches) use ($parameters, &$i) {
+            $value = $parameters[$i]
+                ?? ($parameters[$matches[0]] ?? '?');
             $result = $this->resourceConnection->getConnection(ResourceConnection::DEFAULT_CONNECTION)->quote($value);
             $i++;
+
             return $result;
         }, $query);
-
-        return $result;
     }
 }

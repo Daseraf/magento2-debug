@@ -36,7 +36,7 @@ class Search extends Action
      */
     public function execute()
     {
-        $request  = $this->getRequest();
+        $request = $this->getRequest();
 
         if (!empty($token = $request->getParam('_token'))) {
             return $this->_redirect('_debug/profiler/info', [Profiler::URL_TOKEN_PARAMETER => $token]);

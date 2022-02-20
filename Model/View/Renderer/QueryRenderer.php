@@ -6,7 +6,7 @@ use Magento\Framework\View\Element\Template;
 
 class QueryRenderer implements RendererInterface
 {
-    const TEMPLATE = 'ClawRock_Debug::renderer/query.phtml';
+    public const TEMPLATE = 'ClawRock_Debug::renderer/query.phtml';
 
     /**
      * @var \Zend_Db_Profiler_Query

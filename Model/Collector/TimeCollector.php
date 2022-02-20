@@ -6,13 +6,13 @@ use ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver;
 
 class TimeCollector implements CollectorInterface, LateCollectorInterface
 {
-    const NAME = 'time';
+    public const NAME = 'time';
 
-    const EVENTS     = 'events';
-    const DURATION   = 'duration';
-    const START_TIME = 'start_time';
+    public const EVENTS = 'events';
+    public const DURATION = 'duration';
+    public const START_TIME = 'start_time';
 
-    const EVENT_TYPES = [
+    public const EVENT_TYPES = [
         StopwatchDriver::CATEGORY_CORE,
         StopwatchDriver::CATEGORY_ROUTING,
         StopwatchDriver::CATEGORY_CONFIG,
@@ -25,8 +25,8 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
         StopwatchDriver::CATEGORY_UNKNOWN,
     ];
 
-    const ERROR_THRESHOLD = 2000;
-    const WARNING_THRESHOLD = 1000;
+    public const ERROR_THRESHOLD = 2000;
+    public const WARNING_THRESHOLD = 1000;
 
     /**
      * @var \Magento\Framework\Serialize\SerializerInterface
@@ -82,8 +82,8 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
     {
         $this->dataCollector->setData([
             self::START_TIME => $_SERVER['REQUEST_TIME_FLOAT'],
-            self::DURATION   => 0,
-            self::EVENTS     => [],
+            self::DURATION => 0,
+            self::EVENTS => [],
         ]);
 
         return $this;
@@ -182,6 +182,19 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
         ]);
     }
 
+    public function getStatus(): string
+    {
+        if ($this->getDuration() > self::ERROR_THRESHOLD) {
+            return self::STATUS_ERROR;
+        }
+
+        if ($this->getDuration() > self::WARNING_THRESHOLD) {
+            return self::STATUS_WARNING;
+        }
+
+        return self::STATUS_DEFAULT;
+    }
+
     private function getTimelineData()
     {
         $data = [];
@@ -197,19 +210,19 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
             foreach ($event->getPeriods() as $period) {
                 $periods[] = [
                     'start' => sprintf('%f', $period->getStartTime()),
-                    'end'   => sprintf('%f', $period->getEndTime())
+                    'end' => sprintf('%f', $period->getEndTime()),
                 ];
             }
 
             $data[] = [
-                'name'      => $name,
-                'category'  => $event->getCategory(),
-                'origin'    => sprintf('%f', $event->getOrigin()),
+                'name' => $name,
+                'category' => $event->getCategory(),
+                'origin' => sprintf('%f', $event->getOrigin()),
                 'starttime' => sprintf('%f', $event->getStartTime()),
-                'endtime'   => sprintf('%f', $event->getEndTime()),
-                'duration'  => sprintf('%f', $event->getDuration()),
-                'memory'    => sprintf('%.1f', $event->getMemory() / 1024 / 1024),
-                'periods'   => $periods
+                'endtime' => sprintf('%f', $event->getEndTime()),
+                'duration' => sprintf('%f', $event->getDuration()),
+                'memory' => sprintf('%.1f', $event->getMemory() / 1024 / 1024),
+                'periods' => $periods,
             ];
         }
 
@@ -217,22 +230,9 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
         $mainEvent = $events['__section__'];
 
         return [
-            'id'     => $this->profileMemoryStorage->read()->getToken(),
-            'left'   => $mainEvent->getStartTime(),
-            'events' => $data
+            'id' => $this->profileMemoryStorage->read()->getToken(),
+            'left' => $mainEvent->getStartTime(),
+            'events' => $data,
         ];
-    }
-
-    public function getStatus(): string
-    {
-        if ($this->getDuration() > self::ERROR_THRESHOLD) {
-            return self::STATUS_ERROR;
-        }
-
-        if ($this->getDuration() > self::WARNING_THRESHOLD) {
-            return self::STATUS_WARNING;
-        }
-
-        return self::STATUS_DEFAULT;
     }
 }

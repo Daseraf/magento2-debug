@@ -19,9 +19,9 @@ class KernelPlugin
     }
 
     /**
-     * @param \Magento\Framework\App\PageCache\Kernel    $subject
-     * @param \Magento\Framework\App\Response\Http|false $result
-     * @return \Magento\Framework\App\Response\Http|false
+     * @param \Magento\Framework\App\PageCache\Kernel $subject
+     * @param false|\Magento\Framework\App\Response\Http $result
+     * @return false|\Magento\Framework\App\Response\Http
      */
     public function afterLoad(\Magento\Framework\App\PageCache\Kernel $subject, $result)
     {

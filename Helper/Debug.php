@@ -23,13 +23,11 @@ class Debug
             $item = reset($backtrace);
         }
 
-        $backtrace = array_map(function ($item) {
+        return array_map(function ($item) {
             unset($item['object'], $item['args'], $item['type']);
 
             return $item;
         }, $backtrace);
-
-        return $backtrace;
     }
 
     private function isBacktraceItemValid(array $data, array $functions): bool

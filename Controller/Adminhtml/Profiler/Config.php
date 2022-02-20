@@ -20,7 +20,7 @@ class Config extends Action
 
         return $resultRedirect->setPath('admin/system_config/edit', [
             'section' => 'clawrock_debug',
-            'key' => $this->_url->getSecretKey('adminhtml', 'system_config', 'edit')
+            'key' => $this->_url->getSecretKey('adminhtml', 'system_config', 'edit'),
         ]);
     }
 }

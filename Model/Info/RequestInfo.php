@@ -9,12 +9,12 @@ use Zend\Stdlib\ParametersInterface;
 
 class RequestInfo
 {
-    const TOKEN = 'token';
+    public const TOKEN = 'token';
 
-    const DEFAULT_CONTENT_TYPE = 'text/html';
+    public const DEFAULT_CONTENT_TYPE = 'text/html';
 
-    const PASSWORD_PLACEHOLDER = '******';
-    const REDIRECT_PARAM = 'cdbg_redirect';
+    public const PASSWORD_PLACEHOLDER = '******';
+    public const REDIRECT_PARAM = 'cdbg_redirect';
 
     /**
      * @var \ClawRock\Debug\Model\Storage\HttpStorage
@@ -83,12 +83,12 @@ class RequestInfo
     public function getRequestAttributes(): ParametersInterface
     {
         return new Parameters([
-            RequestCollector::REQUEST_STRING    => $this->httpStorage->getRequest()->getRequestString(),
-            RequestCollector::REQUEST_URI       => $this->httpStorage->getRequest()->getRequestUri(),
+            RequestCollector::REQUEST_STRING => $this->httpStorage->getRequest()->getRequestString(),
+            RequestCollector::REQUEST_URI => $this->httpStorage->getRequest()->getRequestUri(),
             RequestCollector::CONTROLLER_MODULE => $this->httpStorage->getRequest()->getControllerModule(),
-            RequestCollector::CONTROLLER_NAME   => ucwords($this->httpStorage->getRequest()->getControllerName()),
-            RequestCollector::ACTION_NAME       => ucwords($this->httpStorage->getRequest()->getActionName()),
-            RequestCollector::FULL_ACTION_NAME  => $this->httpStorage->getRequest()->getFullActionName(),
+            RequestCollector::CONTROLLER_NAME => ucwords($this->httpStorage->getRequest()->getControllerName()),
+            RequestCollector::ACTION_NAME => ucwords($this->httpStorage->getRequest()->getActionName()),
+            RequestCollector::FULL_ACTION_NAME => $this->httpStorage->getRequest()->getFullActionName(),
         ]);
     }
 
@@ -151,9 +151,9 @@ class RequestInfo
 
         if ($this->httpStorage->getResponse()->isRedirect()) {
             $this->session->setData(self::REDIRECT_PARAM, [
-                Redirect::TOKEN       => $this->httpStorage->getResponse()->getHeader('X-Debug-Token')->getFieldValue(),
-                Redirect::ACTION      => $this->httpStorage->getRequest()->getFullActionName(),
-                Redirect::METHOD      => $this->getMethod(),
+                Redirect::TOKEN => $this->httpStorage->getResponse()->getHeader('X-Debug-Token')->getFieldValue(),
+                Redirect::ACTION => $this->httpStorage->getRequest()->getFullActionName(),
+                Redirect::METHOD => $this->getMethod(),
                 Redirect::STATUS_CODE => $this->getStatusCode(),
                 Redirect::STATUS_TEXT => $this->getStatusText(),
             ]);

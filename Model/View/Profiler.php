@@ -90,7 +90,7 @@ class Profiler implements ArgumentInterface
     {
         return $this->layoutGraphRendererFactory->create([
             'blocks' => $blocks,
-            'totalRenderTime' => $totalTime
+            'totalRenderTime' => $totalTime,
         ])->render();
     }
 
@@ -108,7 +108,7 @@ class Profiler implements ArgumentInterface
     {
         return $this->queryParametersRendererFactory->create([
             'query' => $query,
-            'parameters' => $parameters
+            'parameters' => $parameters,
         ])->render();
     }
 

@@ -37,10 +37,9 @@ class Xhprof implements ArgumentInterface
      */
     public function __construct(
         XhprofProfileFactory $xhprofProfileFactory,
-        Formatter            $formatter,
+        Formatter $formatter,
         RequestInterface $request
-    )
-    {
+    ) {
         $this->xhprofProfileFactory = $xhprofProfileFactory;
         $this->formatter = $formatter;
         $this->request = $request;

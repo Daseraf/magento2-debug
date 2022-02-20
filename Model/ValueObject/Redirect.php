@@ -4,11 +4,11 @@ namespace ClawRock\Debug\Model\ValueObject;
 
 class Redirect
 {
-    const TOKEN = 'token';
-    const ACTION = 'action';
-    const METHOD = 'method';
-    const STATUS_CODE = 'status_code';
-    const STATUS_TEXT = 'status_text';
+    public const TOKEN = 'token';
+    public const ACTION = 'action';
+    public const METHOD = 'method';
+    public const STATUS_CODE = 'status_code';
+    public const STATUS_TEXT = 'status_text';
 
     /**
      * @var string
@@ -121,9 +121,9 @@ class Redirect
     public function toArray(): array
     {
         return [
-            self::TOKEN       => $this->getToken(),
-            self::ACTION      => $this->getAction(),
-            self::METHOD      => $this->getMethod(),
+            self::TOKEN => $this->getToken(),
+            self::ACTION => $this->getAction(),
+            self::METHOD => $this->getMethod(),
             self::STATUS_CODE => $this->getStatusCode(),
             self::STATUS_TEXT => $this->getStatusText(),
         ];

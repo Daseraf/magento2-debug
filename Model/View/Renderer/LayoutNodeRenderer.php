@@ -6,7 +6,7 @@ use Magento\Framework\View\Element\Template;
 
 class LayoutNodeRenderer implements RendererInterface
 {
-    const TEMPLATE = 'ClawRock_Debug::renderer/layout/node.phtml';
+    public const TEMPLATE = 'ClawRock_Debug::renderer/layout/node.phtml';
 
     /**
      * @var \ClawRock\Debug\Model\ValueObject\LayoutNode

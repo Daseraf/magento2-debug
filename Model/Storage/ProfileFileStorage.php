@@ -112,8 +112,8 @@ class ProfileFileStorage
 
     /**
      * @param $token
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
      * @throws \Magento\Framework\Exception\FileSystemException
+     * @return \ClawRock\Debug\Api\Data\ProfileInterface
      */
     public function read($token): ProfileInterface
     {
@@ -124,8 +124,8 @@ class ProfileFileStorage
 
     /**
      * @param \ClawRock\Debug\Api\Data\ProfileInterface $profile
-     * @return string
      * @throws \Magento\Framework\Exception\FileSystemException
+     * @return string
      */
     public function write(ProfileInterface $profile)
     {

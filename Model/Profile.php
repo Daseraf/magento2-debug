@@ -9,7 +9,7 @@ use ClawRock\Debug\Model\ValueObject\Redirect;
 
 class Profile implements ProfileInterface
 {
-    const SERIALIZE_PROPERTIES = [
+    public const SERIALIZE_PROPERTIES = [
         'token',
         'parent',
         'ip',
@@ -22,7 +22,7 @@ class Profile implements ProfileInterface
         'children',
     ];
 
-    const INDEX_PROPERTIES = [
+    public const INDEX_PROPERTIES = [
         'token',
         'ip',
         'method',
@@ -272,7 +272,7 @@ class Profile implements ProfileInterface
         $data = [];
 
         foreach (self::INDEX_PROPERTIES as $property) {
-            $data[] = $this->$property;
+            $data[] = $this->{$property};
         }
 
         return $data;
@@ -286,7 +286,7 @@ class Profile implements ProfileInterface
         $data = [];
 
         foreach (self::SERIALIZE_PROPERTIES as $property) {
-            $data[$property] = $this->$property;
+            $data[$property] = $this->{$property};
         }
 
         return $data;
@@ -299,7 +299,7 @@ class Profile implements ProfileInterface
     public function setData(array $data): ProfileInterface
     {
         foreach (self::SERIALIZE_PROPERTIES as $property) {
-            $this->$property = $data[$property];
+            $this->{$property} = $data[$property];
         }
 
         return $this;

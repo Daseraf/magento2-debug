@@ -4,20 +4,19 @@ namespace ClawRock\Debug\Model\Collector;
 
 use ClawRock\Debug\Logger\LoggableInterface;
 use ClawRock\Debug\Model\Info\CacheInfo;
-use ClawRock\Debug\Model\Log\CacheLogger;
 
 class CacheCollector implements CollectorInterface, LoggerCollectorInterface
 {
-    const NAME = 'cache';
+    public const NAME = 'cache';
 
-    const BACKEND_NAME    = 'backend_name';
-    const BACKEND_OPTIONS = 'backend_options';
-    const CACHE_LIST      = 'cache_list';
-    const INVALIDATED     = 'invalidated_types';
-    const CACHE_LOG       = 'cache_log';
-    const STATS           = 'stats';
-    const TOTAL_TIME      = 'total_time';
-    const CACHE_STATUS    = 'status';
+    public const BACKEND_NAME = 'backend_name';
+    public const BACKEND_OPTIONS = 'backend_options';
+    public const CACHE_LIST = 'cache_list';
+    public const INVALIDATED = 'invalidated_types';
+    public const CACHE_LOG = 'cache_log';
+    public const STATS = 'stats';
+    public const TOTAL_TIME = 'total_time';
+    public const CACHE_STATUS = 'status';
 
     /**
      * @var \ClawRock\Debug\Helper\Config

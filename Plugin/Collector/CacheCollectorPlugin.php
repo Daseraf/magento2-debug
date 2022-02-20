@@ -27,7 +27,7 @@ class CacheCollectorPlugin
         $result = $proceed($identifier);
         $time = microtime(true) - $start;
         $this->cacheCollector->log(new CacheAction($identifier, CacheAction::LOAD, $time, [
-            CacheAction::CACHE_HIT => ($result !== false)
+            CacheAction::CACHE_HIT => ($result !== false),
         ]));
 
         return $result;

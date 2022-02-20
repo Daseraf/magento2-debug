@@ -6,8 +6,8 @@ use ClawRock\Debug\Model\Info\CallmapInfo;
 
 class CallmapCollector implements CollectorInterface, LateCollectorInterface
 {
-    const NAME = 'callmap';
-    const PROFILE_DATA = 'profile';
+    public const NAME = 'callmap';
+    public const PROFILE_DATA = 'profile';
 
     /**
      * @var \ClawRock\Debug\Helper\Config
@@ -23,18 +23,18 @@ class CallmapCollector implements CollectorInterface, LateCollectorInterface
      * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
+
     /**
      * @var CallmapInfo
      */
     private $callmapInfo;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config                      $config,
-        \ClawRock\Debug\Model\DataCollectorFactory         $dataCollectorFactory,
+        \ClawRock\Debug\Helper\Config $config,
+        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
         \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
         CallmapInfo $callmapInfo
-    )
-    {
+    ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
         $this->profileMemoryStorage = $profileMemoryStorage;
@@ -49,7 +49,7 @@ class CallmapCollector implements CollectorInterface, LateCollectorInterface
     public function lateCollect(): LateCollectorInterface
     {
         $this->dataCollector->setData([
-            self::PROFILE_DATA => $this->callmapInfo->getRunData()
+            self::PROFILE_DATA => $this->callmapInfo->getRunData(),
         ]);
 
         return $this;
@@ -94,5 +94,4 @@ class CallmapCollector implements CollectorInterface, LateCollectorInterface
     {
         return $this->getData(self::PROFILE_DATA);
     }
-
 }

@@ -13,28 +13,28 @@ use Magento\Framework\Exception\LocalizedException;
  */
 class Config
 {
-    const CONFIG_ENABLED               = 'clawrock_debug/general/active';
-    const CONFIG_ENABLED_ADMINHTML     = 'clawrock_debug/general/active_adminhtml';
-    const CONFIG_ALLOWED_IPS           = 'clawrock_debug/general/allowed_ips';
-    const CONFIG_ERROR_HANDLER         = 'clawrock_debug/general/error_handler';
-    const CONFIG_TIME_PRECISION        = 'clawrock_debug/time/precision';
-    const CONFIG_PERFORMANCE_COLOR     = 'clawrock_debug/performance/%s_color';
-    const CONFIG_COLLECTOR_AJAX        = 'clawrock_debug/collector/ajax';
-    const CONFIG_COLLECTOR_CACHE       = 'clawrock_debug/collector/cache';
-    const CONFIG_COLLECTOR_CONFIG      = 'clawrock_debug/collector/config';
-    const CONFIG_COLLECTOR_CUSTOMER    = 'clawrock_debug/collector/customer';
-    const CONFIG_COLLECTOR_DATABASE    = 'clawrock_debug/collector/database';
-    const CONFIG_COLLECTOR_EVENT       = 'clawrock_debug/collector/event';
-    const CONFIG_COLLECTOR_PLUGIN      = 'clawrock_debug/collector/plugin';
-    const CONFIG_COLLECTOR_LAYOUT      = 'clawrock_debug/collector/layout';
-    const CONFIG_COLLECTOR_MEMORY      = 'clawrock_debug/collector/memory';
-    const CONFIG_COLLECTOR_MODEL       = 'clawrock_debug/collector/model';
-    const CONFIG_COLLECTOR_TIME        = 'clawrock_debug/collector/time';
-    const CONFIG_COLLECTOR_TRANSLATION = 'clawrock_debug/collector/translation';
-    const CALLMAP_COLLECTOR_CONFIG     = 'clawrock_debug/collector/callmap';
-    const XHPROF_FLAGS_CONFIG     = 'clawrock_debug/collector/xhprof_flags';
+    public const CONFIG_ENABLED = 'clawrock_debug/general/active';
+    public const CONFIG_ENABLED_ADMINHTML = 'clawrock_debug/general/active_adminhtml';
+    public const CONFIG_ALLOWED_IPS = 'clawrock_debug/general/allowed_ips';
+    public const CONFIG_ERROR_HANDLER = 'clawrock_debug/general/error_handler';
+    public const CONFIG_TIME_PRECISION = 'clawrock_debug/time/precision';
+    public const CONFIG_PERFORMANCE_COLOR = 'clawrock_debug/performance/%s_color';
+    public const CONFIG_COLLECTOR_AJAX = 'clawrock_debug/collector/ajax';
+    public const CONFIG_COLLECTOR_CACHE = 'clawrock_debug/collector/cache';
+    public const CONFIG_COLLECTOR_CONFIG = 'clawrock_debug/collector/config';
+    public const CONFIG_COLLECTOR_CUSTOMER = 'clawrock_debug/collector/customer';
+    public const CONFIG_COLLECTOR_DATABASE = 'clawrock_debug/collector/database';
+    public const CONFIG_COLLECTOR_EVENT = 'clawrock_debug/collector/event';
+    public const CONFIG_COLLECTOR_PLUGIN = 'clawrock_debug/collector/plugin';
+    public const CONFIG_COLLECTOR_LAYOUT = 'clawrock_debug/collector/layout';
+    public const CONFIG_COLLECTOR_MEMORY = 'clawrock_debug/collector/memory';
+    public const CONFIG_COLLECTOR_MODEL = 'clawrock_debug/collector/model';
+    public const CONFIG_COLLECTOR_TIME = 'clawrock_debug/collector/time';
+    public const CONFIG_COLLECTOR_TRANSLATION = 'clawrock_debug/collector/translation';
+    public const CALLMAP_COLLECTOR_CONFIG = 'clawrock_debug/collector/callmap';
+    public const XHPROF_FLAGS_CONFIG = 'clawrock_debug/collector/xhprof_flags';
 
-    const COLLECTORS = 'clawrock_debug/profiler/collectors';
+    public const COLLECTORS = 'clawrock_debug/profiler/collectors';
 
     /**
      * @var \Magento\Framework\PhraseFactory
@@ -116,8 +116,8 @@ class Config
     }
 
     /**
-     * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @return bool
      */
     public function isFrontend(): bool
     {
@@ -160,16 +160,13 @@ class Config
 
     /**
      * @param string $name
-     * @return string
      * @throws \ClawRock\Debug\Exception\CollectorNotFoundException
+     * @return string
      */
     public function getCollectorClass(string $name): string
     {
         if (!isset($this->getCollectors()[$name])) {
-            throw new CollectorNotFoundException($this->phraseFactory->create([
-                'text' => 'Collector "%1" not found',
-                'arguments' => $name
-            ]));
+            throw new CollectorNotFoundException(__('Collector "%1" not found', $name));
         }
 
         return $this->getCollectors()[$name];
