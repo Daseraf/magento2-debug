@@ -24,8 +24,8 @@ class XhprofFlags implements \Magento\Framework\Data\OptionSourceInterface
     {
         return [
             ['value' => self::FLAG_NO_BUILTINS, 'label' => __('No xhprof builtins')],
-            ['value' => self::FLAG_CPU, 'label' => __('Profile Memory')],
-            ['value' => self::FLAG_MEMORY, 'label' => __('Profile Cpu')],
+            ['value' => self::FLAG_MEMORY, 'label' => __('Profile Memory')],
+            ['value' => self::FLAG_CPU, 'label' => __('Profile Cpu')],
         ];
     }
 }
