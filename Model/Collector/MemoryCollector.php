@@ -6,7 +6,8 @@ class MemoryCollector implements CollectorInterface, LateCollectorInterface
 {
     const NAME = 'memory';
 
-    const MEMORY_USAGE = 'memory_usage';
+    const REAL_MEMORY_USAGE = 'memory_usage';
+    const TOTAL_MEMORY_USAGE = 'total_memory_usage';
     const MEMORY_LIMIT = 'memory_limit';
 
     /**
@@ -44,7 +45,8 @@ class MemoryCollector implements CollectorInterface, LateCollectorInterface
     public function collect(): CollectorInterface
     {
         $this->dataCollector->setData([
-            self::MEMORY_USAGE => $this->memoryInfo->getCurrentPeakMemoryUsage(),
+            self::REAL_MEMORY_USAGE => $this->memoryInfo->getRealMemoryUsage(),
+            self::TOTAL_MEMORY_USAGE => $this->memoryInfo->getMemoryUsage(),
             self::MEMORY_LIMIT => $this->memoryInfo->getCurrentMemoryLimit(),
         ]);
 
@@ -53,14 +55,20 @@ class MemoryCollector implements CollectorInterface, LateCollectorInterface
 
     public function lateCollect(): LateCollectorInterface
     {
-        $this->dataCollector->addData(self::MEMORY_USAGE, $this->memoryInfo->getCurrentPeakMemoryUsage());
+        $this->dataCollector->addData(self::REAL_MEMORY_USAGE, $this->memoryInfo->getRealMemoryUsage());
+        $this->dataCollector->addData(self::TOTAL_MEMORY_USAGE, $this->memoryInfo->getMemoryUsage());
 
         return $this;
     }
 
-    public function getMemoryUsage()
+    public function getRealMemoryUsage()
     {
-        return $this->formatter->toMegaBytes($this->dataCollector->getData(self::MEMORY_USAGE), 1);
+        return $this->formatter->toMegaBytes($this->dataCollector->getData(self::REAL_MEMORY_USAGE), 1);
+    }
+
+    public function getTotalMemoryUsage()
+    {
+        return $this->formatter->toMegaBytes($this->dataCollector->getData(self::TOTAL_MEMORY_USAGE), 1);
     }
 
     public function getMemoryLimit()

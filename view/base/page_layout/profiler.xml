@@ -74,6 +74,12 @@
                                 <argument name="collector_name" xsi:type="string">cache</argument>
                             </arguments>
                         </block>
+                        <block class="Magento\Framework\View\Element\Template" name="model" template="ClawRock_Debug::menu/callmap.phtml">
+                            <arguments>
+                                <argument name="view_model" xsi:type="object">ClawRock\Debug\Model\View\Menu</argument>
+                                <argument name="collector_name" xsi:type="string">callmap</argument>
+                            </arguments>
+                        </block>
                         <block class="Magento\Framework\View\Element\Template" name="config" template="ClawRock_Debug::menu/config.phtml">
                             <arguments>
                                 <argument name="view_model" xsi:type="object">ClawRock\Debug\Model\View\Menu</argument>

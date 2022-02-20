@@ -7,13 +7,16 @@ $collector = $block->getCollector();
     <div class="sf-toolbar-icon">
         <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/memory.svg'); ?>"
              alt="<?= $block->escapeHtmlAttr(__('Memory')) ?>"/>
-        <span class="sf-toolbar-value"><?= /* @noEscape */ $collector->getMemoryUsage() ?></span>
-        <span class="sf-toolbar-label">MB</span>
+        <span class="sf-toolbar-value"><?= __('Memory usage') ?></span>
     </div>
     <div class="sf-toolbar-info">
         <div class="sf-toolbar-info-piece">
             <b><?= $block->escapeHtml(__('Peak memory usage')); ?></b>
-            <span><?= /* @noEscape */ $collector->getMemoryUsage(); ?> MB</span>
+            <span><?= /* @noEscape */ $collector->getTotalMemoryUsage(); ?> MB</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b><?= $block->escapeHtml(__('Real memory usage')); ?></b>
+            <span><?= /* @noEscape */ $collector->getRealMemoryUsage(); ?> MB</span>
         </div>
         <div class="sf-toolbar-info-piece">
             <b><?= $block->escapeHtml(__('PHP memory limit')); ?></b>

@@ -19,10 +19,17 @@ $events = $collector->getEvents();
     </div>
     <div class="metric">
         <span class="value">
-            <?= /* @noEscape */$profile->getCollector('memory')->getMemoryUsage() ?>
+            <?= /* @noEscape */$profile->getCollector('memory')->getTotalMemoryUsage() ?>
             <span class="unit">MB</span>
         </span>
-        <span class="label"><?= $block->escapeHtml(__('Peak memory usage')) ?></span>
+        <span class="label"><?= $block->escapeHtml(__('Total memory usage')) ?></span>
+    </div>
+    <div class="metric">
+        <span class="value">
+            <?= /* @noEscape */$profile->getCollector('memory')->getRealMemoryUsage() ?>
+            <span class="unit">MB</span>
+        </span>
+        <span class="label"><?= $block->escapeHtml(__('Real memory usage')) ?></span>
     </div>
 </div>
 <?php if (count($events) === 0): ?>

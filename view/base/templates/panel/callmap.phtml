@@ -1,0 +1,89 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \ClawRock\Debug\Model\Collector\CallmapCollector $collector */
+/** @var \ClawRock\Debug\Model\View\Xhprof $xhporfViewModel */
+$collector = $block->getCollector();
+$xhporfViewModel = $block->getXhporfViewModel();
+$xhporfProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
+$fallbackData = $xhporfProfile->sort('wt');
+$totalFunctions = number_format($xhporfProfile->getFunctionCount());
+
+/** @var \ClawRock\Debug\Model\View\Profiler $profilerViewModel */
+$profilerViewModel = $block->getProfilerViewModel();
+$profile = $profilerViewModel->getProfile();
+?>
+<div style="visibility: hidden" class="profile_token"><?= $collector->getToken() ?></div>
+<div style="visibility: hidden" class="profile_token"><?= $collector->getToken() ?></div>
+<h2><?= $block->escapeHtml(__('Performance metrics')) ?></h2>
+<div class="metrics">
+    <div class="metric">
+        <span class="value">
+            <?= /* @noEscape */ $profile->getCollector('time')->getDuration() ?>
+            <span class="unit">ms</span>
+        </span>
+        <span class="label"><?= $block->escapeHtml(__('Total execution time')) ?></span>
+    </div>
+    <div class="metric">
+        <span class="value">
+            <?= /* @noEscape */$profile->getCollector('memory')->getTotalMemoryUsage() ?>
+            <span class="unit">MB</span>
+        </span>
+        <span class="label"><?= $block->escapeHtml(__('Total memory usage')) ?></span>
+    </div>
+    <div class="metric">
+        <span class="value">
+            <?= /* @noEscape */$profile->getCollector('memory')->getRealMemoryUsage() ?>
+            <span class="unit">MB</span>
+        </span>
+        <span class="label"><?= $block->escapeHtml(__('Real memory usage')) ?></span>
+    </div>
+</div>
+
+<div style="float:left; width: 50%">
+    <h2><?= $block->escapeHtml(__('Hierarchical Profiler Report')) ?></h2>
+    <h3><?= $block->escapeHtml(__('Function count: %1', $totalFunctions)) ?></h3>
+</div>
+<table class="alt callmap-table">
+    <thead>
+    <tr>
+        <th>Function</th>
+        <th>Call Count</th>
+        <th>Self Wall Time</th>
+        <th>Inclusive Wall Time</th>
+        <th>Self Memory Usage</th>
+        <th>Self Peak Memory Usage</th>
+        <th>Inclusive Memory Usage</th>
+        <th>Inclusive Peak Memory Usage</th>
+        <th>Self CPU</th>
+        <th>Inclusive CPU</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($fallbackData as $key => $value): ?>
+        <tr>
+            <td class="left"><span class="function-extra-data" data-function-name="<?= $key ?>"><?= $key ?></span></td>
+            <td class="right"><?= $value['ct'] ?></td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['ewt']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['wt']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['emu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['epmu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['mu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['pmu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['ecpu']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['cpu']) ?> ms</td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<div class="function-extra-modal" style="display:none;">
+    <div class="extra-modal-wrapper">
+    </div>
+</div>
+<script>
+    window.addEventListener('load', function () {
+        require(['jquery','ClawRock_Debug/js/callmap/extra-data'], function($, extraData) {
+            extraData.create();
+        })
+    });
+</script>

@@ -24,6 +24,8 @@
                 <model>1</model>
                 <time>1</time>
                 <translation>1</translation>
+                <callmap>1</callmap>
+                <xhprof_flags>1,4</xhprof_flags>
             </collector>
             <performance>
                 <core_color>#FF5722</core_color>
@@ -52,6 +54,7 @@
                     <model>ClawRock\Debug\Model\Collector\ModelCollector</model>
                     <event>ClawRock\Debug\Model\Collector\EventCollector</event>
                     <plugin>ClawRock\Debug\Model\Collector\PluginCollector</plugin>
+                    <callmap>ClawRock\Debug\Model\Collector\CallmapCollector</callmap>
                 </collectors>
             </profiler>
         </clawrock_debug>

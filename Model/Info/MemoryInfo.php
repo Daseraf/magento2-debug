@@ -9,9 +9,14 @@ class MemoryInfo
         return $this->convertToBytes(ini_get('memory_limit'));
     }
 
-    public function getCurrentPeakMemoryUsage()
+    public function getRealMemoryUsage()
     {
         return memory_get_peak_usage(true);
+    }
+
+    public function getMemoryUsage()
+    {
+        return memory_get_peak_usage();
     }
 
     private function convertToBytes($memoryLimit)

@@ -32,6 +32,8 @@
                    template="ClawRock_Debug::toolbar/event.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.plugin" class="Magento\Framework\View\Element\Template"
                    template="ClawRock_Debug::toolbar/plugin.phtml" cacheable="false"/>
+            <block name="debug.toolbar.collectors.callmap" class="Magento\Framework\View\Element\Template"
+                   template="ClawRock_Debug::toolbar/callmap.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>

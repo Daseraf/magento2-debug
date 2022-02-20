@@ -88,6 +88,17 @@
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                     <comment>This collector is automatically disabled during FPC request.</comment>
                 </field>
+                <field id="callmap" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Call map</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="xhprof_flags" translate="label" type="multiselect" sortOrder="130" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Xhprof Flags</label>
+                    <source_model>ClawRock\Debug\Model\Config\Source\XhprofFlags</source_model>
+                    <depends>
+                        <field id="callmap">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="performance" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Performance collector</label>

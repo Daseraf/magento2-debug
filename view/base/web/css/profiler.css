@@ -188,6 +188,25 @@ td, th {
     padding: 0
 }
 
+.callmap-table tr {
+    white-space: nowrap;
+}
+td.right {
+    text-align: right;
+}
+td.right {
+    text-align: left;
+}
+
+.function-extra-data {
+    color: #218BC3;
+    text-decoration: underline;
+}
+
+.function-extra-data:hover {
+    cursor: pointer;
+}
+
 body {
     background-color: #F9F9F9;
     color: #222;
@@ -357,7 +376,7 @@ table tbody th,
 table tbody td {
     font-family: Helvetica, Arial, sans-serif;
     border: 1px solid #E0E0E0;
-    border-width: 1px 0;
+    border-width: 1px;
 }
 
 table tbody td {
@@ -374,6 +393,24 @@ table tbody div {
 table tbody ul {
     margin: 0;
     padding: 0 0 0 1em;
+}
+
+th[aria-sort="ascending"]:after {
+    content: "\2191";
+    padding-left: 10px;
+}
+
+th[aria-sort="descending"]:after {
+    content: "\2193";
+    padding-left: 10px;
+}
+
+th .tablesorter-header-inner {
+    display: inline-block;
+}
+
+th.tablesorter-header:hover {
+    cursor: pointer;
 }
 
 .auto {
@@ -821,7 +858,7 @@ tr.status-warning td {
     padding-bottom: 99999px;
     position: relative;
     width: 220px;
-    z-index: 99999;
+    z-index: 100;
 }
 
 #sidebar .module {

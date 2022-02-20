@@ -41,6 +41,9 @@ class BeforeSendResponse implements ObserverInterface
         if (preg_match('/\/_debug\/profiler*/s', $request->getPathInfo())) {
             return true;
         }
+        if (preg_match('/\/_debug\/xhprof*/s', $request->getPathInfo())) {
+            return true;
+        }
 
         return $request->getModuleName() === '_debug' || $request->getModuleName() === 'debug';
     }

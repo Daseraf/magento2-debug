@@ -31,6 +31,8 @@ class Config
     const CONFIG_COLLECTOR_MODEL       = 'clawrock_debug/collector/model';
     const CONFIG_COLLECTOR_TIME        = 'clawrock_debug/collector/time';
     const CONFIG_COLLECTOR_TRANSLATION = 'clawrock_debug/collector/translation';
+    const CALLMAP_COLLECTOR_CONFIG     = 'clawrock_debug/collector/callmap';
+    const XHPROF_FLAGS_CONFIG     = 'clawrock_debug/collector/xhprof_flags';
 
     const COLLECTORS = 'clawrock_debug/profiler/collectors';
 
@@ -195,6 +197,24 @@ class Config
             self::CONFIG_COLLECTOR_CONFIG,
             ScopeConfigInterface::SCOPE_TYPE_DEFAULT
         );
+    }
+
+    public function isCallmapCollectorEnabled(): bool
+    {
+        return $this->scopeConfig->isSetFlag(
+            self::CALLMAP_COLLECTOR_CONFIG,
+            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+        );
+    }
+
+    public function getXhprofFlags(): array
+    {
+        $value = $this->scopeConfig->getValue(
+            self::XHPROF_FLAGS_CONFIG,
+            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+        );
+
+        return explode(',', $value);
     }
 
     public function isCustomerCollectorEnabled(): bool

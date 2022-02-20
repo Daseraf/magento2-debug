@@ -34,6 +34,7 @@
     <type name="Magento\Framework\App\Http">
         <plugin name="ClawRock_Debug::time_collector_plugin" type="ClawRock\Debug\Plugin\Collector\TimeCollectorPlugin"/>
         <plugin name="ClawRock_Debug::whoops_error_handler_plugin" type="ClawRock\Debug\Plugin\ErrorHandler\WhoopsPlugin"/>
+        <plugin name="ClawRock_Debug::callmap_collector_plugin" type="ClawRock\Debug\Plugin\Collector\CallmapCollectorPlugin"/>
     </type>
     <type name="Magento\Framework\Event\Invoker\InvokerDefault">
         <plugin name="ClawRock_Debug::event_collector_plugin" type="ClawRock\Debug\Plugin\Collector\EventCollectorPlugin"/>

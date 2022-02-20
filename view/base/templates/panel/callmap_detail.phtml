@@ -1,0 +1,111 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \ClawRock\Debug\Model\Collector\CallmapCollector $collector */
+/** @var \ClawRock\Debug\Model\View\Xhprof $xhporfViewModel */
+$collector = $block->getCollector();
+$xhporfViewModel = $block->getXhporfViewModel();
+$xhprofProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
+[$parents, $current, $children] = $xhporfViewModel->getRelatives($xhprofProfile);
+
+/** @var \ClawRock\Debug\Model\View\Profiler $profilerViewModel */
+$profilerViewModel = $block->getProfilerViewModel();
+$profile = $profilerViewModel->getProfile();
+?>
+<h3>Current function</h3>
+<table class="alt callmap-table">
+    <thead>
+    <tr>
+        <th>Function</th>
+        <th>Call Count</th>
+        <th>Self Wall Time</th>
+        <th>Inclusive Wall Time</th>
+        <th>Self Memory Usage</th>
+        <th>Self Peak Memory Usage</th>
+        <th>Inclusive Memory Usage</th>
+        <th>Inclusive Peak Memory Usage</th>
+        <th>Self CPU</th>
+        <th>Inclusive CPU</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="left"><?= $current['function'] ?></td>
+        <td class="right"><?= $current['ct'] ?></td>
+        <td class="right"><?= $xhporfViewModel->formatTime($current['ewt']) ?> ms</td>
+        <td class="right"><?= $xhporfViewModel->formatTime($current['wt']) ?> ms</td>
+        <td class="right"><?= $xhporfViewModel->formatBytes($current['emu']) ?> mB</td>
+        <td class="right"><?= $xhporfViewModel->formatBytes($current['epmu']) ?> mB</td>
+        <td class="right"><?= $xhporfViewModel->formatBytes($current['mu']) ?> mB</td>
+        <td class="right"><?= $xhporfViewModel->formatBytes($current['pmu']) ?> mB</td>
+        <td class="right"><?= $xhporfViewModel->formatTime($current['ecpu']) ?> ms</td>
+        <td class="right"><?= $xhporfViewModel->formatTime($current['cpu']) ?> ms</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Parent functions</h3>
+<?php if (empty($parents)): ?>
+    <div><?= __('Function %1 has not have parents.', $current['function']) ?></div>
+<?php else: ?>
+<table class="alt callmap-table">
+    <thead>
+        <tr>
+            <th>Function</th>
+            <th>Call Count</th>
+            <th>Self Wall Time</th>
+            <th>Inclusive Wall Time</th>
+            <th>Self Memory Usage</th>
+            <th>Self Peak Memory Usage</th>
+            <th>Inclusive Memory Usage</th>
+            <th>Inclusive Peak Memory Usage</th>
+            <th>Self CPU</th>
+            <th>Inclusive CPU</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($parents as $key => $value): ?>
+        <tr>
+            <td class="left"><?= $value['function'] ?></td>
+            <td class="right"><?= $value['ct'] ?></td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['ewt']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['wt']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['emu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['epmu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['mu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['pmu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['ecpu']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['cpu']) ?> ms</td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif; ?>
+
+<h3>Child functions</h3>
+<?php if (empty($children)): ?>
+    <div><?= __('Function %1 called no functions.', $current['function']) ?></div>
+<?php else: ?>
+<table class="alt callmap-table">
+    <thead>
+        <tr>
+            <th>Function</th>
+            <th>Call Count</th>
+            <th>Inclusive Wall Time</th>
+            <th>Inclusive Memory Usage</th>
+            <th>Inclusive Peak Memory Usage</th>
+            <th>Inclusive CPU</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($children as $key => $value): ?>
+        <tr>
+            <td class="left"><?= $value['function'] ?></td>
+            <td class="right"><?= $value['ct'] ?></td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['wt']) ?> ms</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['mu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatBytes($value['pmu']) ?> mB</td>
+            <td class="right"><?= $xhporfViewModel->formatTime($value['cpu']) ?> ms</td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif; ?>
