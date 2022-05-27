@@ -1,13 +1,13 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CallmapCollector $collector */
-/** @var \ClawRock\Debug\Model\View\Xhprof $xhporfViewModel */
+/** @var \Daseraf\Debug\Model\Collector\CallmapCollector $collector */
+/** @var \Daseraf\Debug\Model\View\Xhprof $xhporfViewModel */
 $collector = $block->getCollector();
 $xhporfViewModel = $block->getXhporfViewModel();
 $xhprofProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
 [$parents, $current, $children] = $xhporfViewModel->getRelatives($xhprofProfile);
 
-/** @var \ClawRock\Debug\Model\View\Profiler $profilerViewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $profilerViewModel */
 $profilerViewModel = $block->getProfilerViewModel();
 $profile = $profilerViewModel->getProfile();
 ?>

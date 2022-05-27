@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\View;
+namespace Daseraf\Debug\Model\View;
 
-use ClawRock\Debug\Model\Collector\RequestCollector;
+use Daseraf\Debug\Model\Collector\RequestCollector;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Search implements ArgumentInterface
@@ -13,7 +13,7 @@ class Search implements ArgumentInterface
     private $request;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
@@ -23,20 +23,20 @@ class Search implements ArgumentInterface
     private $token;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $url;
 
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
-        \ClawRock\Debug\Helper\Formatter $formatter,
-        \ClawRock\Debug\Helper\Url $url
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Helper\Formatter $formatter,
+        \Daseraf\Debug\Helper\Url $url
     ) {
         $this->request = $request;
         $this->profileMemoryStorage = $profileMemoryStorage;

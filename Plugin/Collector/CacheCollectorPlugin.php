@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Model\ValueObject\CacheAction;
+use Daseraf\Debug\Model\ValueObject\CacheAction;
 use Magento\Framework\App\Cache;
 
 /**
@@ -11,12 +11,12 @@ use Magento\Framework\App\Cache;
 class CacheCollectorPlugin
 {
     /**
-     * @var \ClawRock\Debug\Model\Collector\CacheCollector
+     * @var \Daseraf\Debug\Model\Collector\CacheCollector
      */
     private $cacheCollector;
 
     public function __construct(
-        \ClawRock\Debug\Model\Collector\CacheCollector $cacheCollector
+        \Daseraf\Debug\Model\Collector\CacheCollector $cacheCollector
     ) {
         $this->cacheCollector = $cacheCollector;
     }

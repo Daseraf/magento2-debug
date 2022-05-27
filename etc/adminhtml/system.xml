@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="clawrock_debug" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="0" showInStore="0">
+        <section id="daseraf_debug" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
             <label>Debug</label>
             <tab>advanced</tab>
-            <resource>ClawRock_Debug::config</resource>
+            <resource>Daseraf_Debug::config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General</label>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -25,7 +25,7 @@
                 </field>
                 <field id="error_handler" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Error Handler</label>
-                    <source_model>ClawRock\Debug\Model\Config\Source\ErrorHandler</source_model>
+                    <source_model>Daseraf\Debug\Model\Config\Source\ErrorHandler</source_model>
                 </field>
             </group>
             <group id="time" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -94,7 +94,7 @@
                 </field>
                 <field id="xhprof_flags" translate="label" type="multiselect" sortOrder="130" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Xhprof Flags</label>
-                    <source_model>ClawRock\Debug\Model\Config\Source\XhprofFlags</source_model>
+                    <source_model>Daseraf\Debug\Model\Config\Source\XhprofFlags</source_model>
                     <depends>
                         <field id="callmap">1</field>
                     </depends>

@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Indexer;
+namespace Daseraf\Debug\Model\Indexer;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Api\Data\ProfileInterface;
 use Magento\Framework\Exception\FileSystemException;
 
 class ProfileIndexer
@@ -18,20 +18,20 @@ class ProfileIndexer
     private $fileWriteFactory;
 
     /**
-     * @var \ClawRock\Debug\Logger\Logger
+     * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
 
     /**
-     * @var \ClawRock\Debug\Helper\File
+     * @var \Daseraf\Debug\Helper\File
      */
     private $fileHelper;
 
     public function __construct(
         \Magento\Framework\Filesystem\Driver\File $fileSystem,
         \Magento\Framework\Filesystem\File\WriteFactory $fileWriteFactory,
-        \ClawRock\Debug\Logger\Logger $logger,
-        \ClawRock\Debug\Helper\File $fileHelper
+        \Daseraf\Debug\Logger\Logger $logger,
+        \Daseraf\Debug\Helper\File $fileHelper
     ) {
         $this->fileSystem = $fileSystem;
         $this->fileWriteFactory = $fileWriteFactory;

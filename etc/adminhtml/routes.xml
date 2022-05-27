@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="debug" frontName="debug">
-            <module name="ClawRock_Debug" before="Magento_Backend"/>
+            <module name="Daseraf_Debug" before="Magento_Backend"/>
         </route>
     </router>
 </config>

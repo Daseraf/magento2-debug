@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Logger\LoggableInterface;
 
 class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
 {
@@ -24,36 +24,36 @@ class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
     public const RENDER_TIME = 'render_time';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Logger\DataLogger
+     * @var \Daseraf\Debug\Logger\DataLogger
      */
     private $dataLogger;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\LayoutInfo
+     * @var \Daseraf\Debug\Model\Info\LayoutInfo
      */
     private $layoutInfo;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Logger\DataLoggerFactory $dataLogger,
-        \ClawRock\Debug\Model\Info\LayoutInfo $layoutInfo,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Logger\DataLoggerFactory $dataLogger,
+        \Daseraf\Debug\Model\Info\LayoutInfo $layoutInfo,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
@@ -66,7 +66,7 @@ class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
     {
         $renderTime = 0;
 
-        /** @var \ClawRock\Debug\Model\ValueObject\Block $block */
+        /** @var \Daseraf\Debug\Model\ValueObject\Block $block */
         foreach ($this->dataLogger->getLogs() as $block) {
             $renderTime += $block->getRenderTime();
         }

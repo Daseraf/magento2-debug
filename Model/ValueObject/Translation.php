@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\ValueObject;
+namespace Daseraf\Debug\Model\ValueObject;
 
-use ClawRock\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Logger\LoggableInterface;
 
 class Translation implements LoggableInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
-use ClawRock\Debug\Model\Profiler;
+use Daseraf\Debug\Model\Profiler;
 use Magento\Framework\App\Area;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 

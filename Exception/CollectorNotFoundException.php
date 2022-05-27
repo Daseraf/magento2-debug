@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Exception;
+namespace Daseraf\Debug\Exception;
 
 use Magento\Framework\Exception\LocalizedException;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace ClawRock\Debug\Model\ValueObject;
+namespace Daseraf\Debug\Model\ValueObject;
 
 class LoopModelAction
 {
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\ModelAction
+     * @var \Daseraf\Debug\Model\ValueObject\ModelAction
      */
     private $modelAction;
 
@@ -27,7 +27,7 @@ class LoopModelAction
     }
 
     /**
-     * @return \ClawRock\Debug\Model\ValueObject\ModelAction
+     * @return \Daseraf\Debug\Model\ValueObject\ModelAction
      */
     public function getModelAction(): ModelAction
     {

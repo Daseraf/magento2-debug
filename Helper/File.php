@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
 class File
 {

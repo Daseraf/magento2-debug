@@ -4,11 +4,11 @@
     <body>
         <container name="root">
             <block class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::panel/callmap_detail.phtml"
+                   template="Daseraf_Debug::panel/callmap_detail.phtml"
                    name="debug.profiler.panel.content">
                 <arguments>
-                    <argument name="xhporf_view_model" xsi:type="object">ClawRock\Debug\Model\View\Xhprof</argument>
-                    <argument name="profiler_view_model" xsi:type="object">ClawRock\Debug\Model\View\Profiler</argument>
+                    <argument name="xhporf_view_model" xsi:type="object">Daseraf\Debug\Model\View\Xhprof</argument>
+                    <argument name="profiler_view_model" xsi:type="object">Daseraf\Debug\Model\View\Profiler</argument>
                 </arguments>
             </block>
         </container>

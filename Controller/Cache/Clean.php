@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Cache;
+namespace Daseraf\Debug\Controller\Cache;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;

@@ -1,8 +1,8 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\EventCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\EventCollector $collector */
 $collector = $block->getCollector();
-/** @var \ClawRock\Debug\Model\View\Profiler $viewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
 ?>
 <div>
@@ -52,7 +52,7 @@ $viewModel = $block->getViewModel();
                                     </a>
                                     <div id="event-observer-<?= /* @noEscape */ $event ?>" class="hidden">
                                         <ul>
-                                            <?php /** @var \ClawRock\Debug\Model\ValueObject\EventObserver $observer */ ?>
+                                            <?php /** @var \Daseraf\Debug\Model\ValueObject\EventObserver $observer */ ?>
                                             <?php foreach ($collector->filterObservers($observers) as $observer): ?>
                                                 <li><?= /* @noEscape */$observer->getClass(); ?></li>
                                             <?php endforeach; ?>

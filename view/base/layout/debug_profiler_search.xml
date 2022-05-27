@@ -11,10 +11,10 @@
         <referenceContainer name="debug.profiler.sidebar.menu.collectors" remove="true"/>
         <referenceContainer name="debug.profiler.panel">
             <block class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::search/results.phtml"
+                   template="Daseraf_Debug::search/results.phtml"
                    name="debug.profiler.panel.content" cacheable="false">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">ClawRock\Debug\Model\View\Search</argument>
+                    <argument name="view_model" xsi:type="object">Daseraf\Debug\Model\View\Search</argument>
                 </arguments>
             </block>
         </referenceContainer>

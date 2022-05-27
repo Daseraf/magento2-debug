@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model;
+namespace Daseraf\Debug\Model;
 
 class Session extends \Magento\Framework\Session\SessionManager
 {

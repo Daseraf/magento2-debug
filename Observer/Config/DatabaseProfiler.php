@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Observer\Config;
+namespace Daseraf\Debug\Observer\Config;
 
-use ClawRock\Debug\Helper\Config;
+use Daseraf\Debug\Helper\Config;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\FileSystemException;
@@ -15,19 +15,19 @@ class DatabaseProfiler implements ObserverInterface
     private $messageManager;
 
     /**
-     * @var \ClawRock\Debug\Model\Config\Database\ProfilerWriter
+     * @var \Daseraf\Debug\Model\Config\Database\ProfilerWriter
      */
     private $dbProfilerWriter;
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     public function __construct(
         \Magento\Framework\Message\ManagerInterface $messageManager,
-        \ClawRock\Debug\Model\Config\Database\ProfilerWriter $dbProfilerWriter,
-        \ClawRock\Debug\Helper\Config $config
+        \Daseraf\Debug\Model\Config\Database\ProfilerWriter $dbProfilerWriter,
+        \Daseraf\Debug\Helper\Config $config
     ) {
         $this->messageManager = $messageManager;
         $this->dbProfilerWriter = $dbProfilerWriter;

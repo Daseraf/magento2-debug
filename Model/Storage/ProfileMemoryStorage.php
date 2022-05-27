@@ -1,13 +1,13 @@
 <?php
 
-namespace ClawRock\Debug\Model\Storage;
+namespace Daseraf\Debug\Model\Storage;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Api\Data\ProfileInterface;
 
 class ProfileMemoryStorage
 {
     /**
-     * @var \ClawRock\Debug\Model\Profile
+     * @var \Daseraf\Debug\Model\Profile
      */
     private $profile;
 

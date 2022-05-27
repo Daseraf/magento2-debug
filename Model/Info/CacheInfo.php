@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
-use ClawRock\Debug\Model\ValueObject\CacheAction;
+use Daseraf\Debug\Model\ValueObject\CacheAction;
 
 class CacheInfo
 {
@@ -72,7 +72,7 @@ class CacheInfo
                 self::STATS_SAVE => 0,
             ];
 
-            /** @var \ClawRock\Debug\Model\ValueObject\CacheAction $action */
+            /** @var \Daseraf\Debug\Model\ValueObject\CacheAction $action */
             foreach ($cacheLog as $action) {
                 switch ($action->getName()) {
                     case CacheAction::LOAD:
@@ -97,7 +97,7 @@ class CacheInfo
         if ($this->totalTime === null) {
             $this->totalTime = 0;
 
-            /** @var \ClawRock\Debug\Model\ValueObject\CacheAction $action */
+            /** @var \Daseraf\Debug\Model\ValueObject\CacheAction $action */
             foreach ($cacheLog as $action) {
                 $this->totalTime += $action->getTime();
             }

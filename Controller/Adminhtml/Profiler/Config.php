@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Adminhtml\Profiler;
+namespace Daseraf\Debug\Controller\Adminhtml\Profiler;
 
 use Magento\Backend\App\Action;
 
@@ -19,7 +19,7 @@ class Config extends Action
         $resultRedirect = $this->resultRedirectFactory->create();
 
         return $resultRedirect->setPath('admin/system_config/edit', [
-            'section' => 'clawrock_debug',
+            'section' => 'daseraf_debug',
             'key' => $this->_url->getSecretKey('adminhtml', 'system_config', 'edit'),
         ]);
     }

@@ -1,5 +1,5 @@
 <?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
-<?php /** @var \ClawRock\Debug\Model\View\Toolbar $vm */ ?>
+<?php /** @var \Daseraf\Debug\Model\View\Toolbar $vm */ ?>
 <?php $vm = $block->getViewModel(); ?>
 <?php $token = $vm->getToken(); ?>
 
@@ -10,6 +10,6 @@
         <?= $collectorBlock->toHtml(); ?>
     <?php endforeach; ?>
     <a href="#" class="hide-button" id="sfToolbarHideButton-<?= /* @noEscape */ $token; ?>" title="<?= $block->escapeHtml(__('Close Toolbar')) ?>" tabindex="-1" accesskey="D">
-        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/close.svg'); ?>" alt="<?= $block->escapeHtml(__('Close')) ?>">
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/close.svg'); ?>" alt="<?= $block->escapeHtml(__('Close')) ?>">
     </a>
 </div>

@@ -1,11 +1,11 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CustomerCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\CustomerCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?>">
     <div class="sf-toolbar-icon">
-        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/customer.svg'); ?>"
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/customer.svg'); ?>"
              alt="<?= $block->escapeHtmlAttr(__('Customer')) ?>"/>
         <span class="sf-toolbar-value">
             <?php if ($collector->isLoggedIn()): ?>

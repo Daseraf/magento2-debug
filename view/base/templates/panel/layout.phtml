@@ -1,8 +1,8 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\LayoutCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\LayoutCollector $collector */
 $collector = $block->getCollector();
-/** @var \ClawRock\Debug\Model\View\Profiler $viewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
 ?>
 <h2><?= $block->escapeHtml(__('Render Metrics')) ?></h2>
@@ -47,7 +47,7 @@ $viewModel = $block->getViewModel();
         </tr>
     </thead>
     <tbody>
-        <?php /** @var \ClawRock\Debug\Model\ValueObject\Block $layoutBlock */ ?>
+        <?php /** @var \Daseraf\Debug\Model\ValueObject\Block $layoutBlock */ ?>
         <?php foreach ($collector->getNotRenderedBlocks() as $layoutBlock): ?>
             <tr>
                 <td><?= /* @noEscape */ $layoutBlock->getName() ?></td>

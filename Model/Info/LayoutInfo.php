@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
-use ClawRock\Debug\Model\Collector\LayoutCollector;
-use ClawRock\Debug\Model\ValueObject\Block;
+use Daseraf\Debug\Model\Collector\LayoutCollector;
+use Daseraf\Debug\Model\ValueObject\Block;
 
 class LayoutInfo
 {

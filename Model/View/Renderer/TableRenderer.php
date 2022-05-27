@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class TableRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/table.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/table.phtml';
 
     /**
      * @var array
@@ -19,7 +19,7 @@ class TableRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\VarRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\VarRendererFactory
      */
     private $varRendererFactory;
 
@@ -31,7 +31,7 @@ class TableRenderer implements RendererInterface
     public function __construct(
         array $items,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory,
         array $labels = []
     ) {
         $this->items = $items;

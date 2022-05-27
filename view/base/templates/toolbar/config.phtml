@@ -1,12 +1,12 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\ConfigCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\ConfigCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?> sf-toolbar-status-normal sf-toolbar-block-right">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
         <div class="sf-toolbar-icon">
-            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/config.svg'); ?>"
+            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/config.svg'); ?>"
                  alt="<?= $block->escapeHtmlAttr(__('Config')) ?>"/>
             <span class="sf-toolbar-value"><?= /* @noEscape */ $collector->getVersion() ?></span>
         </div>

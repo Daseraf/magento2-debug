@@ -1,6 +1,6 @@
 <?php
-/** @var \ClawRock\Debug\Block\Profiler\Collector\Config $block */
-/** @var \ClawRock\Debug\Model\DataCollector\ConfigDataCollector $collector */
+/** @var \Daseraf\Debug\Block\Profiler\Collector\Config $block */
+/** @var \Daseraf\Debug\Model\DataCollector\ConfigDataCollector $collector */
 $collector = $block->getCollector();
 ?>
 <h2><?= $block->escapeHtml(__('PHP Configuration')) ?></h2>
@@ -12,10 +12,10 @@ $collector = $block->getCollector();
     <div class="metric">
         <span class="value">
             <?php if ($collector->hasAccelerator()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>
@@ -24,10 +24,10 @@ $collector = $block->getCollector();
     <div class="metric">
         <span class="value">
             <?php if ($collector->hasXDebug()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>
@@ -39,10 +39,10 @@ $collector = $block->getCollector();
         <span
         <span class="value">
             <?php if ($collector->hasZendOpcache()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>
@@ -51,10 +51,10 @@ $collector = $block->getCollector();
     <div class="metric">
         <span class="value">
             <?php if ($collector->hasApc()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>
@@ -63,10 +63,10 @@ $collector = $block->getCollector();
     <div class="metric">
         <span class="value">
             <?php if ($collector->hasXCache()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>
@@ -76,10 +76,10 @@ $collector = $block->getCollector();
         <span
         <span class="value">
             <?php if ($collector->hasEAccelerator()): ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
             <?php else: ?>
-                <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                      alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
             <?php endif; ?>
         </span>

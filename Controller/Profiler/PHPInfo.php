@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Profiler;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;

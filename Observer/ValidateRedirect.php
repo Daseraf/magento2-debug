@@ -1,20 +1,20 @@
 <?php
 
-namespace ClawRock\Debug\Observer;
+namespace Daseraf\Debug\Observer;
 
-use ClawRock\Debug\Model\Info\RequestInfo;
+use Daseraf\Debug\Model\Info\RequestInfo;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
 class ValidateRedirect implements ObserverInterface
 {
     /**
-     * @var \ClawRock\Debug\Model\Session
+     * @var \Daseraf\Debug\Model\Session
      */
     private $session;
 
     public function __construct(
-        \ClawRock\Debug\Model\Session\Proxy $session
+        \Daseraf\Debug\Model\Session\Proxy $session
     ) {
         $this->session = $session;
     }

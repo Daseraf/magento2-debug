@@ -1,15 +1,15 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class LayoutNodeRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/layout/node.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/layout/node.phtml';
 
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\LayoutNode
+     * @var \Daseraf\Debug\Model\ValueObject\LayoutNode
      */
     private $node;
 
@@ -19,20 +19,20 @@ class LayoutNodeRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\LayoutNodeRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\LayoutNodeRendererFactory
      */
     private $layoutNodeRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Model\ValueObject\LayoutNode $node,
+        \Daseraf\Debug\Model\ValueObject\LayoutNode $node,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\View\Renderer\LayoutNodeRendererFactory $layoutNodeRendererFactory,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Model\View\Renderer\LayoutNodeRendererFactory $layoutNodeRendererFactory,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->node = $node;
         $this->layout = $layout;

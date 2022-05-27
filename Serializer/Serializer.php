@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Serializer;
+namespace Daseraf\Debug\Serializer;
 
 class Serializer implements SerializerInterface
 {

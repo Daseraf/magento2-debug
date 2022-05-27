@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Observer;
+namespace Daseraf\Debug\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -8,18 +8,18 @@ use Magento\Framework\Event\ObserverInterface;
 class BeforeSendResponse implements ObserverInterface
 {
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\Profiler
+     * @var \Daseraf\Debug\Model\Profiler
      */
     private $profiler;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\Profiler $profiler
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\Profiler $profiler
     ) {
         $this->config = $config;
         $this->profiler = $profiler;

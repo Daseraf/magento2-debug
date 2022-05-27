@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Api\Data;
+namespace Daseraf\Debug\Api\Data;
 
-use ClawRock\Debug\Model\Collector\CollectorInterface;
-use ClawRock\Debug\Model\ValueObject\Redirect;
+use Daseraf\Debug\Model\Collector\CollectorInterface;
+use Daseraf\Debug\Model\ValueObject\Redirect;
 
 interface ProfileInterface
 {

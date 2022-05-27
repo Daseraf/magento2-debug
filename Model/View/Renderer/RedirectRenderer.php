@@ -1,15 +1,15 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class RedirectRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/redirect.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/redirect.phtml';
 
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\Redirect
+     * @var \Daseraf\Debug\Model\ValueObject\Redirect
      */
     private $redirect;
 
@@ -19,14 +19,14 @@ class RedirectRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $url;
 
     public function __construct(
-        \ClawRock\Debug\Model\ValueObject\Redirect $redirect,
+        \Daseraf\Debug\Model\ValueObject\Redirect $redirect,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Helper\Url $url
+        \Daseraf\Debug\Helper\Url $url
     ) {
         $this->redirect = $redirect;
         $this->layout = $layout;

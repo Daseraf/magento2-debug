@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Logger\LoggableInterface;
 
 class EventCollector implements CollectorInterface, LateCollectorInterface, LoggerCollectorInterface
 {
@@ -16,36 +16,36 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
     public const DISPATCH_COUNT = 'events_count';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Logger\DataLogger
+     * @var \Daseraf\Debug\Logger\DataLogger
      */
     private $dataLogger;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     /**
-     * @var \ClawRock\Debug\Helper\Debug
+     * @var \Daseraf\Debug\Helper\Debug
      */
     private $debug;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Logger\DataLoggerFactory $dataLoggerFactory,
-        \ClawRock\Debug\Helper\Formatter $formatter,
-        \ClawRock\Debug\Helper\Debug $debug
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Logger\DataLoggerFactory $dataLoggerFactory,
+        \Daseraf\Debug\Helper\Formatter $formatter,
+        \Daseraf\Debug\Helper\Debug $debug
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
@@ -71,7 +71,7 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
         $observers = $this->dataCollector->getData(self::OBSERVERS);
         $events = $this->dataCollector->getData(self::EVENTS);
 
-        /** @var \ClawRock\Debug\Model\ValueObject\EventObserver $observer */
+        /** @var \Daseraf\Debug\Model\ValueObject\EventObserver $observer */
         foreach ($this->dataLogger->getLogs() as $observer) {
             $time += $observer->getTime();
             if (!isset($events[$observer->getEvent()])) {
@@ -118,7 +118,7 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
     public function getEventTime(array $observers): string
     {
         $time = 0;
-        /** @var \ClawRock\Debug\Model\ValueObject\EventObserver $observer */
+        /** @var \Daseraf\Debug\Model\ValueObject\EventObserver $observer */
         foreach ($observers as $observer) {
             $time += $observer->getTime();
         }
@@ -158,7 +158,7 @@ class EventCollector implements CollectorInterface, LateCollectorInterface, Logg
 
     public function log(LoggableInterface $value): LoggerCollectorInterface
     {
-        /** @var \ClawRock\Debug\Model\ValueObject\EventObserver $value */
+        /** @var \Daseraf\Debug\Model\ValueObject\EventObserver $value */
         if ($this->debug->isDebugClass($value->getClass())) {
             return $this;
         }

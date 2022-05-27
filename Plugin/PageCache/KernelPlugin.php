@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\PageCache;
+namespace Daseraf\Debug\Plugin\PageCache;
 
 /**
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -8,12 +8,12 @@ namespace ClawRock\Debug\Plugin\PageCache;
 class KernelPlugin
 {
     /**
-     * @var \ClawRock\Debug\Model\Storage\HttpStorage
+     * @var \Daseraf\Debug\Model\Storage\HttpStorage
      */
     private $httpStorage;
 
     public function __construct(
-        \ClawRock\Debug\Model\Storage\HttpStorage $httpStorage
+        \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage
     ) {
         $this->httpStorage = $httpStorage;
     }

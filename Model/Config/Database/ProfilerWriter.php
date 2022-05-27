@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Config\Database;
+namespace Daseraf\Debug\Model\Config\Database;
 
 use Magento\Framework\Config\ConfigOptionsListConstants;
 use Magento\Framework\Config\File\ConfigFilePool;

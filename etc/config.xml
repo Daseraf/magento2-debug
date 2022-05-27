@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <clawrock_debug>
+        <daseraf_debug>
             <general>
                 <active>1</active>
                 <active_adminhtml>0</active_adminhtml>
@@ -41,22 +41,22 @@
             </performance>
             <profiler>
                 <collectors>
-                    <config>ClawRock\Debug\Model\Collector\ConfigCollector</config>
-                    <request>ClawRock\Debug\Model\Collector\RequestCollector</request>
-                    <memory>ClawRock\Debug\Model\Collector\MemoryCollector</memory>
-                    <time>ClawRock\Debug\Model\Collector\TimeCollector</time>
-                    <ajax>ClawRock\Debug\Model\Collector\AjaxCollector</ajax>
-                    <database>ClawRock\Debug\Model\Collector\DatabaseCollector</database>
-                    <translation>ClawRock\Debug\Model\Collector\TranslationCollector</translation>
-                    <customer>ClawRock\Debug\Model\Collector\CustomerCollector</customer>
-                    <layout>ClawRock\Debug\Model\Collector\LayoutCollector</layout>
-                    <cache>ClawRock\Debug\Model\Collector\CacheCollector</cache>
-                    <model>ClawRock\Debug\Model\Collector\ModelCollector</model>
-                    <event>ClawRock\Debug\Model\Collector\EventCollector</event>
-                    <plugin>ClawRock\Debug\Model\Collector\PluginCollector</plugin>
-                    <callmap>ClawRock\Debug\Model\Collector\CallmapCollector</callmap>
+                    <config>Daseraf\Debug\Model\Collector\ConfigCollector</config>
+                    <request>Daseraf\Debug\Model\Collector\RequestCollector</request>
+                    <memory>Daseraf\Debug\Model\Collector\MemoryCollector</memory>
+                    <time>Daseraf\Debug\Model\Collector\TimeCollector</time>
+                    <ajax>Daseraf\Debug\Model\Collector\AjaxCollector</ajax>
+                    <database>Daseraf\Debug\Model\Collector\DatabaseCollector</database>
+                    <translation>Daseraf\Debug\Model\Collector\TranslationCollector</translation>
+                    <customer>Daseraf\Debug\Model\Collector\CustomerCollector</customer>
+                    <layout>Daseraf\Debug\Model\Collector\LayoutCollector</layout>
+                    <cache>Daseraf\Debug\Model\Collector\CacheCollector</cache>
+                    <model>Daseraf\Debug\Model\Collector\ModelCollector</model>
+                    <event>Daseraf\Debug\Model\Collector\EventCollector</event>
+                    <plugin>Daseraf\Debug\Model\Collector\PluginCollector</plugin>
+                    <callmap>Daseraf\Debug\Model\Collector\CallmapCollector</callmap>
                 </collectors>
             </profiler>
-        </clawrock_debug>
+        </daseraf_debug>
     </default>
 </config>

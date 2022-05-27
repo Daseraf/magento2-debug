@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class QueryListRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/query/list.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/query/list.phtml';
 
     /**
      * @var \Zend_Db_Profiler_Query[]
@@ -24,12 +24,12 @@ class QueryListRenderer implements RendererInterface
     private $mathRandom;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\QueryRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\QueryRendererFactory
      */
     private $queryRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
@@ -37,8 +37,8 @@ class QueryListRenderer implements RendererInterface
         array $queries,
         \Magento\Framework\View\LayoutInterface $layout,
         \Magento\Framework\Math\Random $mathRandom,
-        \ClawRock\Debug\Model\View\Renderer\QueryRendererFactory $queryRendererFactory,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Model\View\Renderer\QueryRendererFactory $queryRendererFactory,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->queries = $queries;
         $this->layout = $layout;

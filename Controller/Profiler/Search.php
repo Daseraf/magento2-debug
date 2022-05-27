@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Profiler;
 
-use ClawRock\Debug\Model\Profile\Criteria;
-use ClawRock\Debug\Model\Profiler;
+use Daseraf\Debug\Model\Profile\Criteria;
+use Daseraf\Debug\Model\Profiler;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
 
@@ -15,14 +15,14 @@ class Search extends Action
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @var \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     private $profileRepository;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Api\ProfileRepositoryInterface $profileRepository
+        \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository
     ) {
         parent::__construct($context);
 

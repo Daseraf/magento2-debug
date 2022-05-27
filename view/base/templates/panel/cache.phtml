@@ -1,8 +1,8 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CacheCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\CacheCollector $collector */
 $collector = $block->getCollector();
-/** @var \ClawRock\Debug\Model\View\Profiler $viewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
 ?>
 <h2><?= $block->escapeHtml(__('Cache metrics')) ?></h2>
@@ -40,32 +40,32 @@ $viewModel = $block->getViewModel();
                 <td><?= /* @noEscape */ $cache->getCacheType() ?></td>
                 <td class="text-center">
                     <?php if ($cache->getStatus()): ?>
-                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                              alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
                     <?php else: ?>
-                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                              alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
                     <?php endif; ?>
                 </td>
                 <td class="text-center">
                     <?php if ($collector->getCacheCurrentStatus($cache->getId())): ?>
-                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                              alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
                     <?php else: ?>
-                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                              alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
                     <?php endif; ?>
                 </td>
                 <td class="text-center">
                     <?php if (!$collector->getCacheCurrentStatus($cache->getId())): ?>
-                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                              alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
                     <?php else: ?>
                         <?php if ($collector->isInvalidated($cache->getId())): ?>
-                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                                  alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
                         <?php else: ?>
-                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                                  alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -119,7 +119,7 @@ $viewModel = $block->getViewModel();
         </tr>
     </thead>
     <tbody>
-        <?php /** @var \ClawRock\Debug\Model\ValueObject\CacheAction $action */ ?>
+        <?php /** @var \Daseraf\Debug\Model\ValueObject\CacheAction $action */ ?>
         <?php foreach ($collector->getCacheLog() as $i => $action): ?>
             <tr>
                 <td class="nowrap"><?= /* @noEscape */ ++$i ?> </td>
@@ -139,10 +139,10 @@ $viewModel = $block->getViewModel();
                         -
                     <?php else: ?>
                         <?php if ($action->isHit()) : ?>
-                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/yes.svg'); ?>"
+                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/yes.svg'); ?>"
                                  alt="<?= $block->escapeHtmlAttr(__('Yes')) ?>"/>
                         <?php else: ?>
-                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/no.svg'); ?>"
+                            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/no.svg'); ?>"
                                  alt="<?= $block->escapeHtmlAttr(__('No')) ?>"/>
                         <?php endif; ?>
                     <?php endif ?>

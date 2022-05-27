@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Model\Config\Source\XhprofFlags;
-use ClawRock\Debug\Model\Info\CallmapInfo;
+use Daseraf\Debug\Model\Config\Source\XhprofFlags;
+use Daseraf\Debug\Model\Info\CallmapInfo;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\ObjectManagerInterface;
 
@@ -89,7 +89,7 @@ class CallmapCollectorPlugin
         }
 
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $this->config = $objectManager->create(\ClawRock\Debug\Helper\Config::class);
+        $this->config = $objectManager->create(\Daseraf\Debug\Helper\Config::class);
 
         return $this->config;
     }

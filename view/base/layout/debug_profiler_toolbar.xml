@@ -2,38 +2,38 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="toolbar"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="ClawRock_Debug::css/toolbar.css"/>
+        <css src="Daseraf_Debug::css/toolbar.css"/>
     </head>
     <body>
         <referenceContainer name="debug.toolbar.collectors">
             <block name="debug.toolbar.collectors.config" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/config.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/config.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.request" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/request.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/request.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.memory" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/memory.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/memory.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.time" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/time.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/time.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.database" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/database.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/database.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.translation" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/translation.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/translation.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.ajax" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/ajax.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/ajax.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.model" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/model.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/model.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.customer" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/customer.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/customer.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.layout" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/layout.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/layout.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.cache" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/cache.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/cache.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.event" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/event.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/event.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.plugin" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/plugin.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/plugin.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.callmap" class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::toolbar/callmap.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/callmap.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>

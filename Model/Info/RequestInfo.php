@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
-use ClawRock\Debug\Model\Collector\RequestCollector;
-use ClawRock\Debug\Model\ValueObject\Redirect;
+use Daseraf\Debug\Model\Collector\RequestCollector;
+use Daseraf\Debug\Model\ValueObject\Redirect;
 use Zend\Stdlib\Parameters;
 use Zend\Stdlib\ParametersInterface;
 
@@ -17,18 +17,18 @@ class RequestInfo
     public const REDIRECT_PARAM = 'cdbg_redirect';
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\HttpStorage
+     * @var \Daseraf\Debug\Model\Storage\HttpStorage
      */
     private $httpStorage;
 
     /**
-     * @var \ClawRock\Debug\Model\Session
+     * @var \Daseraf\Debug\Model\Session
      */
     private $session;
 
     public function __construct(
-        \ClawRock\Debug\Model\Storage\HttpStorage $httpStorage,
-        \ClawRock\Debug\Model\Session\Proxy $session
+        \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage,
+        \Daseraf\Debug\Model\Session\Proxy $session
     ) {
         $this->httpStorage = $httpStorage;
         $this->session = $session;
@@ -143,7 +143,7 @@ class RequestInfo
 
     /**
      * @SuppressWarnings(PHPMD.StaticAccess)
-     * @return \ClawRock\Debug\Model\ValueObject\Redirect
+     * @return \Daseraf\Debug\Model\ValueObject\Redirect
      */
     public function getRedirect(): Redirect
     {

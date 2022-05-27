@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
 class Debug
 {
     public function isDebugClass($class)
     {
-        return strpos($class, 'ClawRock\Debug') === 0;
+        return strpos($class, 'Daseraf\Debug') === 0;
     }
 
     public function getBacktrace(array $functions, int $options = DEBUG_BACKTRACE_PROVIDE_OBJECT): array

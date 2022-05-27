@@ -1,32 +1,32 @@
 <?php
 
-namespace ClawRock\Debug\Model\View;
+namespace Daseraf\Debug\Model\View;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Model\ValueObject\Redirect;
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Model\ValueObject\Redirect;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Summary implements ArgumentInterface
 {
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $url;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\RedirectRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\RedirectRendererFactory
      */
     private $redirectRendererFactory;
 
     public function __construct(
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
-        \ClawRock\Debug\Helper\Url $url,
-        \ClawRock\Debug\Model\View\Renderer\RedirectRendererFactory $redirectRendererFactory
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Helper\Url $url,
+        \Daseraf\Debug\Model\View\Renderer\RedirectRendererFactory $redirectRendererFactory
     ) {
         $this->profileMemoryStorage = $profileMemoryStorage;
         $this->url = $url;

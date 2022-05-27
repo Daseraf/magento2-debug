@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
 class MemoryCollector implements CollectorInterface, LateCollectorInterface
 {
@@ -11,30 +11,30 @@ class MemoryCollector implements CollectorInterface, LateCollectorInterface
     public const MEMORY_LIMIT = 'memory_limit';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\MemoryInfo
+     * @var \Daseraf\Debug\Model\Info\MemoryInfo
      */
     private $memoryInfo;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Info\MemoryInfo $memoryInfo,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Info\MemoryInfo $memoryInfo,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();

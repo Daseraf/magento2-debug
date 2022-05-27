@@ -2,19 +2,19 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="profiler"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="ClawRock_Debug::css/profiler.css"/>
-        <css src="ClawRock_Debug::css/jquery-ui.css"/>
-        <script src="ClawRock_Debug::css/jquery-ui.css"/>
+        <css src="Daseraf_Debug::css/profiler.css"/>
+        <css src="Daseraf_Debug::css/jquery-ui.css"/>
+        <script src="Daseraf_Debug::css/jquery-ui.css"/>
         <script src="jquery.min.js"/>
         <script src="jquery/jquery-ui.min.js"/>
-        <script src="ClawRock_Debug/js/tablesorter.min.js"/>
-        <script src="ClawRock_Debug/js/callmap/extra-data.min.js"/>
+        <script src="Daseraf_Debug/js/tablesorter.min.js"/>
+        <script src="Daseraf_Debug/js/callmap/extra-data.min.js"/>
         <remove src="css/styles-m.css"/>
         <remove src="css/styles-l.css"/>
     </head>
     <body>
         <referenceBlock name="head.additional">
-            <block class="Magento\Framework\View\Element\Template" name="debug.profiler.js" template="ClawRock_Debug::profiler/js.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="debug.profiler.js" template="Daseraf_Debug::profiler/js.phtml"/>
         </referenceBlock>
     </body>
 </page>

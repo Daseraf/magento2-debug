@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Serializer;
+namespace Daseraf\Debug\Model\Serializer;
 
-use ClawRock\Debug\Exception\CollectorNotFoundException;
-use ClawRock\Debug\Model\Collector\CollectorInterface;
+use Daseraf\Debug\Exception\CollectorNotFoundException;
+use Daseraf\Debug\Model\Collector\CollectorInterface;
 
 class CollectorSerializer
 {
@@ -13,19 +13,19 @@ class CollectorSerializer
     private $objectManager;
 
     /**
-     * @var \ClawRock\Debug\Logger\Logger
+     * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
-        \ClawRock\Debug\Logger\Logger $logger,
-        \ClawRock\Debug\Helper\Config $config
+        \Daseraf\Debug\Logger\Logger $logger,
+        \Daseraf\Debug\Helper\Config $config
     ) {
         $this->objectManager = $objectManager;
         $this->logger = $logger;

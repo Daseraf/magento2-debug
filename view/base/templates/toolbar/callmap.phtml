@@ -1,12 +1,12 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CallmapCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\CallmapCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?>">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
         <div class="sf-toolbar-icon">
-            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/layout.svg'); ?>"
+            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/layout.svg'); ?>"
                  alt="<?= $block->escapeHtmlAttr(__('Call Map')) ?>"/>
             <span class="sf-toolbar-value"><?= $block->escapeHtmlAttr(__('Call Map')) ?></span>
         </div>

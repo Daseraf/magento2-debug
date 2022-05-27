@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Model\ValueObject\Redirect;
+use Daseraf\Debug\Model\ValueObject\Redirect;
 
 class RequestCollector implements CollectorInterface
 {
@@ -38,24 +38,24 @@ class RequestCollector implements CollectorInterface
     public const FULL_ACTION_NAME = 'full_action_name';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\RequestInfo
+     * @var \Daseraf\Debug\Model\Info\RequestInfo
      */
     private $requestInfo;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Info\RequestInfo $requestInfo
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Info\RequestInfo $requestInfo
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();

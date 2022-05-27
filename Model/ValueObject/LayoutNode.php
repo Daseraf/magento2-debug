@@ -1,11 +1,11 @@
 <?php
 
-namespace ClawRock\Debug\Model\ValueObject;
+namespace Daseraf\Debug\Model\ValueObject;
 
 class LayoutNode
 {
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\Block
+     * @var \Daseraf\Debug\Model\ValueObject\Block
      */
     private $block;
 
@@ -25,7 +25,7 @@ class LayoutNode
     private $children;
 
     public function __construct(
-        \ClawRock\Debug\Model\ValueObject\Block $block,
+        \Daseraf\Debug\Model\ValueObject\Block $block,
         float $layoutRenderTime = null,
         string $prefix = null,
         array $children

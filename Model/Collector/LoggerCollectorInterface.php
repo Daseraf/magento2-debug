@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Logger\LoggableInterface;
 
 interface LoggerCollectorInterface
 {

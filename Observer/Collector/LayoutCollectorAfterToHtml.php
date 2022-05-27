@@ -1,21 +1,21 @@
 <?php
 
-namespace ClawRock\Debug\Observer\Collector;
+namespace Daseraf\Debug\Observer\Collector;
 
-use ClawRock\Debug\Model\Collector\LayoutCollector;
-use ClawRock\Debug\Model\ValueObject\Block;
+use Daseraf\Debug\Model\Collector\LayoutCollector;
+use Daseraf\Debug\Model\ValueObject\Block;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
 class LayoutCollectorAfterToHtml implements ObserverInterface
 {
     /**
-     * @var \ClawRock\Debug\Model\Collector\LayoutCollector
+     * @var \Daseraf\Debug\Model\Collector\LayoutCollector
      */
     private $layoutCollector;
 
     public function __construct(
-        \ClawRock\Debug\Model\Collector\LayoutCollector $layoutCollector
+        \Daseraf\Debug\Model\Collector\LayoutCollector $layoutCollector
     ) {
         $this->layoutCollector = $layoutCollector;
     }

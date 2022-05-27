@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
 class DatabaseInfo
 {
@@ -20,13 +20,13 @@ class DatabaseInfo
     private $profiler;
 
     /**
-     * @var \ClawRock\Debug\Helper\Database
+     * @var \Daseraf\Debug\Helper\Database
      */
     private $databaseHelper;
 
     public function __construct(
         \Magento\Framework\App\ResourceConnection $resourceConnection,
-        \ClawRock\Debug\Helper\Database $databaseHelper
+        \Daseraf\Debug\Helper\Database $databaseHelper
     ) {
         $this->resourceConnection = $resourceConnection;
         $this->databaseHelper = $databaseHelper;

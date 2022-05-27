@@ -4,10 +4,10 @@
     <body>
         <referenceContainer name="debug.profiler.panel">
             <block class="Magento\Framework\View\Element\Template"
-                   template="ClawRock_Debug::panel/layout.phtml"
+                   template="Daseraf_Debug::panel/layout.phtml"
                    name="debug.profiler.panel.content">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">ClawRock\Debug\Model\View\Profiler</argument>
+                    <argument name="view_model" xsi:type="object">Daseraf\Debug\Model\View\Profiler</argument>
                 </arguments>
             </block>
         </referenceContainer>

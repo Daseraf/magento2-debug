@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
-use ClawRock\Debug\Model\Collector\PluginCollector;
-use ClawRock\Debug\Model\ValueObject\Plugin;
+use Daseraf\Debug\Model\Collector\PluginCollector;
+use Daseraf\Debug\Model\ValueObject\Plugin;
 use Magento\Framework\Interception\DefinitionInterface;
 
 class PluginInfo
@@ -34,13 +34,13 @@ class PluginInfo
     private $pluginList;
 
     /**
-     * @var \ClawRock\Debug\Helper\Debug
+     * @var \Daseraf\Debug\Helper\Debug
      */
     private $debug;
 
     public function __construct(
         \Magento\Framework\Interception\PluginList\PluginList $pluginList,
-        \ClawRock\Debug\Helper\Debug $debug
+        \Daseraf\Debug\Helper\Debug $debug
     ) {
         $this->pluginList = $pluginList;
         $this->debug = $debug;

@@ -2,7 +2,7 @@
 <div id="header">
     <div class="container">
         <h1>
-            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/magento.svg'); ?>" alt="Magento"/>
+            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/magento.svg'); ?>" alt="Magento"/>
             Magento 2
             <span><?= $block->escapeHtml(__('Profiler')) ?></span>
         </h1>
@@ -24,7 +24,7 @@
 <iframe name="profiler_link_target" style="display: none;"></iframe>
 <script>
     window.addEventListener('load', function () {
-        require(['jquery','ClawRock_Debug/js/tablesorter'], function($) {
+        require(['jquery','Daseraf_Debug/js/tablesorter'], function($) {
             $("table").tablesorter();
         })
     });

@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class TraceRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/trace.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/trace.phtml';
 
     /**
      * @var string
@@ -24,14 +24,14 @@ class TraceRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\TraceCallRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\TraceCallRendererFactory
      */
     private $traceCallRendererFactory;
 
     public function __construct(
         array $trace,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\View\Renderer\TraceCallRendererFactory $traceCallRendererFactory
+        \Daseraf\Debug\Model\View\Renderer\TraceCallRendererFactory $traceCallRendererFactory
     ) {
         $this->id = uniqid();
         $this->trace = $trace;

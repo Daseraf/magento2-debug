@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class TraceCallRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/trace/call.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/trace/call.phtml';
 
     public const CALL_INFO = ['function', 'class', 'line', 'file'];
 

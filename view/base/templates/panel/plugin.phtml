@@ -1,6 +1,6 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\PluginCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\PluginCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div>
@@ -35,7 +35,7 @@ $collector = $block->getCollector();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
                         <?php foreach ($plugins as $plugin): ?>
                             <tr>
                                 <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
@@ -72,7 +72,7 @@ $collector = $block->getCollector();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
                         <?php foreach ($plugins as $plugin): ?>
                             <tr>
                                 <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
@@ -109,7 +109,7 @@ $collector = $block->getCollector();
                         </tr>
                         </thead>
                         <tbody>
-                        <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
                         <?php foreach ($plugins as $plugin): ?>
                             <tr>
                                 <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>

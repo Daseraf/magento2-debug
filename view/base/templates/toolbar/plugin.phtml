@@ -1,12 +1,12 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\PluginCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\PluginCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?>">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
         <div class="sf-toolbar-icon">
-            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/plugin.svg'); ?>"
+            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/plugin.svg'); ?>"
                  alt="<?= $block->escapeHtmlAttr(__('Plugin')) ?>"/>
             <span class="sf-toolbar-value"><?= /* @noEscape */ $collector->getPluginsCount() ?></span>
         </div>
