@@ -5,7 +5,7 @@
 $collector = $block->getCollector();
 $xhporfViewModel = $block->getXhporfViewModel();
 $xhporfProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
-$fallbackData = $xhporfProfile->sort('wt');
+$fallbackData = $xhporfProfile->sort('ewt');
 $totalFunctions = number_format($xhporfProfile->getFunctionCount());
 
 /** @var \ClawRock\Debug\Model\View\Profiler $profilerViewModel */

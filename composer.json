@@ -24,14 +24,18 @@
         "php-coveralls/php-coveralls": "^2.1"
     },
     "config": {
-        "preferred-install": "source"
+        "preferred-install": "source",
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true,
+            "cweagans/composer-patches": true
+        }
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "patches": {
             "magento/framework": {
-                "Add_execution_time_for_plugins": "vendor/daseraf/magento2-debug/core_patches/Add_execution_time_for_plugins.patch"
+                "Add_execution_time_for_plugins": "vendor/daseraf/magento2-debug/core_patches/module-framwork.diff"
             }
         }
     },
@@ -50,4 +54,3 @@
         }
     }
 }
-

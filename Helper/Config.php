@@ -86,10 +86,6 @@ class Config
 
     public function isEnabled(): bool
     {
-        if ($this->appState->getMode() !== \Magento\Framework\App\State::MODE_DEVELOPER) {
-            return false;
-        }
-
         if (!$this->isActive()) {
             return false;
         }
@@ -198,10 +194,10 @@ class Config
 
     public function isCallmapCollectorEnabled(): bool
     {
-        return $this->scopeConfig->isSetFlag(
-            self::CALLMAP_COLLECTOR_CONFIG,
-            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-        );
+        return ($this->scopeConfig->isSetFlag(
+                self::CALLMAP_COLLECTOR_CONFIG,
+                ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+            ) && extension_loaded('xhprof'));
     }
 
     public function getXhprofFlags(): array

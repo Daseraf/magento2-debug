@@ -86,8 +86,8 @@ class RequestInfo
             RequestCollector::REQUEST_STRING => $this->httpStorage->getRequest()->getRequestString(),
             RequestCollector::REQUEST_URI => $this->httpStorage->getRequest()->getRequestUri(),
             RequestCollector::CONTROLLER_MODULE => $this->httpStorage->getRequest()->getControllerModule(),
-            RequestCollector::CONTROLLER_NAME => ucwords($this->httpStorage->getRequest()->getControllerName()),
-            RequestCollector::ACTION_NAME => ucwords($this->httpStorage->getRequest()->getActionName()),
+            RequestCollector::CONTROLLER_NAME => ucwords((string)$this->httpStorage->getRequest()->getControllerName()),
+            RequestCollector::ACTION_NAME => ucwords((string)$this->httpStorage->getRequest()->getActionName()),
             RequestCollector::FULL_ACTION_NAME => $this->httpStorage->getRequest()->getFullActionName(),
         ]);
     }

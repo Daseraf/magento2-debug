@@ -4,6 +4,11 @@
     <head>
         <css src="ClawRock_Debug::css/profiler.css"/>
         <css src="ClawRock_Debug::css/jquery-ui.css"/>
+        <script src="ClawRock_Debug::css/jquery-ui.css"/>
+        <script src="jquery.min.js"/>
+        <script src="jquery/jquery-ui.min.js"/>
+        <script src="ClawRock_Debug/js/tablesorter.min.js"/>
+        <script src="ClawRock_Debug/js/callmap/extra-data.min.js"/>
         <remove src="css/styles-m.css"/>
         <remove src="css/styles-l.css"/>
     </head>

@@ -122,15 +122,23 @@ class PluginInfo
         }
 
         $reflection = new \ReflectionClass($this->pluginList);
+        
         $processed = $reflection->getProperty('_processed');
         $processed->setAccessible(true);
         $processed = $processed->getValue($this->pluginList);
+        
         $inherited = $reflection->getProperty('_inherited');
         $inherited->setAccessible(true);
         $inherited = $inherited->getValue($this->pluginList);
+        
         $execution = $reflection->getProperty('execution');
         $execution->setAccessible(true);
         $executionTime = $execution->getValue($this->pluginList);
+        
+        $executedTypes = $reflection->getProperty('executedTypes');
+        $executedTypes->setAccessible(true);
+        $executedTypesList = $executedTypes->getValue($this->pluginList);
+        
         $definitionTypes = [
             DefinitionInterface::LISTENER_BEFORE => PluginCollector::BEFORE,
             DefinitionInterface::LISTENER_AROUND => PluginCollector::AROUND,
@@ -143,6 +151,10 @@ class PluginInfo
             }
             $type = $matches[1];
             $method = $matches[2];
+
+            if (!in_array($type, $executedTypesList)) {
+                continue;
+            }
 
             if ($this->debug->isDebugClass($type)) {
                 continue;

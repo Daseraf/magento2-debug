@@ -1,12 +1,6 @@
-Index: vendor/magento/framework/Interception/Interceptor.php
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/vendor/magento/framework/Interception/Interceptor.php b/vendor/magento/framework/Interception/Interceptor.php
---- a/vendor/magento/framework/Interception/Interceptor.php	(revision 0398de7809ee7896956d14d323b5cfd388e89c4f)
-+++ b/vendor/magento/framework/Interception/Interceptor.php	(date 1642622045423)
-@@ -117,8 +117,16 @@
+--- Interception/Interceptor.php	2022-03-08 00:52:02.000000000 +0300
++++ Interception/Interceptor.php	2022-05-27 13:11:21.000000000 +0300
+@@ -117,8 +117,17 @@
                  // Call 'before' listeners
                  foreach ($currentPluginInfo[DefinitionInterface::LISTENER_BEFORE] as $code) {
                      $pluginInstance = $pluginList->getPlugin($type, $code);
@@ -20,10 +14,11 @@ diff --git a/vendor/magento/framework/Interception/Interceptor.php b/vendor/mage
 +                        $method => [$code => [$timeEnd - $timeStart]]
 +                    ];
 +                    $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
- 
++                    $this->pluginList->addInExecutedTypes($type);
+
                      if ($beforeResult !== null) {
                          $arguments = (array)$beforeResult;
-@@ -132,7 +140,14 @@
+@@ -132,7 +141,15 @@
                  $pluginInfo = $pluginList->getNext($type, $method, $code);
                  $pluginInstance = $pluginList->getPlugin($type, $code);
                  $pluginMethod = 'around' . $capMethod;
@@ -35,10 +30,11 @@ diff --git a/vendor/magento/framework/Interception/Interceptor.php b/vendor/mage
 +                    $method => [$code => [$timeEnd - $timeStart]]
 +                ];
 +                $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
++                $this->pluginList->addInExecutedTypes($type);
              } else {
                  // Call original method
                  $result = $subject->___callParent($method, $arguments);
-@@ -143,7 +158,14 @@
+@@ -143,7 +160,15 @@
                  foreach ($currentPluginInfo[DefinitionInterface::LISTENER_AFTER] as $code) {
                      $pluginInstance = $pluginList->getPlugin($type, $code);
                      $pluginMethod = 'after' . $capMethod;
@@ -50,31 +46,27 @@ diff --git a/vendor/magento/framework/Interception/Interceptor.php b/vendor/mage
 +                        $method => [$code => [$timeEnd - $timeStart]]
 +                    ];
 +                    $this->pluginList->setPluginExecutionTime($pluginExecutionTime);
++                    $this->pluginList->addInExecutedTypes($type);
                  }
              }
- 
-Index: vendor/magento/framework/Interception/PluginList/PluginList.php
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/vendor/magento/framework/Interception/PluginList/PluginList.php b/vendor/magento/framework/Interception/PluginList/PluginList.php
---- a/vendor/magento/framework/Interception/PluginList/PluginList.php	(revision 0398de7809ee7896956d14d323b5cfd388e89c4f)
-+++ b/vendor/magento/framework/Interception/PluginList/PluginList.php	(date 1642596292062)
-@@ -92,6 +92,8 @@
+
+--- Interception/PluginList/PluginList.php	2022-03-08 00:52:02.000000000 +0300
++++ Interception/PluginList/PluginList.php	2022-05-27 13:11:21.000000000 +0300
+@@ -92,6 +92,10 @@
       */
      private $pluginListGenerator;
- 
+
 +    private $execution = [];
++
++    private $executedTypes = [];
 +
      /**
       * Constructor
       *
-@@ -137,6 +139,26 @@
-         $this->pluginListGenerator = $pluginListGenerator ?: $this->_objectManager->get(PluginListGenerator::class);
+@@ -138,6 +142,26 @@
      }
- 
-+    /**
+
+     /**
 +     * @param array $data
 +     * @return void
 +     */
@@ -94,6 +86,17 @@ diff --git a/vendor/magento/framework/Interception/PluginList/PluginList.php b/v
 +        $this->execution[$definition] = array_merge_recursive($this->execution[$definition], $data[$definition]);
 +    }
 +
-     /**
++    /**
       * Collect parent types configuration for requested type
       *
+      * @param string $type
+@@ -292,4 +316,9 @@
+     {
+         $this->_data = $this->pluginListGenerator->merge($config, $this->_data);
+     }
++
++    public function addInExecutedTypes($typeClass)
++    {
++        $this->executedTypes[] = $typeClass;
++    }
+ }

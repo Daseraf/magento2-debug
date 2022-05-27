@@ -2,11 +2,10 @@
 
 namespace ClawRock\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Helper\Config;
 use ClawRock\Debug\Model\Config\Source\XhprofFlags;
 use ClawRock\Debug\Model\Info\CallmapInfo;
-use Magento\Framework\App\Http;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\ObjectManagerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -14,34 +13,30 @@ use Magento\Framework\App\ResponseInterface;
 class CallmapCollectorPlugin
 {
     /**
-     * @var Config
-     */
-    private $config;
-
-    /**
      * @var CallmapInfo
      */
     private $callmapInfo;
 
+    private $isEnableStatus;
+
+    private $config;
+
     /**
-     * @param Config $config
      * @param CallmapInfo $callmapInfo
      */
-    public function __construct(
-        Config $config,
-        CallmapInfo $callmapInfo
-    ) {
-        $this->config = $config;
+    public function __construct(CallmapInfo $callmapInfo) {
         $this->callmapInfo = $callmapInfo;
     }
 
     /**
      * @SuppressWarnings(PHPMD.StaticAccess)
-     * @param Http $subject
+     * @param \Magento\Framework\App\Http $subject
      */
-    public function beforeLaunch(Http $subject)
+    public function beforeLaunch(\Magento\Framework\App\Http $subject)
     {
-        if (!$this->config->isCallmapCollectorEnabled()) {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        if (!$this->isEnable()) {
             return;
         }
 
@@ -54,13 +49,13 @@ class CallmapCollectorPlugin
     }
 
     /**
-     * @param Http $subject
+     * @param \Magento\Framework\App\Http $subject
      * @param ResponseInterface $result
      * @return ResponseInterface
      */
-    public function afterLaunch(Http $subject, ResponseInterface $result)
+    public function afterLaunch(\Magento\Framework\App\Http $subject, ResponseInterface $result)
     {
-        if (!$this->config->isCallmapCollectorEnabled()) {
+        if (!$this->isEnable()) {
             return $result;
         }
 
@@ -68,5 +63,34 @@ class CallmapCollectorPlugin
         $this->callmapInfo->setRunData($xhprofData);
 
         return $result;
+    }
+
+    private function isEnable()
+    {
+        if (isset($this->isEnableStatus)) {
+            return $this->isEnableStatus;
+        }
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $this->isEnableStatus = $this->getConfig()->isCallmapCollectorEnabled();
+
+        return $this->isEnableStatus;
+    }
+
+    private function getXhprofFlags()
+    {
+        return $this->getConfig()->getXhprofFlags();
+    }
+
+    private function getConfig()
+    {
+        if (isset($this->config)) {
+            return $this->config;
+        }
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $this->config = $objectManager->create(\ClawRock\Debug\Helper\Config::class);
+
+        return $this->config;
     }
 }
