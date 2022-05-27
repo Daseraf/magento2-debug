@@ -1,11 +1,11 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\MemoryCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\MemoryCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?> sf-toolbar-status-<?= /* @noEscape */ $collector->getStatus() ?>">
     <div class="sf-toolbar-icon">
-        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/memory.svg'); ?>"
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/memory.svg'); ?>"
              alt="<?= $block->escapeHtmlAttr(__('Memory')) ?>"/>
         <span class="sf-toolbar-value"><?= __('Memory usage') ?></span>
     </div>

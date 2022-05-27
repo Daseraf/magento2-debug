@@ -1,10 +1,10 @@
 <?php
 
-namespace ClawRock\Debug\Model\View;
+namespace Daseraf\Debug\Model\View;
 
-use ClawRock\Debug\Helper\Formatter;
-use ClawRock\Debug\Model\View\Renderer\XhprofProfile;
-use ClawRock\Debug\Model\View\Renderer\XhprofProfileFactory;
+use Daseraf\Debug\Helper\Formatter;
+use Daseraf\Debug\Model\View\Renderer\XhprofProfile;
+use Daseraf\Debug\Model\View\Renderer\XhprofProfileFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 

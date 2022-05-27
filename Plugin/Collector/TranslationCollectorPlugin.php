@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Model\ValueObject\Translation;
+use Daseraf\Debug\Model\ValueObject\Translation;
 use Magento\Framework\Phrase\Renderer\Translate;
 
 /**
@@ -21,13 +21,13 @@ class TranslationCollectorPlugin
     private $translations;
 
     /**
-     * @var \ClawRock\Debug\Model\Collector\TranslationCollector
+     * @var \Daseraf\Debug\Model\Collector\TranslationCollector
      */
     private $translationCollector;
 
     public function __construct(
         \Magento\Framework\TranslateInterface $translate,
-        \ClawRock\Debug\Model\Collector\TranslationCollector $translationCollector
+        \Daseraf\Debug\Model\Collector\TranslationCollector $translationCollector
     ) {
         $this->translate = $translate;
         $this->translationCollector = $translationCollector;

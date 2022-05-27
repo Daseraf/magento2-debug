@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\ValueObject;
+namespace Daseraf\Debug\Model\ValueObject;
 
-use ClawRock\Debug\Logger\LoggableInterface;
-use ClawRock\Debug\Model\Collector\LayoutCollector;
+use Daseraf\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Model\Collector\LayoutCollector;
 
 class Block implements LoggableInterface
 {

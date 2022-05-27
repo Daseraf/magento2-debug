@@ -1,5 +1,5 @@
 <?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
-<?php /** @var \ClawRock\Debug\Model\View\Search $viewModel */ ?>
+<?php /** @var \Daseraf\Debug\Model\View\Search $viewModel */ ?>
 <?php $viewModel = $block->getViewModel(); ?>
 <?php $results = $block->getResults(); ?>
 <div class="status">
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php /** @var \ClawRock\Debug\Model\ValueObject\SearchResult $result */ ?>
+            <?php /** @var \Daseraf\Debug\Model\ValueObject\SearchResult $result */ ?>
             <?php foreach ($results as $result): ?>
                 <tr>
                     <td class="text-center">

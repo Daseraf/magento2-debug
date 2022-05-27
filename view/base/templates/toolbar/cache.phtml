@@ -1,12 +1,12 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CacheCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\CacheCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?>">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
         <div class="sf-toolbar-icon">
-            <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/cache.svg'); ?>"
+            <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/cache.svg'); ?>"
                  alt="<?= $block->escapeHtmlAttr(__('Cache')) ?>"/>
             <span class="sf-toolbar-value"><?= /* @noEscape */ $collector->getTotalTime(); ?> ms</span>
         </div>

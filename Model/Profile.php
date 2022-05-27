@@ -1,11 +1,11 @@
 <?php
 
-namespace ClawRock\Debug\Model;
+namespace Daseraf\Debug\Model;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Model\Collector\CollectorInterface;
-use ClawRock\Debug\Model\Collector\RequestCollector;
-use ClawRock\Debug\Model\ValueObject\Redirect;
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Model\Collector\CollectorInterface;
+use Daseraf\Debug\Model\Collector\RequestCollector;
+use Daseraf\Debug\Model\ValueObject\Redirect;
 
 class Profile implements ProfileInterface
 {
@@ -85,7 +85,7 @@ class Profile implements ProfileInterface
     private $collectTime;
 
     /**
-     * @var \ClawRock\Debug\Model\Profile
+     * @var \Daseraf\Debug\Model\Profile
      */
     private $parent;
 
@@ -294,7 +294,7 @@ class Profile implements ProfileInterface
 
     /**
      * @param array $data
-     * @return \ClawRock\Debug\Model\Profile
+     * @return \Daseraf\Debug\Model\Profile
      */
     public function setData(array $data): ProfileInterface
     {
@@ -307,7 +307,7 @@ class Profile implements ProfileInterface
 
     /**
      * @param int $fileSize
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
+     * @return \Daseraf\Debug\Api\Data\ProfileInterface
      */
     public function setFileSize(int $fileSize): ProfileInterface
     {
@@ -318,7 +318,7 @@ class Profile implements ProfileInterface
 
     /**
      * @param string $requestTime
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
+     * @return \Daseraf\Debug\Api\Data\ProfileInterface
      */
     public function setRequestTime(string $requestTime): ProfileInterface
     {
@@ -347,7 +347,7 @@ class Profile implements ProfileInterface
 
     public function getRedirect(): Redirect
     {
-        /** @var \ClawRock\Debug\Model\Collector\RequestCollector $collector */
+        /** @var \Daseraf\Debug\Model\Collector\RequestCollector $collector */
         $collector = $this->getCollector(RequestCollector::NAME);
 
         return $collector->getRedirect();

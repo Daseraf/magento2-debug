@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\View;
+namespace Daseraf\Debug\Model\View;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Api\Data\ProfileInterface;
 use Magento\Framework\App\Area;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
@@ -11,12 +11,12 @@ class Toolbar implements ArgumentInterface
     public const COLLECTOR_PLACEHOLDER = 'debug.toolbar.collectors.%s';
 
     /**
-     * @var \ClawRock\Debug\Api\Data\ProfileInterface
+     * @var \Daseraf\Debug\Api\Data\ProfileInterface
      */
     private $profile;
 
     /**
-     * @var \ClawRock\Debug\Model\Collector\CollectorInterface[]
+     * @var \Daseraf\Debug\Model\Collector\CollectorInterface[]
      */
     private $collectors;
 
@@ -26,19 +26,19 @@ class Toolbar implements ArgumentInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $url;
 
     public function __construct(
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
-        \ClawRock\Debug\Helper\Url $url
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Helper\Url $url
     ) {
         $this->layout = $layout;
         $this->profileMemoryStorage = $profileMemoryStorage;
@@ -64,7 +64,7 @@ class Toolbar implements ArgumentInterface
         $blocks = [];
 
         foreach ($this->getCollectors() as $name => $collector) {
-            /** @var \ClawRock\Debug\Model\Collector\CollectorInterface $collector */
+            /** @var \Daseraf\Debug\Model\Collector\CollectorInterface $collector */
             if (!$block = $this->layout->getBlock(sprintf(self::COLLECTOR_PLACEHOLDER, $name))) {
                 continue;
             }

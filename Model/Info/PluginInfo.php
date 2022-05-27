@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
-use ClawRock\Debug\Model\Collector\PluginCollector;
-use ClawRock\Debug\Model\ValueObject\Plugin;
+use Daseraf\Debug\Model\Collector\PluginCollector;
+use Daseraf\Debug\Model\ValueObject\Plugin;
 use Magento\Framework\Interception\DefinitionInterface;
 
 class PluginInfo
@@ -34,13 +34,13 @@ class PluginInfo
     private $pluginList;
 
     /**
-     * @var \ClawRock\Debug\Helper\Debug
+     * @var \Daseraf\Debug\Helper\Debug
      */
     private $debug;
 
     public function __construct(
         \Magento\Framework\Interception\PluginList\PluginList $pluginList,
-        \ClawRock\Debug\Helper\Debug $debug
+        \Daseraf\Debug\Helper\Debug $debug
     ) {
         $this->pluginList = $pluginList;
         $this->debug = $debug;
@@ -122,15 +122,23 @@ class PluginInfo
         }
 
         $reflection = new \ReflectionClass($this->pluginList);
+        
         $processed = $reflection->getProperty('_processed');
         $processed->setAccessible(true);
         $processed = $processed->getValue($this->pluginList);
+        
         $inherited = $reflection->getProperty('_inherited');
         $inherited->setAccessible(true);
         $inherited = $inherited->getValue($this->pluginList);
+        
         $execution = $reflection->getProperty('execution');
         $execution->setAccessible(true);
         $executionTime = $execution->getValue($this->pluginList);
+        
+        $executedTypes = $reflection->getProperty('executedTypes');
+        $executedTypes->setAccessible(true);
+        $executedTypesList = $executedTypes->getValue($this->pluginList);
+        
         $definitionTypes = [
             DefinitionInterface::LISTENER_BEFORE => PluginCollector::BEFORE,
             DefinitionInterface::LISTENER_AROUND => PluginCollector::AROUND,
@@ -143,6 +151,10 @@ class PluginInfo
             }
             $type = $matches[1];
             $method = $matches[2];
+
+            if (!in_array($type, $executedTypesList)) {
+                continue;
+            }
 
             if ($this->debug->isDebugClass($type)) {
                 continue;

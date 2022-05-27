@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver;
+use Daseraf\Debug\Model\Profiler\Driver\StopwatchDriver;
 
 class TimeCollector implements CollectorInterface, LateCollectorInterface
 {
@@ -34,37 +34,37 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
     private $serializer;
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver
+     * @var \Daseraf\Debug\Model\Profiler\Driver\StopwatchDriver
      */
     private $stopwatchDriver;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     public function __construct(
         \Magento\Framework\Serialize\SerializerInterface $serializer,
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver $stopwatchDriver,
-        \ClawRock\Debug\Helper\Formatter $formatter,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Profiler\Driver\StopwatchDriver $stopwatchDriver,
+        \Daseraf\Debug\Helper\Formatter $formatter,
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
     ) {
         $this->serializer = $serializer;
         $this->config = $config;
@@ -76,7 +76,7 @@ class TimeCollector implements CollectorInterface, LateCollectorInterface
 
     /**
      * @SuppressWarnings(PHPMD.Superglobals)
-     * @return \ClawRock\Debug\Model\Collector\CollectorInterface
+     * @return \Daseraf\Debug\Model\Collector\CollectorInterface
      */
     public function collect(): CollectorInterface
     {

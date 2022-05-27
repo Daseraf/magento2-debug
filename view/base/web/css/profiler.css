@@ -1410,24 +1410,24 @@ table.logs .sf-call-stack abbr {
     content: "\f0dd";
 }
 
-.clawrock {
+.daseraf {
     float: right;
     padding: 7px 10px;
 }
 
-.clawrock a {
+.daseraf a {
     display: flex;
     align-items: center;
     color: #fff;
     font-size: 21px;
 }
 
-.clawrock img {
+.daseraf img {
     max-height: 40px;
     margin-right: 10px;
 }
 
-.clawrock h4 {
+.daseraf h4 {
     margin: 0;
 }
 

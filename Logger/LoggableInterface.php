@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Logger;
+namespace Daseraf\Debug\Logger;
 
 interface LoggableInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
@@ -32,43 +32,43 @@ class ConfigCollector implements CollectorInterface
     private $storeManager;
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $url;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\MagentoInfo
+     * @var \Daseraf\Debug\Model\Info\MagentoInfo
      */
     private $magentoInfo;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\ExtensionInfo
+     * @var \Daseraf\Debug\Model\Info\ExtensionInfo
      */
     private $extensionInfo;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\HttpStorage
+     * @var \Daseraf\Debug\Model\Storage\HttpStorage
      */
     private $httpStorage;
 
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Helper\Url $url,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Info\MagentoInfo $magentoInfo,
-        \ClawRock\Debug\Model\Info\ExtensionInfo $extensionInfo,
-        \ClawRock\Debug\Model\Storage\HttpStorage $httpStorage
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Helper\Url $url,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Info\MagentoInfo $magentoInfo,
+        \Daseraf\Debug\Model\Info\ExtensionInfo $extensionInfo,
+        \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage
     ) {
         $this->storeManager = $storeManager;
         $this->config = $config;

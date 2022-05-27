@@ -1,16 +1,16 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
 class Formatter
 {
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config
+        \Daseraf\Debug\Helper\Config $config
     ) {
         $this->config = $config;
     }

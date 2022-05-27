@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Storage;
+namespace Daseraf\Debug\Model\Storage;
 
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 use Magento\Framework\HTTP\PhpEnvironment\Response;

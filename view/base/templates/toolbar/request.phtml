@@ -1,6 +1,6 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\RequestCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\RequestCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?> sf-toolbar-status-normal ">
@@ -11,7 +11,7 @@ $collector = $block->getCollector();
             </span>
             <?php if ($collector->getFullActionName()): ?>
                 <?php if ($collector->getRedirect()): ?>
-                    <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/redirect.svg'); ?>"
+                    <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/redirect.svg'); ?>"
                          class="redirect-img" alt="<?= $block->escapeHtmlAttr(__('Redirect')) ?>"/>
                 <?php endif; ?>
                 <span class="sf-toolbar-label">

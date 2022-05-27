@@ -1,11 +1,11 @@
 <?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
-<?php /** @var \ClawRock\Debug\Model\View\Search $viewModel */ ?>
+<?php /** @var \Daseraf\Debug\Model\View\Search $viewModel */ ?>
 <?php $viewModel = $block->getViewModel(); ?>
 <div id="sidebar-shortcuts">
     <div class="shortcuts">
         <a href="#" class="visible-small" onclick="Sfjs.toggleClass(document.getElementById('sidebar'), 'expanded'); return false;">
     <span class="icon">
-        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/menu.svg'); ?>" alt="<?= $block->escapeHtmlAttr(__('Menu')) ?>"/>
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/menu.svg'); ?>" alt="<?= $block->escapeHtmlAttr(__('Menu')) ?>"/>
     </span>
         </a>
         <a class="btn btn-sm" href="<?= $block->escapeUrl($block->getUrl('_debug/profiler/search', ['limit' => 10])) ?>">
@@ -15,7 +15,7 @@
             <?= $block->escapeHtml(__('Latest')) ?>
         </a>
         <a class="sf-toggle btn btn-sm" data-toggle-selector="#sidebar-search" <?= $block->getExpanded() ? 'data-toggle-initial="display"' : ''; ?>>
-            <img width="24" height="24" src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/icon/search.svg'); ?>" alt="<?= $block->escapeHtmlAttr(__('Search')) ?>"/>
+            <img width="24" height="24" src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/search.svg'); ?>" alt="<?= $block->escapeHtmlAttr(__('Search')) ?>"/>
             <span class="hidden-small"><?= $block->escapeHtml(__('Search')) ?></span>
         </a>
 

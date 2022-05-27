@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\ValueObject;
+namespace Daseraf\Debug\Model\ValueObject;
 
 class Redirect
 {

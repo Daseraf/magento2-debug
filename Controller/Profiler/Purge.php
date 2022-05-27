@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Profiler;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
@@ -9,19 +9,19 @@ use Magento\Framework\Exception\FileSystemException;
 class Purge extends Action
 {
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileFileStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileFileStorage
      */
     private $profileFileStorage;
 
     /**
-     * @var \ClawRock\Debug\Logger\Logger
+     * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \ClawRock\Debug\Model\Storage\ProfileFileStorage $profileFileStorage,
-        \ClawRock\Debug\Logger\Logger $logger
+        \Daseraf\Debug\Model\Storage\ProfileFileStorage $profileFileStorage,
+        \Daseraf\Debug\Logger\Logger $logger
     ) {
         parent::__construct($context);
         $this->profileFileStorage = $profileFileStorage;

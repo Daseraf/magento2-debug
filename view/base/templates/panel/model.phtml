@@ -1,8 +1,8 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\ModelCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\ModelCollector $collector */
 $collector  = $block->getCollector();
-/** @var \ClawRock\Debug\Model\View\Profiler $viewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
 ?>
 <h2><?= $block->escapeHtml(__('Model CRUD metrics')) ?></h2>
@@ -40,7 +40,7 @@ $viewModel = $block->getViewModel();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php /** @var \ClawRock\Debug\Model\ValueObject\ModelAction $action */ ?>
+                    <?php /** @var \Daseraf\Debug\Model\ValueObject\ModelAction $action */ ?>
                     <?php foreach ($log as $action): ?>
                         <tr data-operation="<?= /* @noEscape */ $action->getName() ?>">
                             <td>
@@ -72,7 +72,7 @@ $viewModel = $block->getViewModel();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php /** @var \ClawRock\Debug\Model\ValueObject\LoopModelAction $action */ ?>
+                    <?php /** @var \Daseraf\Debug\Model\ValueObject\LoopModelAction $action */ ?>
                         <?php foreach ($collector->getLoadLoops() as $action): ?>
                             <tr>
                                 <td>

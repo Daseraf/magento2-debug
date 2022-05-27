@@ -1,12 +1,12 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
 use Magento\Framework\View\Element\Template;
 
 class ParametersRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/parameters.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/parameters.phtml';
 
     /**
      * @var \Zend\Stdlib\ParametersInterface
@@ -19,14 +19,14 @@ class ParametersRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\VarRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\VarRendererFactory
      */
     private $varRendererFactory;
 
     public function __construct(
         \Zend\Stdlib\ParametersInterface $parameters,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory
+        \Daseraf\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory
     ) {
         $this->parameters = $parameters;
         $this->layout = $layout;

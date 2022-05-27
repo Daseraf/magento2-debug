@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Observer\Collector;
+namespace Daseraf\Debug\Observer\Collector;
 
-use ClawRock\Debug\Model\Collector\LayoutCollector;
+use Daseraf\Debug\Model\Collector\LayoutCollector;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 

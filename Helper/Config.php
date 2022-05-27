@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
-use ClawRock\Debug\Exception\CollectorNotFoundException;
-use ClawRock\Debug\Model\Config\Source\ErrorHandler;
+use Daseraf\Debug\Exception\CollectorNotFoundException;
+use Daseraf\Debug\Model\Config\Source\ErrorHandler;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
@@ -13,28 +13,28 @@ use Magento\Framework\Exception\LocalizedException;
  */
 class Config
 {
-    public const CONFIG_ENABLED = 'clawrock_debug/general/active';
-    public const CONFIG_ENABLED_ADMINHTML = 'clawrock_debug/general/active_adminhtml';
-    public const CONFIG_ALLOWED_IPS = 'clawrock_debug/general/allowed_ips';
-    public const CONFIG_ERROR_HANDLER = 'clawrock_debug/general/error_handler';
-    public const CONFIG_TIME_PRECISION = 'clawrock_debug/time/precision';
-    public const CONFIG_PERFORMANCE_COLOR = 'clawrock_debug/performance/%s_color';
-    public const CONFIG_COLLECTOR_AJAX = 'clawrock_debug/collector/ajax';
-    public const CONFIG_COLLECTOR_CACHE = 'clawrock_debug/collector/cache';
-    public const CONFIG_COLLECTOR_CONFIG = 'clawrock_debug/collector/config';
-    public const CONFIG_COLLECTOR_CUSTOMER = 'clawrock_debug/collector/customer';
-    public const CONFIG_COLLECTOR_DATABASE = 'clawrock_debug/collector/database';
-    public const CONFIG_COLLECTOR_EVENT = 'clawrock_debug/collector/event';
-    public const CONFIG_COLLECTOR_PLUGIN = 'clawrock_debug/collector/plugin';
-    public const CONFIG_COLLECTOR_LAYOUT = 'clawrock_debug/collector/layout';
-    public const CONFIG_COLLECTOR_MEMORY = 'clawrock_debug/collector/memory';
-    public const CONFIG_COLLECTOR_MODEL = 'clawrock_debug/collector/model';
-    public const CONFIG_COLLECTOR_TIME = 'clawrock_debug/collector/time';
-    public const CONFIG_COLLECTOR_TRANSLATION = 'clawrock_debug/collector/translation';
-    public const CALLMAP_COLLECTOR_CONFIG = 'clawrock_debug/collector/callmap';
-    public const XHPROF_FLAGS_CONFIG = 'clawrock_debug/collector/xhprof_flags';
+    public const CONFIG_ENABLED = 'daseraf_debug/general/active';
+    public const CONFIG_ENABLED_ADMINHTML = 'daseraf_debug/general/active_adminhtml';
+    public const CONFIG_ALLOWED_IPS = 'daseraf_debug/general/allowed_ips';
+    public const CONFIG_ERROR_HANDLER = 'daseraf_debug/general/error_handler';
+    public const CONFIG_TIME_PRECISION = 'daseraf_debug/time/precision';
+    public const CONFIG_PERFORMANCE_COLOR = 'daseraf_debug/performance/%s_color';
+    public const CONFIG_COLLECTOR_AJAX = 'daseraf_debug/collector/ajax';
+    public const CONFIG_COLLECTOR_CACHE = 'daseraf_debug/collector/cache';
+    public const CONFIG_COLLECTOR_CONFIG = 'daseraf_debug/collector/config';
+    public const CONFIG_COLLECTOR_CUSTOMER = 'daseraf_debug/collector/customer';
+    public const CONFIG_COLLECTOR_DATABASE = 'daseraf_debug/collector/database';
+    public const CONFIG_COLLECTOR_EVENT = 'daseraf_debug/collector/event';
+    public const CONFIG_COLLECTOR_PLUGIN = 'daseraf_debug/collector/plugin';
+    public const CONFIG_COLLECTOR_LAYOUT = 'daseraf_debug/collector/layout';
+    public const CONFIG_COLLECTOR_MEMORY = 'daseraf_debug/collector/memory';
+    public const CONFIG_COLLECTOR_MODEL = 'daseraf_debug/collector/model';
+    public const CONFIG_COLLECTOR_TIME = 'daseraf_debug/collector/time';
+    public const CONFIG_COLLECTOR_TRANSLATION = 'daseraf_debug/collector/translation';
+    public const CALLMAP_COLLECTOR_CONFIG = 'daseraf_debug/collector/callmap';
+    public const XHPROF_FLAGS_CONFIG = 'daseraf_debug/collector/xhprof_flags';
 
-    public const COLLECTORS = 'clawrock_debug/profiler/collectors';
+    public const COLLECTORS = 'daseraf_debug/profiler/collectors';
 
     /**
      * @var \Magento\Framework\PhraseFactory
@@ -57,7 +57,7 @@ class Config
     private $deploymentConfig;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\HttpStorage
+     * @var \Daseraf\Debug\Model\Storage\HttpStorage
      */
     private $httpStorage;
 
@@ -66,7 +66,7 @@ class Config
         \Magento\Framework\App\State $appState,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Framework\App\DeploymentConfig $deploymentConfig,
-        \ClawRock\Debug\Model\Storage\HttpStorage $httpStorage
+        \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage
     ) {
         $this->phraseFactory = $phraseFactory;
         $this->appState = $appState;
@@ -86,10 +86,6 @@ class Config
 
     public function isEnabled(): bool
     {
-        if ($this->appState->getMode() !== \Magento\Framework\App\State::MODE_DEVELOPER) {
-            return false;
-        }
-
         if (!$this->isActive()) {
             return false;
         }
@@ -160,7 +156,7 @@ class Config
 
     /**
      * @param string $name
-     * @throws \ClawRock\Debug\Exception\CollectorNotFoundException
+     * @throws \Daseraf\Debug\Exception\CollectorNotFoundException
      * @return string
      */
     public function getCollectorClass(string $name): string
@@ -198,10 +194,10 @@ class Config
 
     public function isCallmapCollectorEnabled(): bool
     {
-        return $this->scopeConfig->isSetFlag(
-            self::CALLMAP_COLLECTOR_CONFIG,
-            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-        );
+        return ($this->scopeConfig->isSetFlag(
+                self::CALLMAP_COLLECTOR_CONFIG,
+                ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+            ) && extension_loaded('xhprof'));
     }
 
     public function getXhprofFlags(): array

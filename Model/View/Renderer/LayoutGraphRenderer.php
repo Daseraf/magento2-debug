@@ -1,16 +1,16 @@
 <?php
 
-namespace ClawRock\Debug\Model\View\Renderer;
+namespace Daseraf\Debug\Model\View\Renderer;
 
-use ClawRock\Debug\Model\ValueObject\Block;
+use Daseraf\Debug\Model\ValueObject\Block;
 use Magento\Framework\View\Element\Template;
 
 class LayoutGraphRenderer implements RendererInterface
 {
-    public const TEMPLATE = 'ClawRock_Debug::renderer/layout/graph.phtml';
+    public const TEMPLATE = 'Daseraf_Debug::renderer/layout/graph.phtml';
 
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\Block[]
+     * @var \Daseraf\Debug\Model\ValueObject\Block[]
      */
     private $blocks;
 
@@ -25,17 +25,17 @@ class LayoutGraphRenderer implements RendererInterface
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\ValueObject\LayoutNodeFactory
+     * @var \Daseraf\Debug\Model\ValueObject\LayoutNodeFactory
      */
     private $layoutNodeFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\LayoutNodeRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\LayoutNodeRendererFactory
      */
     private $layoutNodeRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
@@ -43,9 +43,9 @@ class LayoutGraphRenderer implements RendererInterface
         array $blocks,
         float $totalRenderTime,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\ValueObject\LayoutNodeFactory $layoutNodeFactory,
-        \ClawRock\Debug\Model\View\Renderer\LayoutNodeRendererFactory $layoutNodeRendererFactory,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Model\ValueObject\LayoutNodeFactory $layoutNodeFactory,
+        \Daseraf\Debug\Model\View\Renderer\LayoutNodeRendererFactory $layoutNodeRendererFactory,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->blocks = $blocks;
         $this->totalRenderTime = $totalRenderTime;
@@ -90,7 +90,7 @@ class LayoutGraphRenderer implements RendererInterface
 
     /**
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     * @param \ClawRock\Debug\Model\ValueObject\Block $block
+     * @param \Daseraf\Debug\Model\ValueObject\Block $block
      * @param string $prefix
      * @param bool $sibling
      * @return array
@@ -103,7 +103,7 @@ class LayoutGraphRenderer implements RendererInterface
         $prefix .= $sibling ? '│&nbsp;' : '&nbsp;';
         foreach ($block->getChildren() as $childId) {
             $child = array_filter($this->blocks, function ($block) use ($childId) {
-                /** @var \ClawRock\Debug\Model\ValueObject\Block $block */
+                /** @var \Daseraf\Debug\Model\ValueObject\Block $block */
                 return $block->getName() === $childId;
             });
             if (($child = array_shift($child)) === null) {

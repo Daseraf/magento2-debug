@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Model\Info\CallmapInfo;
+use Daseraf\Debug\Model\Info\CallmapInfo;
 
 class CallmapCollector implements CollectorInterface, LateCollectorInterface
 {
@@ -10,17 +10,17 @@ class CallmapCollector implements CollectorInterface, LateCollectorInterface
     public const PROFILE_DATA = 'profile';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
@@ -30,9 +30,9 @@ class CallmapCollector implements CollectorInterface, LateCollectorInterface
     private $callmapInfo;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
         CallmapInfo $callmapInfo
     ) {
         $this->config = $config;

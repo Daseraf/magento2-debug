@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\ErrorHandler;
+namespace Daseraf\Debug\Plugin\ErrorHandler;
 
-use ClawRock\Debug\Model\Config\Source\ErrorHandler;
+use Daseraf\Debug\Model\Config\Source\ErrorHandler;
 use Magento\Framework\App\Bootstrap;
 use Magento\Framework\App\Http;
 
@@ -12,7 +12,7 @@ use Magento\Framework\App\Http;
 class WhoopsPlugin
 {
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
@@ -27,7 +27,7 @@ class WhoopsPlugin
     private $prettyPageHandlerFactory;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
+        \Daseraf\Debug\Helper\Config $config,
         \Whoops\RunFactory $whoopsFactory,
         \Whoops\Handler\PrettyPageHandlerFactory $prettyPageHandlerFactory
     ) {

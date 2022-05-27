@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Profiler;
 
-use ClawRock\Debug\Model\Profiler;
+use Daseraf\Debug\Model\Profiler;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
@@ -15,20 +15,20 @@ class Info extends Action
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @var \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     private $profileRepository;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Api\ProfileRepositoryInterface $profileRepository,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
+        \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository,
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
     ) {
         parent::__construct($context);
 

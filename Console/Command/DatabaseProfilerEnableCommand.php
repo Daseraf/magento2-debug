@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Console\Command;
+namespace Daseraf\Debug\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,12 +9,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DatabaseProfilerEnableCommand extends Command
 {
     /**
-     * @var \ClawRock\Debug\Model\Config\Database\ProfilerWriter
+     * @var \Daseraf\Debug\Model\Config\Database\ProfilerWriter
      */
     private $profilerWriter;
 
     public function __construct(
-        \ClawRock\Debug\Model\Config\Database\ProfilerWriter $profilerWriter
+        \Daseraf\Debug\Model\Config\Database\ProfilerWriter $profilerWriter
     ) {
         parent::__construct('debug:db-profiler:enable');
 

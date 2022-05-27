@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Model\ValueObject\EventObserver;
+use Daseraf\Debug\Model\ValueObject\EventObserver;
 use Magento\Framework\Event\Invoker\InvokerDefault;
 use Magento\Framework\Event\Observer;
 
@@ -12,12 +12,12 @@ use Magento\Framework\Event\Observer;
 class EventCollectorPlugin
 {
     /**
-     * @var \ClawRock\Debug\Model\Collector\EventCollector
+     * @var \Daseraf\Debug\Model\Collector\EventCollector
      */
     private $eventCollector;
 
     public function __construct(
-        \ClawRock\Debug\Model\Collector\EventCollector $eventCollector
+        \Daseraf\Debug\Model\Collector\EventCollector $eventCollector
     ) {
         $this->eventCollector = $eventCollector;
     }

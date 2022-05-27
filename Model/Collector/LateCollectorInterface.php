@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
 interface LateCollectorInterface
 {

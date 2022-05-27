@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
 class CustomerCollector implements CollectorInterface
 {
@@ -16,24 +16,24 @@ class CustomerCollector implements CollectorInterface
     public const CUSTOMER_TAX_CLASS_NAME = 'customer_tax_class_name';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\CustomerInfo
+     * @var \Daseraf\Debug\Model\Info\CustomerInfo
      */
     private $customerInfo;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Model\Info\CustomerInfo $customerInfo
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Model\Info\CustomerInfo $customerInfo
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();

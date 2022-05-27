@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
-use ClawRock\Debug\Model\Info\CacheInfo;
+use Daseraf\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Model\Info\CacheInfo;
 
 class CacheCollector implements CollectorInterface, LoggerCollectorInterface
 {
@@ -19,36 +19,36 @@ class CacheCollector implements CollectorInterface, LoggerCollectorInterface
     public const CACHE_STATUS = 'status';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Logger\DataLogger
+     * @var \Daseraf\Debug\Logger\DataLogger
      */
     private $dataLogger;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\CacheInfo
+     * @var \Daseraf\Debug\Model\Info\CacheInfo
      */
     private $cacheInfo;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Logger\DataLoggerFactory $dataLogger,
-        \ClawRock\Debug\Model\Info\CacheInfo $cacheInfo,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Logger\DataLoggerFactory $dataLogger,
+        \Daseraf\Debug\Model\Info\CacheInfo $cacheInfo,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();

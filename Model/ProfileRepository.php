@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClawRock\Debug\Model;
+namespace Daseraf\Debug\Model;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Api\ProfileRepositoryInterface;
-use ClawRock\Debug\Model\Profile\Criteria;
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Api\ProfileRepositoryInterface;
+use Daseraf\Debug\Model\Profile\Criteria;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\FileSystemException;
@@ -15,27 +15,27 @@ use Magento\Framework\Exception\NoSuchEntityException;
 class ProfileRepository implements ProfileRepositoryInterface
 {
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileFileStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileFileStorage
      */
     private $fileStorage;
 
     /**
-     * @var \ClawRock\Debug\Model\Profile\CriteriaFactory
+     * @var \Daseraf\Debug\Model\Profile\CriteriaFactory
      */
     private $criteriaFactory;
 
     public function __construct(
-        \ClawRock\Debug\Model\Storage\ProfileFileStorage $fileStorage,
-        \ClawRock\Debug\Model\Profile\CriteriaFactory $criteriaFactory
+        \Daseraf\Debug\Model\Storage\ProfileFileStorage $fileStorage,
+        \Daseraf\Debug\Model\Profile\CriteriaFactory $criteriaFactory
     ) {
         $this->fileStorage = $fileStorage;
         $this->criteriaFactory = $criteriaFactory;
     }
 
     /**
-     * @param \ClawRock\Debug\Api\Data\ProfileInterface $profile
+     * @param \Daseraf\Debug\Api\Data\ProfileInterface $profile
      * @throws \Magento\Framework\Exception\CouldNotSaveException
-     * @return \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @return \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     public function save(ProfileInterface $profile): ProfileRepositoryInterface
     {
@@ -51,7 +51,7 @@ class ProfileRepository implements ProfileRepositoryInterface
     /**
      * @param string $token
      * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
+     * @return \Daseraf\Debug\Api\Data\ProfileInterface
      */
     public function getById(string $token): ProfileInterface
     {
@@ -63,9 +63,9 @@ class ProfileRepository implements ProfileRepositoryInterface
     }
 
     /**
-     * @param \ClawRock\Debug\Api\Data\ProfileInterface $profile
+     * @param \Daseraf\Debug\Api\Data\ProfileInterface $profile
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
-     * @return \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @return \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     public function delete(ProfileInterface $profile): ProfileRepositoryInterface
     {
@@ -81,7 +81,7 @@ class ProfileRepository implements ProfileRepositoryInterface
     /**
      * @param string $token
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
-     * @return \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @return \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     public function deleteById(string $token): ProfileRepositoryInterface
     {
@@ -101,12 +101,12 @@ class ProfileRepository implements ProfileRepositoryInterface
 
     /**
      * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
+     * @return \Daseraf\Debug\Api\Data\ProfileInterface
      */
     public function findLatest(): ProfileInterface
     {
         try {
-            /** @var \ClawRock\Debug\Model\Profile\Criteria $criteria */
+            /** @var \Daseraf\Debug\Model\Profile\Criteria $criteria */
             $criteria = $this->criteriaFactory->create(['limit' => 1]);
 
             $results = $this->fileStorage->find($criteria);

@@ -1,10 +1,10 @@
 <?php
 
-namespace ClawRock\Debug\Model\Storage;
+namespace Daseraf\Debug\Model\Storage;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Model\Profile\Criteria;
-use ClawRock\Debug\Model\ValueObject\SearchResult;
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Model\Profile\Criteria;
+use Daseraf\Debug\Model\ValueObject\SearchResult;
 use Magento\Framework\Exception\FileSystemException;
 
 class ProfileFileStorage
@@ -25,27 +25,27 @@ class ProfileFileStorage
     private $fileWriteFactory;
 
     /**
-     * @var \ClawRock\Debug\Logger\Logger
+     * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
 
     /**
-     * @var \ClawRock\Debug\Helper\File
+     * @var \Daseraf\Debug\Helper\File
      */
     private $fileHelper;
 
     /**
-     * @var \ClawRock\Debug\Model\ProfileFactory
+     * @var \Daseraf\Debug\Model\ProfileFactory
      */
     private $profileFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\Serializer\ProfileSerializer
+     * @var \Daseraf\Debug\Model\Serializer\ProfileSerializer
      */
     private $profileSerializer;
 
     /**
-     * @var \ClawRock\Debug\Model\Indexer\ProfileIndexer
+     * @var \Daseraf\Debug\Model\Indexer\ProfileIndexer
      */
     private $profileIndexer;
 
@@ -53,11 +53,11 @@ class ProfileFileStorage
         \Magento\Framework\Filesystem\Driver\File $fileSystem,
         \Magento\Framework\Filesystem\File\ReadFactory $fileReadFactory,
         \Magento\Framework\Filesystem\File\WriteFactory $fileWriteFactory,
-        \ClawRock\Debug\Logger\Logger $logger,
-        \ClawRock\Debug\Helper\File $fileHelper,
-        \ClawRock\Debug\Model\ProfileFactory $profileFactory,
-        \ClawRock\Debug\Model\Serializer\ProfileSerializer $profileSerializer,
-        \ClawRock\Debug\Model\Indexer\ProfileIndexer $profileIndexer
+        \Daseraf\Debug\Logger\Logger $logger,
+        \Daseraf\Debug\Helper\File $fileHelper,
+        \Daseraf\Debug\Model\ProfileFactory $profileFactory,
+        \Daseraf\Debug\Model\Serializer\ProfileSerializer $profileSerializer,
+        \Daseraf\Debug\Model\Indexer\ProfileIndexer $profileIndexer
     ) {
         $this->fileSystem = $fileSystem;
         $this->fileReadFactory = $fileReadFactory;
@@ -71,7 +71,7 @@ class ProfileFileStorage
 
     /**
      * @SuppressWarnings(PHPMD.StaticAccess)
-     * @param \ClawRock\Debug\Model\Profile\Criteria $criteria
+     * @param \Daseraf\Debug\Model\Profile\Criteria $criteria
      * @return array
      */
     public function find(Criteria $criteria): array
@@ -113,7 +113,7 @@ class ProfileFileStorage
     /**
      * @param $token
      * @throws \Magento\Framework\Exception\FileSystemException
-     * @return \ClawRock\Debug\Api\Data\ProfileInterface
+     * @return \Daseraf\Debug\Api\Data\ProfileInterface
      */
     public function read($token): ProfileInterface
     {
@@ -123,7 +123,7 @@ class ProfileFileStorage
     }
 
     /**
-     * @param \ClawRock\Debug\Api\Data\ProfileInterface $profile
+     * @param \Daseraf\Debug\Api\Data\ProfileInterface $profile
      * @throws \Magento\Framework\Exception\FileSystemException
      * @return string
      */

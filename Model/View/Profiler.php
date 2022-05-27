@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model\View;
+namespace Daseraf\Debug\Model\View;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
-use ClawRock\Debug\Helper\Formatter;
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Helper\Formatter;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Zend\Stdlib\ParametersInterface;
 
@@ -13,66 +13,66 @@ use Zend\Stdlib\ParametersInterface;
 class Profiler implements ArgumentInterface
 {
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\TraceRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\TraceRendererFactory
      */
     private $traceRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\LayoutGraphRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\LayoutGraphRendererFactory
      */
     private $layoutGraphRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\ParametersRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\ParametersRendererFactory
      */
     private $parametersRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\QueryParametersRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\QueryParametersRendererFactory
      */
     private $queryParametersRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\QueryRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\QueryRendererFactory
      */
     private $queryRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\QueryListFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\QueryListFactory
      */
     private $queryListRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\TableRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\TableRendererFactory
      */
     private $tableRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Renderer\VarRendererFactory
+     * @var \Daseraf\Debug\Model\View\Renderer\VarRendererFactory
      */
     private $varRendererFactory;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Model\View\Renderer\TraceRendererFactory $traceRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\LayoutGraphRendererFactory $layoutGraphRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\ParametersRendererFactory $parametersRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\QueryParametersRendererFactory $queryParametersRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\QueryRendererFactory $queryRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\QueryListRendererFactory $queryListRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\TableRendererFactory $tableRendererFactory,
-        \ClawRock\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Model\View\Renderer\TraceRendererFactory $traceRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\LayoutGraphRendererFactory $layoutGraphRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\ParametersRendererFactory $parametersRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\QueryParametersRendererFactory $queryParametersRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\QueryRendererFactory $queryRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\QueryListRendererFactory $queryListRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\TableRendererFactory $tableRendererFactory,
+        \Daseraf\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory,
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->traceRendererFactory = $traceRendererFactory;
         $this->layoutGraphRendererFactory = $layoutGraphRendererFactory;

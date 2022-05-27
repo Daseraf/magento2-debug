@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
 class CallmapInfo
 {

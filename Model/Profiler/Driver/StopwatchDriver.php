@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Profiler\Driver;
+namespace Daseraf\Debug\Model\Profiler\Driver;
 
 use Magento\Framework\Profiler;
 use Symfony\Component\Stopwatch\Stopwatch;

@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
-use ClawRock\Debug\Model\ValueObject\ModelAction;
+use Daseraf\Debug\Model\ValueObject\ModelAction;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 
 /**
@@ -11,24 +11,24 @@ use Magento\Framework\Model\ResourceModel\AbstractResource;
 class ModelCollectorPlugin
 {
     /**
-     * @var \ClawRock\Debug\Model\Collector\ModelCollector
+     * @var \Daseraf\Debug\Model\Collector\ModelCollector
      */
     private $modelCollector;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     /**
-     * @var \ClawRock\Debug\Helper\Debug
+     * @var \Daseraf\Debug\Helper\Debug
      */
     private $debug;
 
     public function __construct(
-        \ClawRock\Debug\Model\Collector\ModelCollector $modelCollector,
-        \ClawRock\Debug\Helper\Formatter $formatter,
-        \ClawRock\Debug\Helper\Debug $debug
+        \Daseraf\Debug\Model\Collector\ModelCollector $modelCollector,
+        \Daseraf\Debug\Helper\Formatter $formatter,
+        \Daseraf\Debug\Helper\Debug $debug
     ) {
         $this->modelCollector = $modelCollector;
         $this->formatter = $formatter;

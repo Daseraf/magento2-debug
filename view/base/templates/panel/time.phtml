@@ -1,10 +1,10 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\TimeCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\TimeCollector $collector */
 $collector = $block->getCollector();
-/** @var \ClawRock\Debug\Model\View\Profiler $viewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
-/** @var \ClawRock\Debug\Model\Profile $profile */
+/** @var \Daseraf\Debug\Model\Profile $profile */
 $profile = $viewModel->getProfile();
 $events = $collector->getEvents();
 ?>

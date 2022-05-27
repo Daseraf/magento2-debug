@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Model\Config\Source;
+namespace Daseraf\Debug\Model\Config\Source;
 
 class XhprofFlags implements \Magento\Framework\Data\OptionSourceInterface
 {

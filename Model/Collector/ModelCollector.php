@@ -1,10 +1,10 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
-use ClawRock\Debug\Model\ValueObject\LoopModelAction;
-use ClawRock\Debug\Model\ValueObject\ModelAction;
+use Daseraf\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Model\ValueObject\LoopModelAction;
+use Daseraf\Debug\Model\ValueObject\ModelAction;
 
 class ModelCollector implements CollectorInterface, LoggerCollectorInterface
 {
@@ -18,30 +18,30 @@ class ModelCollector implements CollectorInterface, LoggerCollectorInterface
     public const LOAD_LOOPS = 'load_loops';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Logger\DataLogger
+     * @var \Daseraf\Debug\Logger\DataLogger
      */
     private $dataLogger;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Logger\DataLoggerFactory $dataLoggerFactory,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Logger\DataLoggerFactory $dataLoggerFactory,
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
@@ -60,7 +60,7 @@ class ModelCollector implements CollectorInterface, LoggerCollectorInterface
         ];
         $traceList = [];
 
-        /** @var \ClawRock\Debug\Model\ValueObject\ModelAction $action */
+        /** @var \Daseraf\Debug\Model\ValueObject\ModelAction $action */
         foreach ($this->dataLogger->getLogs() as $action) {
             switch ($action->getName()) {
                 case ModelAction::LOAD:

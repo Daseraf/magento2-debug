@@ -1,11 +1,11 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\AjaxCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\AjaxCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= $block->escapeHtmlAttr($collector->getName()); ?> sf-toolbar-status-normal">
     <div class="sf-toolbar-icon">
-        <img src="<?= /* @noEscape */ $block->getViewFileUrl('ClawRock_Debug::images/collector/ajax.svg'); ?>"
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/ajax.svg'); ?>"
              alt="<?= $block->escapeHtmlAttr(__('Ajax')) ?>"/>
         <span class="sf-toolbar-value sf-toolbar-ajax-requests">0</span>
     </div>

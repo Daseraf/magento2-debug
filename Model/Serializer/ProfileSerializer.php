@@ -1,30 +1,30 @@
 <?php
 
-namespace ClawRock\Debug\Model\Serializer;
+namespace Daseraf\Debug\Model\Serializer;
 
-use ClawRock\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Api\Data\ProfileInterface;
 
 class ProfileSerializer
 {
     /**
-     * @var \ClawRock\Debug\Serializer\SerializerInterface
+     * @var \Daseraf\Debug\Serializer\SerializerInterface
      */
     private $serializer;
 
     /**
-     * @var \ClawRock\Debug\Model\Serializer\CollectorSerializer
+     * @var \Daseraf\Debug\Model\Serializer\CollectorSerializer
      */
     private $collectorSerializer;
 
     /**
-     * @var \ClawRock\Debug\Model\ProfileFactory
+     * @var \Daseraf\Debug\Model\ProfileFactory
      */
     private $profileFactory;
 
     public function __construct(
-        \ClawRock\Debug\Serializer\SerializerInterface $serializer,
-        \ClawRock\Debug\Model\Serializer\CollectorSerializer $collectorSerializer,
-        \ClawRock\Debug\Model\ProfileFactory $profileFactory
+        \Daseraf\Debug\Serializer\SerializerInterface $serializer,
+        \Daseraf\Debug\Model\Serializer\CollectorSerializer $collectorSerializer,
+        \Daseraf\Debug\Model\ProfileFactory $profileFactory
     ) {
         $this->serializer = $serializer;
         $this->collectorSerializer = $collectorSerializer;
@@ -45,7 +45,7 @@ class ProfileSerializer
         $collectors = $this->collectorSerializer->unserialize($profileData['collectors']);
         unset($profileData['collectors']);
 
-        /** @var \ClawRock\Debug\Model\Profile $profile */
+        /** @var \Daseraf\Debug\Model\Profile $profile */
         $profile = $this->profileFactory->create(['token' => $profileData['token']])->setData($profileData);
         $profile->setCollectors($collectors);
 

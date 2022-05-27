@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Observer;
+namespace Daseraf\Debug\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -8,12 +8,12 @@ use Magento\Framework\Event\ObserverInterface;
 class AllowedIP implements ObserverInterface
 {
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config
+        \Daseraf\Debug\Helper\Config $config
     ) {
         $this->config = $config;
     }

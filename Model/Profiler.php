@@ -1,9 +1,9 @@
 <?php
 
-namespace ClawRock\Debug\Model;
+namespace Daseraf\Debug\Model;
 
-use ClawRock\Debug\Model\Collector\CollectorInterface;
-use ClawRock\Debug\Model\Collector\LateCollectorInterface;
+use Daseraf\Debug\Model\Collector\CollectorInterface;
+use Daseraf\Debug\Model\Collector\LateCollectorInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 use Magento\Framework\HTTP\PhpEnvironment\Response;
 use Magento\Framework\Profiler as MagentoProfiler;
@@ -25,55 +25,55 @@ class Profiler
     private $objectManager;
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\ProfileFactory
+     * @var \Daseraf\Debug\Model\ProfileFactory
      */
     private $profileFactory;
 
     /**
-     * @var \ClawRock\Debug\Helper\Url
+     * @var \Daseraf\Debug\Helper\Url
      */
     private $urlHelper;
 
     /**
-     * @var \ClawRock\Debug\Helper\Injector
+     * @var \Daseraf\Debug\Helper\Injector
      */
     private $injector;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\ProfileMemoryStorage
+     * @var \Daseraf\Debug\Model\Storage\ProfileMemoryStorage
      */
     private $profileMemoryStorage;
 
     /**
-     * @var \ClawRock\Debug\Api\ProfileRepositoryInterface
+     * @var \Daseraf\Debug\Api\ProfileRepositoryInterface
      */
     private $profileRepository;
 
     /**
-     * @var \ClawRock\Debug\Model\Storage\HttpStorage
+     * @var \Daseraf\Debug\Model\Storage\HttpStorage
      */
     private $httpStorage;
 
     /**
-     * @var \ClawRock\Debug\Logger\Logger
+     * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
 
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\ProfileFactory $profileFactory,
-        \ClawRock\Debug\Helper\Url $urlHelper,
-        \ClawRock\Debug\Helper\Injector $injector,
-        \ClawRock\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
-        \ClawRock\Debug\Api\ProfileRepositoryInterface $profileRepository,
-        \ClawRock\Debug\Model\Storage\HttpStorage $httpStorage,
-        \ClawRock\Debug\Logger\Logger $logger
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\ProfileFactory $profileFactory,
+        \Daseraf\Debug\Helper\Url $urlHelper,
+        \Daseraf\Debug\Helper\Injector $injector,
+        \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
+        \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository,
+        \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage,
+        \Daseraf\Debug\Logger\Logger $logger
     ) {
         $this->objectManager = $objectManager;
         $this->config = $config;
@@ -151,12 +151,12 @@ class Profiler
      * @SuppressWarnings(PHPMD.StaticAccess)
      * @param \Magento\Framework\HTTP\PhpEnvironment\Request $request
      * @param \Magento\Framework\HTTP\PhpEnvironment\Response $response
-     * @return \ClawRock\Debug\Model\Profile
+     * @return \Daseraf\Debug\Model\Profile
      */
     public function collect(Request $request, Response $response)
     {
         $start = microtime(true);
-        /** @var \ClawRock\Debug\Model\Profile $profile */
+        /** @var \Daseraf\Debug\Model\Profile $profile */
         $profile = $this->profileFactory->create(['token' => substr(hash('sha256', uniqid(mt_rand(), true)), 0, 6)]);
         $profile->setUrl($request->getRequestString() ? $request->getRequestString() : '/');
         $profile->setMethod($request->getMethod());

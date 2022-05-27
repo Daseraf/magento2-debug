@@ -1,13 +1,13 @@
 <?php
 
-namespace ClawRock\Debug\Model\Info;
+namespace Daseraf\Debug\Model\Info;
 
 use Magento\Framework\App\State;
 
 class MagentoInfo
 {
-    public const MODULES_CACHE_ID = 'ClawRock_Debug::modules';
-    public const VERSION_CACHE_ID = 'ClawRock_Debug::version';
+    public const MODULES_CACHE_ID = 'Daseraf_Debug::modules';
+    public const VERSION_CACHE_ID = 'Daseraf_Debug::version';
 
     /**
      * @var \Magento\Framework\App\State

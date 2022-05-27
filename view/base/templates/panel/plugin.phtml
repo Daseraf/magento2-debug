@@ -1,6 +1,6 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\PluginCollector $collector */
+/** @var \Daseraf\Debug\Model\Collector\PluginCollector $collector */
 $collector = $block->getCollector();
 ?>
 <div>
@@ -23,28 +23,28 @@ $collector = $block->getCollector();
                 <table class="auto">
                     <?php foreach ($collector->getBeforePlugins() as $type => $plugins): ?>
                         <thead>
-                            <tr>
-                                <th><?= /* @noEscape */$type; ?>
-                                    <?= $block->escapeHtml(__('in')); ?>
-                                    <?= $collector->getTypePluginsExecutionTime($type, 1) ?> ms
-                                </th>
-                                <th><?= $block->escapeHtml(__('Name')) ?></th>
-                                <th><?= $block->escapeHtml(__('Sort order')) ?></th>
-                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
-                            </tr>
+                        <tr>
+                            <th><?= /* @noEscape */$type; ?>
+                                <?= $block->escapeHtml(__('in')); ?>
+                                <?= $collector->getTypePluginsExecutionTime($type, 1) ?> ms
+                            </th>
+                            <th><?= $block->escapeHtml(__('Name')) ?></th>
+                            <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                            <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
-                            <?php foreach ($plugins as $plugin): ?>
-                                <tr>
-                                    <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
-                                    <td><?= /* @noEscape */ $plugin->getName(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php foreach ($plugins as $plugin): ?>
+                            <tr>
+                                <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
+                                <td><?= /* @noEscape */ $plugin->getName(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -60,28 +60,28 @@ $collector = $block->getCollector();
                 <table class="auto">
                     <?php foreach ($collector->getAroundPlugins() as $type => $plugins): ?>
                         <thead>
-                            <tr>
-                                <th><?= /* @noEscape */$type; ?>
-                                    <?= $block->escapeHtml(__('in')); ?>
-                                    <?= $collector->getTypePluginsExecutionTime($type, 2) ?> ms
-                                </th>
-                                <th><?= $block->escapeHtml(__('Name')) ?></th>
-                                <th><?= $block->escapeHtml(__('Sort order')) ?></th>
-                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
-                            </tr>
+                        <tr>
+                            <th><?= /* @noEscape */$type; ?>
+                                <?= $block->escapeHtml(__('in')); ?>
+                                <?= $collector->getTypePluginsExecutionTime($type, 2) ?> ms
+                            </th>
+                            <th><?= $block->escapeHtml(__('Name')) ?></th>
+                            <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                            <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
-                            <?php foreach ($plugins as $plugin): ?>
-                                <tr>
-                                    <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
-                                    <td><?= /* @noEscape */ $plugin->getName(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php foreach ($plugins as $plugin): ?>
+                            <tr>
+                                <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
+                                <td><?= /* @noEscape */ $plugin->getName(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -97,28 +97,28 @@ $collector = $block->getCollector();
                 <table class="auto">
                     <?php foreach ($collector->getAfterPlugins() as $type => $plugins): ?>
                         <thead>
-                            <tr>
-                                <th><?= /* @noEscape */$type; ?>
-                                    <?= $block->escapeHtml(__('in')); ?>
-                                    <?= $collector->getTypePluginsExecutionTime($type, 4) ?> ms
-                                </th>
-                                <th><?= $block->escapeHtml(__('Name')) ?></th>
-                                <th><?= $block->escapeHtml(__('Sort order')) ?></th>
-                                <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
-                            </tr>
+                        <tr>
+                            <th><?= /* @noEscape */$type; ?>
+                                <?= $block->escapeHtml(__('in')); ?>
+                                <?= $collector->getTypePluginsExecutionTime($type, 4) ?> ms
+                            </th>
+                            <th><?= $block->escapeHtml(__('Name')) ?></th>
+                            <th><?= $block->escapeHtml(__('Sort order')) ?></th>
+                            <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
+                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php /** @var \ClawRock\Debug\Model\ValueObject\Plugin $plugin */ ?>
-                            <?php foreach ($plugins as $plugin): ?>
-                                <tr>
-                                    <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
-                                    <td><?= /* @noEscape */ $plugin->getName(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php /** @var \Daseraf\Debug\Model\ValueObject\Plugin $plugin */ ?>
+                        <?php foreach ($plugins as $plugin): ?>
+                            <tr>
+                                <td><?= /* @noEscape */ $plugin->getClass(); ?>::<?= /* @noEscape */ $plugin->getMethod(); ?></td>
+                                <td><?= /* @noEscape */ $plugin->getName(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
+                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     <?php endforeach; ?>
                 </table>

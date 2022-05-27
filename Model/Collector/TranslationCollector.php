@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Logger\LoggableInterface;
+use Daseraf\Debug\Logger\LoggableInterface;
 
 class TranslationCollector implements CollectorInterface, LoggerCollectorInterface
 {
@@ -13,24 +13,24 @@ class TranslationCollector implements CollectorInterface, LoggerCollectorInterfa
     public const MISSING = 'missing';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Logger\DataLogger
+     * @var \Daseraf\Debug\Logger\DataLogger
      */
     private $dataLogger;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
-        \ClawRock\Debug\Logger\DataLoggerFactory $dataLoggerFactory
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Logger\DataLoggerFactory $dataLoggerFactory
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
@@ -41,7 +41,7 @@ class TranslationCollector implements CollectorInterface, LoggerCollectorInterfa
     {
         $defined = [];
         $missing = [];
-        /** @var \ClawRock\Debug\Model\ValueObject\Translation $translation */
+        /** @var \Daseraf\Debug\Model\ValueObject\Translation $translation */
         foreach ($this->dataLogger->getLogs() as $translation) {
             if ($translation->isDefined()) {
                 $defined[$translation->getId()] = $translation->getTranslation();

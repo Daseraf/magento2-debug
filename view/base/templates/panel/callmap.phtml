@@ -1,14 +1,14 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \ClawRock\Debug\Model\Collector\CallmapCollector $collector */
-/** @var \ClawRock\Debug\Model\View\Xhprof $xhporfViewModel */
+/** @var \Daseraf\Debug\Model\Collector\CallmapCollector $collector */
+/** @var \Daseraf\Debug\Model\View\Xhprof $xhporfViewModel */
 $collector = $block->getCollector();
 $xhporfViewModel = $block->getXhporfViewModel();
 $xhporfProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
-$fallbackData = $xhporfProfile->sort('wt');
+$fallbackData = $xhporfProfile->sort('ewt');
 $totalFunctions = number_format($xhporfProfile->getFunctionCount());
 
-/** @var \ClawRock\Debug\Model\View\Profiler $profilerViewModel */
+/** @var \Daseraf\Debug\Model\View\Profiler $profilerViewModel */
 $profilerViewModel = $block->getProfilerViewModel();
 $profile = $profilerViewModel->getProfile();
 ?>
@@ -82,7 +82,7 @@ $profile = $profilerViewModel->getProfile();
 </div>
 <script>
     window.addEventListener('load', function () {
-        require(['jquery','ClawRock_Debug/js/callmap/extra-data'], function($, extraData) {
+        require(['jquery','Daseraf_Debug/js/callmap/extra-data'], function($, extraData) {
             extraData.create();
         })
     });

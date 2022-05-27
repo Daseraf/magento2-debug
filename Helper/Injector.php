@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Helper;
+namespace Daseraf\Debug\Helper;
 
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 use Magento\Framework\HTTP\PhpEnvironment\Response;
@@ -14,13 +14,13 @@ class Injector
     private $layout;
 
     /**
-     * @var \ClawRock\Debug\Model\View\Toolbar
+     * @var \Daseraf\Debug\Model\View\Toolbar
      */
     private $viewModel;
 
     public function __construct(
         \Magento\Framework\View\LayoutInterface $layout,
-        \ClawRock\Debug\Model\View\Toolbar $viewModel
+        \Daseraf\Debug\Model\View\Toolbar $viewModel
     ) {
         $this->layout = $layout;
         $this->viewModel = $viewModel;
@@ -34,7 +34,7 @@ class Injector
         if (false !== $pos) {
             /** @var Toolbar $toolbarBlock */
             $toolbarBlock = $this->layout->createBlock(Template::class, 'debug.toolbar');
-            $toolbarBlock->setTemplate('ClawRock_Debug::profiler/toolbar/js.phtml')->setData([
+            $toolbarBlock->setTemplate('Daseraf_Debug::profiler/toolbar/js.phtml')->setData([
                 'view_model' => $this->viewModel,
                 'token' => $token,
                 'request' => $request,
@@ -42,7 +42,7 @@ class Injector
 
             /** @var Template $jsBlock */
             $jsBlock = $this->layout->createBlock(Template::class, 'debug.profiler.js');
-            $jsBlock->setTemplate('ClawRock_Debug::profiler/js.phtml');
+            $jsBlock->setTemplate('Daseraf_Debug::profiler/js.phtml');
 
             $toolbarBlock->setChild('debug_profiler_js', $jsBlock);
 

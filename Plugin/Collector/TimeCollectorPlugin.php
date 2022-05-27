@@ -1,6 +1,6 @@
 <?php
 
-namespace ClawRock\Debug\Plugin\Collector;
+namespace Daseraf\Debug\Plugin\Collector;
 
 use Magento\Framework\Profiler;
 
@@ -10,12 +10,12 @@ use Magento\Framework\Profiler;
 class TimeCollectorPlugin
 {
     /**
-     * @var \ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver
+     * @var \Daseraf\Debug\Model\Profiler\Driver\StopwatchDriver
      */
     private $stopwatchDriver;
 
     public function __construct(
-        \ClawRock\Debug\Model\Profiler\Driver\StopwatchDriver $stopwatchDriver
+        \Daseraf\Debug\Model\Profiler\Driver\StopwatchDriver $stopwatchDriver
     ) {
         $this->stopwatchDriver = $stopwatchDriver;
     }

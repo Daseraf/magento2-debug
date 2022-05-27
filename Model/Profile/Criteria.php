@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Profile;
+namespace Daseraf\Debug\Model\Profile;
 
-use ClawRock\Debug\Model\Profile;
+use Daseraf\Debug\Model\Profile;
 use Magento\Framework\App\RequestInterface;
 
 class Criteria

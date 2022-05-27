@@ -1,8 +1,8 @@
 <?php
 
-namespace ClawRock\Debug\Model\Collector;
+namespace Daseraf\Debug\Model\Collector;
 
-use ClawRock\Debug\Model\Info\DatabaseInfo;
+use Daseraf\Debug\Model\Info\DatabaseInfo;
 
 class DatabaseCollector implements CollectorInterface
 {
@@ -13,30 +13,30 @@ class DatabaseCollector implements CollectorInterface
     public const QUERIES = 'queries';
 
     /**
-     * @var \ClawRock\Debug\Helper\Config
+     * @var \Daseraf\Debug\Helper\Config
      */
     private $config;
 
     /**
-     * @var \ClawRock\Debug\Model\DataCollector
+     * @var \Daseraf\Debug\Model\DataCollector
      */
     private $dataCollector;
 
     /**
-     * @var \ClawRock\Debug\Model\Info\DatabaseInfo
+     * @var \Daseraf\Debug\Model\Info\DatabaseInfo
      */
     private $databaseInfo;
 
     /**
-     * @var \ClawRock\Debug\Helper\Formatter
+     * @var \Daseraf\Debug\Helper\Formatter
      */
     private $formatter;
 
     public function __construct(
-        \ClawRock\Debug\Helper\Config $config,
-        \ClawRock\Debug\Model\DataCollectorFactory $dataCollectorFactory,
+        \Daseraf\Debug\Helper\Config $config,
+        \Daseraf\Debug\Model\DataCollectorFactory $dataCollectorFactory,
         DatabaseInfo $databaseInfo,
-        \ClawRock\Debug\Helper\Formatter $formatter
+        \Daseraf\Debug\Helper\Formatter $formatter
     ) {
         $this->config = $config;
         $this->dataCollector = $dataCollectorFactory->create();
