@@ -22,7 +22,7 @@
         "php-coveralls/php-coveralls": "^2.1"
     },
     "config": {
-        "preferred-install": "source",
+        "preferred-install": "source"
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
