@@ -24,15 +24,6 @@
     "config": {
         "preferred-install": "source"
     },
-    "extra": {
-        "composer-exit-on-patch-failure": true,
-        "enable-patching": true,
-        "patches": {
-            "magento/framework": {
-                "Add_execution_time_for_plugins": "vendor/daseraf/magento2-debug/core_patches/module-framwork.diff"
-            }
-        }
-    },
     "repositories": [
         {
             "type": "composer",
