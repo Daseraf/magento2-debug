@@ -40,6 +40,9 @@ All settings have only default scope and config type pool is set to environment 
 - Performance
 - Translations
 - Call map - [XHprof extension required](https://www.php.net/manual/en/book.xhprof.php)
+
+## For logging plugin performance setup this patch: 
+https://github.com/Daseraf/magento2-debug/blob/master/core_patches/module-framwork.diff
     
 ## Additional features
 - [Whoops error handler](http://filp.github.io/whoops/)
