@@ -99,9 +99,22 @@ class LayoutCollector implements CollectorInterface, LoggerCollectorInterface
 
     public function getRenderedBlocks(): array
     {
-        return $this->dataCollector->getData(self::BLOCKS_RENDERED) ?? [];
+        $blocks = $this->dataCollector->getData(self::BLOCKS_RENDERED) ?? [];
+
+        uasort($blocks, [$this, 'sortByTime']);
+
+        return $blocks;
     }
 
+    protected function sortByTime($a, $b)
+    {
+        $a = $a->getRenderTime();
+        $b = $b->getRenderTime();
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a > $b) ? -1 : 1;
+    }
     public function getNotRenderedBlocks(): array
     {
         return $this->dataCollector->getData(self::BLOCKS_NOT_RENDERED) ?? [];

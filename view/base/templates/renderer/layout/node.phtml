@@ -7,7 +7,7 @@
             <small><?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getTemplate() ?></small>
         <?php else: ?>
             <strong title="<?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getTemplate() ?>">
-                <?= /* @noEscape */ $node->getName(); ?>
+                <?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getName(); ?>
             </strong>
         <?php endif; ?>
     <?php else: ?>
