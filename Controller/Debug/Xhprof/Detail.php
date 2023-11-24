@@ -1,13 +1,14 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Debug\Xhprof;
 
+use Daseraf\Debug\Model\Collector\CallmapCollector;
 use Daseraf\Debug\Model\Profiler;
-use Magento\Framework\App\Action\Action;
+use Daseraf\Debug\App\AbstractAction;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
 
-class Info extends Action
+class Detail extends AbstractAction
 {
     /**
      * @var \Magento\Framework\View\LayoutInterface
@@ -25,7 +26,7 @@ class Info extends Action
     private $profileMemoryStorage;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
+        \Daseraf\Debug\App\Action\Context $context,
         \Magento\Framework\View\LayoutInterface $layout,
         \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository,
         \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
@@ -45,7 +46,7 @@ class Info extends Action
             ? $this->profileRepository->findLatest()
             : $this->profileRepository->getById($token));
 
-        $panel = $request->getParam('panel', 'request');
+        $panel = CallmapCollector::NAME;
 
         if (!$profile->hasCollector($panel)) {
             throw new LocalizedException(__('Panel "%s" is not available for token "%s".', $panel, $token));
@@ -53,15 +54,13 @@ class Info extends Action
 
         /** @var \Magento\Framework\View\Result\Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $page->addPageLayoutHandles([
+            'panel' => 'xhprof',
+            'profiler' => 'detail',
+        ], 'debug');
 
         $this->profileMemoryStorage->write($profile);
         $collector = $profile->getCollector($panel);
-
-        $page->addPageLayoutHandles([
-            'panel' => $panel,
-            'profiler' => 'info',
-        ], 'debug');
-
         $panelBlock = $this->layout->getBlock('debug.profiler.panel.content');
 
         if (!$panelBlock) {
@@ -69,7 +68,8 @@ class Info extends Action
         }
 
         $panelBlock->setCollector($collector);
+        $resultRaw = $this->resultFactory->create(ResultFactory::TYPE_RAW);
 
-        return $page;
+        return $resultRaw->setContents($panelBlock->toHtml());
     }
 }

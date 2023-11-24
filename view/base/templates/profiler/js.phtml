@@ -1,6 +1,6 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-$block->setData('excluded_ajax_paths', '^/_debug');
+$block->setData('excluded_ajax_paths', '^/debug');
 ?>
 <script>
     Sfjs = (function () {
@@ -101,10 +101,9 @@ $block->setData('excluded_ajax_paths', '^/_debug');
 
             requestStack = [],
 
-            extractHeaders = function (xhr, stackElement) {
+            extractHeaders = function (allHeaders, stackElement) {
                 /* Here we avoid to call xhr.getResponseHeader in order to */
                 /* prevent polluting the console with CORS security errors */
-                var allHeaders = xhr.getAllResponseHeaders();
                 var ret;
                 if (ret = allHeaders.match(/^x-debug-token:\s+(.*)$/im)) {
                     stackElement.profile = ret[1];
@@ -243,15 +242,77 @@ $block->setData('excluded_ajax_paths', '^/_debug');
         var el = document.createElement('div');
         if (!('addEventListener' in el)) {
             addEventListener = function (element, eventName, callback) {
-                element.attachEvent('on' + eventName, callback);
+                if (element) {
+                    element.attachEvent('on' + eventName, callback);
+                }
             };
         } else {
             addEventListener = function (element, eventName, callback) {
-                element.addEventListener(eventName, callback, false);
+                if (element) {
+                    element.addEventListener(eventName, callback, false);
+                }
             };
         }
 
         <?php if ($block->getData('excluded_ajax_paths')): ?>
+
+        if (window.fetch) {
+            const { fetch: originalFetch } = window;
+            window.fetch = async (...args) => {
+                let [resource, config = {}] = args;
+                var url = '';
+                var method = '';
+
+                if (typeof resource === 'string') {
+                    url = resource;
+                    method = config.method;
+                } else if (typeof resource === 'object') {
+                    url = resource.url;
+                    method = resource.method;
+                }
+                var path = url;
+                if (0 === url.indexOf('<?= /* @noEscape */ $block->getBaseUrl(); ?>')) {
+                    path = url.substr(<?= /* @noEscape */ strlen(rtrim($block->getBaseUrl(), '/')); ?>);
+                }
+
+                var isExcludedRequest = path.match(new RegExp(<?= /* @noEscape */ json_encode($block->getData('excluded_ajax_paths'));?>));
+
+                if (!isExcludedRequest) {
+                    var stackElement = {
+                        loading: true,
+                        error: false,
+                        url: url,
+                        method: method,
+                        start: new Date()
+                    };
+
+                    requestStack.push(stackElement);
+                }
+
+                const response = await originalFetch(resource, config);
+                if (!isExcludedRequest) {
+                    stackElement.duration = new Date() - stackElement.start;
+                    stackElement.loading = false;
+                    stackElement.error = response.status < 200 || response.status >= 400;
+                    stackElement.statusCode = response.status;
+
+                    var headers = response.headers;
+                    var token = headers.get('x-debug-token');
+                    var tokenUrl = headers.get('x-debug-token-link');
+                    if (token) {
+                        stackElement.profile = token;
+                    }
+                    if (tokenUrl) {
+                        stackElement.profilerUrl = tokenUrl;
+                    }
+
+                    Sfjs.renderAjaxRequests();
+                }
+
+                return response;
+            };
+        }
+
         if (window.XMLHttpRequest && XMLHttpRequest.prototype.addEventListener) {
             var proxied = XMLHttpRequest.prototype.open;
 
@@ -287,7 +348,7 @@ $block->setData('excluded_ajax_paths', '^/_debug');
                             stackElement.loading = false;
                             stackElement.error = self.status < 200 || self.status >= 400;
                             stackElement.statusCode = self.status;
-                            extractHeaders(self, stackElement);
+                            extractHeaders(self.getAllResponseHeaders(), stackElement);
 
                             Sfjs.renderAjaxRequests();
                         }

@@ -38,13 +38,13 @@ class BeforeSendResponse implements ObserverInterface
 
     private function isProfilerAction(\Magento\Framework\HTTP\PhpEnvironment\Request $request)
     {
-        if (preg_match('/\/_debug\/profiler*/s', $request->getPathInfo())) {
+        if (preg_match('/\/debug\/profiler*/s', $request->getPathInfo())) {
             return true;
         }
-        if (preg_match('/\/_debug\/xhprof*/s', $request->getPathInfo())) {
+        if (preg_match('/\/debug\/xhprof*/s', $request->getPathInfo())) {
             return true;
         }
 
-        return $request->getModuleName() === '_debug' || $request->getModuleName() === 'debug';
+        return $request->getModuleName() === 'debug';
     }
 }

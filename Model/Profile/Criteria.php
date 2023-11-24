@@ -63,7 +63,7 @@ class Criteria
     public static function createFromRequest(RequestInterface $request)
     {
         return new Criteria(
-            (string) preg_replace('/[^:\d\.]/', '', $request->getParam('ip')),
+            (string) preg_replace('/[^:\d\.]/', '', (string)$request->getParam('ip')),
             (string) $request->getParam('url'),
             (int) $request->getParam('limit'),
             (string) $request->getParam('method'),

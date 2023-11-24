@@ -5,10 +5,7 @@
         <css src="Daseraf_Debug::css/profiler.css"/>
         <css src="Daseraf_Debug::css/jquery-ui.css"/>
         <script src="Daseraf_Debug::css/jquery-ui.css"/>
-        <script src="jquery.min.js"/>
-        <script src="jquery/jquery-ui.min.js"/>
-        <script src="Daseraf_Debug/js/tablesorter.min.js"/>
-        <script src="Daseraf_Debug/js/callmap/extra-data.min.js"/>
+        <script src="jquery.js"/>
         <remove src="css/styles-m.css"/>
         <remove src="css/styles-l.css"/>
     </head>

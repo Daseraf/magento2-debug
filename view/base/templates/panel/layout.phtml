@@ -2,6 +2,7 @@
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Daseraf\Debug\Model\Collector\LayoutCollector $collector */
 $collector = $block->getCollector();
+$profile = $block->getProfile();
 /** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
 ?>
@@ -60,5 +61,5 @@ $viewModel = $block->getViewModel();
 
 <h2><?= $block->escapeHtml(__('Layout rendering analysis')) ?></h2>
 <div id="twig-dump">
-    <?= /* @noEscape */ $viewModel->renderLayoutGraph($collector->getRenderedBlocks(), $collector->getRenderTime()); ?>
+    <?= /* @noEscape */ $viewModel->renderLayoutGraph($collector->getRenderedBlocks(), $collector->getRenderTime(), $profile); ?>
 </div>

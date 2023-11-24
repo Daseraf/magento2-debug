@@ -2,7 +2,10 @@
 
 namespace Daseraf\Debug\Model\View\Renderer;
 
+use Daseraf\Debug\Api\Data\ProfileInterface;
+use Daseraf\Debug\Model\Collector\CacheCollector;
 use Daseraf\Debug\Model\ValueObject\Block;
+use Daseraf\Debug\Model\ValueObject\CacheAction;
 use Magento\Framework\View\Element\Template;
 
 class LayoutGraphRenderer implements RendererInterface
@@ -39,9 +42,17 @@ class LayoutGraphRenderer implements RendererInterface
      */
     private $formatter;
 
+    /**
+     * @var ProfileInterface $profile
+     */
+    private  $profile;
+
+    private $cacheList;
+
     public function __construct(
         array $blocks,
         float $totalRenderTime,
+        ProfileInterface $profile,
         \Magento\Framework\View\LayoutInterface $layout,
         \Daseraf\Debug\Model\ValueObject\LayoutNodeFactory $layoutNodeFactory,
         \Daseraf\Debug\Model\View\Renderer\LayoutNodeRendererFactory $layoutNodeRendererFactory,
@@ -49,6 +60,7 @@ class LayoutGraphRenderer implements RendererInterface
     ) {
         $this->blocks = $blocks;
         $this->totalRenderTime = $totalRenderTime;
+        $this->profile = $profile;
         $this->layout = $layout;
         $this->layoutNodeFactory = $layoutNodeFactory;
         $this->layoutNodeRendererFactory = $layoutNodeRendererFactory;
@@ -81,6 +93,7 @@ class LayoutGraphRenderer implements RendererInterface
                     'layoutRenderTime' => $this->totalRenderTime,
                     'children' => $children,
                     'prefix' => '',
+                    'cacheStatus' => $this->getCacheStatusByBlock($block->getCacheKey())
                 ]);
             }
         }
@@ -115,9 +128,40 @@ class LayoutGraphRenderer implements RendererInterface
                 'layoutRenderTime' => $this->totalRenderTime,
                 'prefix' => $prefix,
                 'children' => $childChildren,
+                'cacheStatus' => $this->getCacheStatusByBlock($child->getCacheKey())
             ]);
         }
 
         return $children;
+    }
+
+    public function getCacheStatusByBlock($cacheKey)
+    {
+        $cacheCollector = $this->profile->getCollector('cache');
+        if (!$cacheCollector) {
+            return __('cache collector disabled');
+        }
+
+        if (!$this->cacheList) {
+            $this->cacheList = $cacheCollector->getCacheLog();
+        }
+
+        if (isset($this->cacheList[$cacheKey])) {
+            /** @var CacheAction $cacheStatus */
+            $cacheStatus = $this->cacheList[$cacheKey];
+            return $cacheStatus->getName();
+        }
+
+        return __('not cached');
+    }
+
+    protected function sortByTime($a, $b)
+    {
+        $a = $a->getRenderTime();
+        $b = $b->getRenderTime();
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a > $b) ? -1 : 1;
     }
 }

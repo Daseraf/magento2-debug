@@ -10,7 +10,7 @@ class Url
 {
     public const CONFIGURATION_URL_PATH = 'debug/profiler/config';
 
-    public const PROFILER_URL_PATH = '_debug/profiler/info';
+    public const PROFILER_URL_PATH = 'debug/profiler/info';
 
     /**
      * @var \Magento\Framework\UrlInterface
@@ -69,7 +69,7 @@ class Url
 
     public function getToolbarUrl(string $token): string
     {
-        return $this->url->getUrl('_debug/profiler/toolbar', [
+        return $this->url->getUrl('debug/profiler/toolbar', [
             Profiler::URL_TOKEN_PARAMETER => $token,
             '_nosid' => true,
         ]);

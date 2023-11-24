@@ -1,37 +1,57 @@
-<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
-<?php /** @var \Daseraf\Debug\Model\ValueObject\LayoutNode $node */ ?>
-<?php $node = $block->getNode(); ?>
-<div class="node">
+<?php 
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Daseraf\Debug\Model\ValueObject\LayoutNode $node */
+$node = $block->getNode();
+$nodeTemplate = $node->getTemplate();
+$cacheStatus = $node->getCacheStatus();
+$isCached = $cacheStatus === 'load';
+$cacheStatusColor = '';
+switch ($cacheStatus) {
+    case 'load':
+        $cacheStatusColor = '#dfd;';
+        break;
+    case 'save':
+        $cacheStatusColor = '#ffd;';
+        break;
+    case 'not cached':
+        $cacheStatusColor = '#fdd;';
+        break;
+    default:
+        $cacheStatusColor = '#ddf';
+}
+?>
+<div class="node" style="padding: 2px 0;">
     <?php if (!$node->getParentId()): ?>
-        <?php if (!$node->getName()) : ?>
-            <small><?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getTemplate() ?></small>
-        <?php else: ?>
-            <strong title="<?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getTemplate() ?>">
-                <?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getName(); ?>
-            </strong>
-        <?php endif; ?>
+        <span>
+            <strong><?= $node->getName() ?></strong>
+            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : '' ?></span>
+            <span> | <?= __('Cache:') ?></span>
+            <span style="text-transform: uppercase; display: inline-block; background-color: <?= $cacheStatusColor ?>">
+                <?= $cacheStatus ?>
+            </span>
+        </span>
     <?php else: ?>
-        <?= /* @noEscape */ $node->getPrefix() ?>└
-        <?php if ($node->getTemplate()): ?>
-            <span style="background-color: #ffd;">
-                <strong><?= /* @noEscape */ $node->getName() ?></strong>
-                <small><?= /* @noEscape */ $node->getClass() ?> | <?= /* @noEscape */ $node->getTemplate() ?></small>
+        <?= $node->getPrefix() ?>└
+        <span>
+            <strong><?= $node->getName() ?></strong>
+            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : '' ?></span>
+            <span> | <?= __('Cache:') ?></span>
+            <span style="text-transform: uppercase; display: inline-block; background-color: <?= $cacheStatusColor ?>">
+                <?= $cacheStatus ?>
             </span>
-        <?php else: ?>
-            <span style="background-color: #dfd;">
-                <strong><?= /* @noEscape */ $node->getName() ?></strong>
-                <small><?= /* @noEscape */ $node->getClass() ?></small>
-            </span>
-        <?php endif; ?>
+        </span>
     <?php endif; ?>
-
     <span>
-        <?= /* @noEscape */ $block->getFormatter()->microtime($node->getRenderTime()) ?> ms
+        <?= $block->getFormatter()->microtime($node->getRenderTime()) ?> ms
         <?php if (!$node->getParentId()): ?>
-            (<?= /* @noEscape */ $block->getFormatter()->percentage($node->getRenderPercent()) ?>)
+            (<?= $block->getFormatter()->percentage($node->getRenderPercent()) ?>)
         <?php endif; ?>
     </span>
+    <?php if ($node->getChildren()): ?>
+    <div style="padding: 0 5px; border-bottom: 1px solid #b6b6b6;">
+        <?php foreach ($node->getChildren() as $child): ?>
+            <?= $block->getLayoutNodeRenderer()->create(['node' => $child])->render(); ?>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
 </div>
-<?php foreach ($node->getChildren() as $child): ?>
-    <?= /* @noEscape */ $block->getLayoutNodeRenderer()->create(['node' => $child])->render(); ?>
-<?php endforeach; ?>

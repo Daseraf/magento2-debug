@@ -2,6 +2,8 @@
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Daseraf\Debug\Model\Collector\RequestCollector $collector */
 $collector = $block->getCollector();
+$viewModel = $block->getViewModel();
+$redirect = $collector->getRedirect();
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?> sf-toolbar-status-normal ">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
@@ -10,9 +12,20 @@ $collector = $block->getCollector();
                 <?= /* @noEscape */ $collector->getStatusCode() ?>
             </span>
             <?php if ($collector->getFullActionName()): ?>
-                <?php if ($collector->getRedirect()): ?>
+                <?php if (!$redirect->isEmpty()): ?>
                     <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/collector/redirect.svg'); ?>"
                          class="redirect-img" alt="<?= $block->escapeHtmlAttr(__('Redirect')) ?>"/>
+                    <b>
+                        <span class="sf-toolbar-redirection-status sf-toolbar-status-yellow">
+                            <?= /* @noEscape */ $redirect->getStatusCode() ?>
+                        </span>
+                        <?= $block->escapeHtml(__('Redirect from')); ?>
+                    </b>
+                    <span>
+                        (<a target="_blank" href="<?= $block->escapeUrl($viewModel->getProfilerUrl($redirect->getToken())) ?>">
+                            <?= /* @noEscape */ $redirect->getToken() ?>
+                        </a>)
+                    </span>
                 <?php endif; ?>
                 <span class="sf-toolbar-label">
                     <?= /* @noEscape */ $collector->getMethod() !== 'GET' ? $collector->getMethod() : '' ?>@
@@ -58,7 +71,6 @@ $collector = $block->getCollector();
             <?php endif; ?>
         </div>
 
-        <?php $redirect = $collector->getRedirect() ?>
         <?php if (!$redirect->isEmpty()): ?>
             <div class="sf-toolbar-info-group">
                 <div class="sf-toolbar-info-piece">
@@ -69,7 +81,7 @@ $collector = $block->getCollector();
                         <?= $block->escapeHtml(__('Redirect from')); ?>
                     </b>
                     <span>
-                        (<a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl($redirect->getToken())) ?>">
+                        (<a target="_blank" href="<?= $block->escapeUrl($viewModel->getProfilerUrl($redirect->getToken())) ?>">
                             <?= /* @noEscape */ $redirect->getToken() ?>
                         </a>)
                     </span>

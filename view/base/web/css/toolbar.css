@@ -520,6 +520,10 @@
         margin-left: 0;
         margin-right: 0;
     }
+
+    .sf-toolbar-block-right .sf-toolbar-info {
+        right: -36px !important;
+    }
 }
 
 @media (min-width: 1024px) {

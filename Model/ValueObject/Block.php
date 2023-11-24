@@ -46,6 +46,7 @@ class Block implements LoggableInterface
      * @var string
      */
     private $parentId;
+    private $cacheKey;
 
     public function __construct(\Magento\Framework\View\Element\AbstractBlock $block)
     {
@@ -59,6 +60,7 @@ class Block implements LoggableInterface
         $this->parentId = $block->getParentBlock()
             ? $block->getParentBlock()->getData(LayoutCollector::BLOCK_PROFILER_ID_KEY)
             : '';
+        $this->cacheKey = ($block->getTemplate() && $block->getData('cache_lifetime')) ? $block->getCacheKey() : null;
     }
 
     /**
@@ -123,5 +125,13 @@ class Block implements LoggableInterface
     public function getParentId(): string
     {
         return (string) $this->parentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCacheKey(): string
+    {
+        return (string) $this->cacheKey;
     }
 }

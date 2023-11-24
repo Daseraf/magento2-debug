@@ -2,6 +2,10 @@
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Daseraf\Debug\Model\Collector\CallmapCollector $collector */
 $collector = $block->getCollector();
+$xhporfViewModel = $block->getXhporfViewModel();
+$xhporfProfile = $xhporfViewModel->getXhprofProfile($collector->getData());
+$fallbackData = $xhporfProfile->sort('ewt');
+$totalFunctions = number_format($xhporfProfile->getFunctionCount());
 ?>
 <div class="sf-toolbar-block sf-toolbar-block-<?= /* @noEscape */ $collector->getName() ?>">
     <a target="_blank" href="<?= $block->escapeUrl($block->getProfilerUrl()); ?>">
@@ -11,4 +15,10 @@ $collector = $block->getCollector();
             <span class="sf-toolbar-value"><?= $block->escapeHtmlAttr(__('Call Map')) ?></span>
         </div>
     </a>
+    <div class="sf-toolbar-info">
+        <div class="sf-toolbar-info-piece">
+            <b><?= $block->escapeHtml(__('Number of function calls')); ?></b>
+            <span><?= /* @noEscape */ $totalFunctions; ?></span>
+        </div>
+    </div>
 </div>

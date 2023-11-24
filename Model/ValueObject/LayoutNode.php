@@ -24,16 +24,21 @@ class LayoutNode
      */
     private $children;
 
+    private $cacheStatus;
+
     public function __construct(
         \Daseraf\Debug\Model\ValueObject\Block $block,
-        float $layoutRenderTime = null,
-        string $prefix = null,
-        array $children
-    ) {
+        float                                  $layoutRenderTime = null,
+        string                                 $prefix = null,
+        array                                  $children,
+                                               $cacheStatus
+    )
+    {
         $this->block = $block;
         $this->layoutRenderTime = $layoutRenderTime;
         $this->prefix = $prefix;
         $this->children = $children;
+        $this->cacheStatus = $cacheStatus;
     }
 
     /**
@@ -73,7 +78,12 @@ class LayoutNode
      */
     public function getPrefix(): string
     {
-        return (string) $this->prefix;
+        return (string)$this->prefix;
+    }
+
+    public function getCacheStatus()
+    {
+        return $this->cacheStatus;
     }
 
     /**
@@ -102,7 +112,7 @@ class LayoutNode
      */
     public function getParentId(): string
     {
-        return (string) $this->block->getParentId();
+        return (string)$this->block->getParentId();
     }
 
     public function getRenderPercent(): float

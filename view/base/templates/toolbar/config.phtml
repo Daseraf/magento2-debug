@@ -50,7 +50,7 @@ $collector = $block->getCollector();
                 <b><?= $block->escapeHtml(__('PHP version')); ?></b>
                 <span>
                     <?= /* @noEscape */ $collector->getPHPVersion() ?>
-                    <a href="<?= $block->escapeUrl($block->getUrl('_debug/profiler/phpinfo')) ?>">phpinfo()</a>
+                    <a href="<?= $block->escapeUrl($block->getUrl('debug/profiler/phpinfo')) ?>">phpinfo()</a>
                 </span>
             </div>
             <div class="sf-toolbar-info-piece sf-toolbar-info-php-ext">

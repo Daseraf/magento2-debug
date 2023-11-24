@@ -8,10 +8,10 @@
         <img src="<?= /* @noEscape */ $block->getViewFileUrl('Daseraf_Debug::images/icon/menu.svg'); ?>" alt="<?= $block->escapeHtmlAttr(__('Menu')) ?>"/>
     </span>
         </a>
-        <a class="btn btn-sm" href="<?= $block->escapeUrl($block->getUrl('_debug/profiler/search', ['limit' => 10])) ?>">
+        <a class="btn btn-sm" href="<?= $block->escapeUrl($block->getUrl('debug/profiler/search', ['limit' => 10])) ?>">
             <?= $block->escapeHtml(__('Last 10')) ?>
         </a>
-        <a class="btn btn-sm" href="<?= $block->escapeUrl($block->getUrl('_debug/profiler/info/token/latest')); ?>">
+        <a class="btn btn-sm" href="<?= $block->escapeUrl($block->getUrl('debug/profiler/info/token/latest')); ?>">
             <?= $block->escapeHtml(__('Latest')) ?>
         </a>
         <a class="sf-toggle btn btn-sm" data-toggle-selector="#sidebar-search" <?= $block->getExpanded() ? 'data-toggle-initial="display"' : ''; ?>>
@@ -20,7 +20,7 @@
         </a>
 
         <div id="sidebar-search" class="sf-toggle-content sf-toggle-hidden">
-            <form action="<?= $block->escapeUrl($block->getUrl('_debug/profiler/search')); ?>" method="get">
+            <form action="<?= $block->escapeUrl($block->getUrl('debug/profiler/search')); ?>" method="get">
                 <div class="form-group">
                     <label for="ip"><?= $block->escapeHtml(__('IP')) ?></label>
                     <input type="text" name="ip" id="ip" value="<?= $block->escapeHtmlAttr($viewModel->getParam('ip')); ?>">

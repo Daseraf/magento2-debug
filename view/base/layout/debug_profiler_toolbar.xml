@@ -9,7 +9,11 @@
             <block name="debug.toolbar.collectors.config" class="Magento\Framework\View\Element\Template"
                    template="Daseraf_Debug::toolbar/config.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.request" class="Magento\Framework\View\Element\Template"
-                   template="Daseraf_Debug::toolbar/request.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/request.phtml" cacheable="false">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Daseraf\Debug\Model\View\Search</argument>
+                </arguments>
+            </block>
             <block name="debug.toolbar.collectors.memory" class="Magento\Framework\View\Element\Template"
                    template="Daseraf_Debug::toolbar/memory.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.time" class="Magento\Framework\View\Element\Template"
@@ -33,7 +37,12 @@
             <block name="debug.toolbar.collectors.plugin" class="Magento\Framework\View\Element\Template"
                    template="Daseraf_Debug::toolbar/plugin.phtml" cacheable="false"/>
             <block name="debug.toolbar.collectors.callmap" class="Magento\Framework\View\Element\Template"
-                   template="Daseraf_Debug::toolbar/callmap.phtml" cacheable="false"/>
+                   template="Daseraf_Debug::toolbar/callmap.phtml" cacheable="false">
+                <arguments>
+                    <argument name="xhporf_view_model" xsi:type="object">Daseraf\Debug\Model\View\Xhprof</argument>
+                    <argument name="profiler_view_model" xsi:type="object">Daseraf\Debug\Model\View\Profiler</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

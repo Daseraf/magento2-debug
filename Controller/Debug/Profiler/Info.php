@@ -1,14 +1,13 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Xhprof;
+namespace Daseraf\Debug\Controller\Debug\Profiler;
 
-use Daseraf\Debug\Model\Collector\CallmapCollector;
+use Daseraf\Debug\App\AbstractAction;
 use Daseraf\Debug\Model\Profiler;
-use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
 
-class Detail extends Action
+class Info extends AbstractAction implements \Magento\Framework\App\ActionInterface
 {
     /**
      * @var \Magento\Framework\View\LayoutInterface
@@ -26,7 +25,7 @@ class Detail extends Action
     private $profileMemoryStorage;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
+        \Daseraf\Debug\App\Action\Context $context,
         \Magento\Framework\View\LayoutInterface $layout,
         \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository,
         \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage
@@ -46,7 +45,7 @@ class Detail extends Action
             ? $this->profileRepository->findLatest()
             : $this->profileRepository->getById($token));
 
-        $panel = CallmapCollector::NAME;
+        $panel = $request->getParam('panel', 'request');
 
         if (!$profile->hasCollector($panel)) {
             throw new LocalizedException(__('Panel "%s" is not available for token "%s".', $panel, $token));
@@ -54,13 +53,15 @@ class Detail extends Action
 
         /** @var \Magento\Framework\View\Result\Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $page->addPageLayoutHandles([
-            'panel' => 'xhprof',
-            'profiler' => 'detail',
-        ], 'debug');
 
         $this->profileMemoryStorage->write($profile);
         $collector = $profile->getCollector($panel);
+
+        $page->addPageLayoutHandles([
+            'panel' => $panel,
+            'profiler' => 'info',
+        ], 'debug');
+
         $panelBlock = $this->layout->getBlock('debug.profiler.panel.content');
 
         if (!$panelBlock) {
@@ -68,8 +69,8 @@ class Detail extends Action
         }
 
         $panelBlock->setCollector($collector);
-        $resultRaw = $this->resultFactory->create(ResultFactory::TYPE_RAW);
+        $panelBlock->setProfile($profile);
 
-        return $resultRaw->setContents($panelBlock->toHtml());
+        return $page;
     }
 }

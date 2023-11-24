@@ -1,11 +1,11 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Cache;
+namespace Daseraf\Debug\Controller\Debug\Cache;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
 
-class Flush extends Action
+class Enable extends Action
 {
     /**
      * @var \Magento\Framework\App\Cache\Manager
@@ -25,11 +25,7 @@ class Flush extends Action
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         $types = $this->getRequest()->getParam('type');
 
-        if (!$types) {
-            $types = $this->cacheManager->getAvailableTypes();
-        }
-
-        $this->cacheManager->flush((array) $types);
+        $this->cacheManager->setEnabled((array) $types, true);
 
         return $result;
     }

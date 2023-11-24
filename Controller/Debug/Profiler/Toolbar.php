@@ -1,6 +1,6 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Debug\Profiler;
 
 use Daseraf\Debug\Model\Profiler;
 use Magento\Framework\App\Action\Action;

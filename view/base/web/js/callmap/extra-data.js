@@ -10,7 +10,7 @@ define([
         },
 
         openExtraDataModal: function () {
-            var url = document.location.origin + '/_debug/xhprof/detail';
+            var url = document.location.origin + '/debug/xhprof/detail';
             var modalWrapper = $('.function-extra-modal');
             $('.function-extra-data').click(function () {
                 $.ajax({

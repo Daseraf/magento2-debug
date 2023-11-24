@@ -1,12 +1,12 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Debug\Profiler;
 
-use Magento\Framework\App\Action\Action;
+use Daseraf\Debug\App\AbstractAction;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\FileSystemException;
 
-class Purge extends Action
+class Purge extends AbstractAction implements \Magento\Framework\App\ActionInterface
 {
     /**
      * @var \Daseraf\Debug\Model\Storage\ProfileFileStorage
@@ -19,7 +19,7 @@ class Purge extends Action
     private $logger;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
+        \Daseraf\Debug\App\Action\Context $context,
         \Daseraf\Debug\Model\Storage\ProfileFileStorage $profileFileStorage,
         \Daseraf\Debug\Logger\Logger $logger
     ) {

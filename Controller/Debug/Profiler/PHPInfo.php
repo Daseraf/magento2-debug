@@ -1,11 +1,11 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Debug\Profiler;
 
-use Magento\Framework\App\Action\Action;
+use Daseraf\Debug\App\AbstractAction;
 use Magento\Framework\Controller\ResultFactory;
 
-class PHPInfo extends Action
+class PHPInfo extends AbstractAction implements \Magento\Framework\App\ActionInterface
 {
     public function execute()
     {

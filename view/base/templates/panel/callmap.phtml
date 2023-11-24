@@ -41,7 +41,7 @@ $profile = $profilerViewModel->getProfile();
 
 <div style="float:left; width: 50%">
     <h2><?= $block->escapeHtml(__('Hierarchical Profiler Report')) ?></h2>
-    <h3><?= $block->escapeHtml(__('Function count: %1', $totalFunctions)) ?></h3>
+    <h3><?= $block->escapeHtml(__('Number of function calls: %1', $totalFunctions)) ?></h3>
 </div>
 <table class="alt callmap-table">
     <thead>
@@ -87,3 +87,9 @@ $profile = $profilerViewModel->getProfile();
         })
     });
 </script>
+
+<style>
+    .callmap-table tbody tr:nth-of-type(1n+15) {
+        display: none;
+    }
+</style>

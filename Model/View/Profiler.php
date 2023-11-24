@@ -86,11 +86,12 @@ class Profiler implements ArgumentInterface
         $this->formatter = $formatter;
     }
 
-    public function renderLayoutGraph(array $blocks, float $totalTime): string
+    public function renderLayoutGraph(array $blocks, float $totalTime, $profile): string
     {
         return $this->layoutGraphRendererFactory->create([
             'blocks' => $blocks,
             'totalRenderTime' => $totalTime,
+            'profile' => $profile
         ])->render();
     }
 

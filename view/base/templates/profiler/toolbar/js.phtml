@@ -23,7 +23,10 @@
                 } else {
                     document.getElementById('sfToolbarMainContent-<?= /* @noEscape */ $token ?>').style.display = 'block';
                     document.getElementById('sfToolbarClearer-<?= /* @noEscape */ $token ?>').style.display = 'block';
-                    document.getElementById('sfMiniToolbar-<?= /* @noEscape */ $token ?>').style.display = 'none';
+                    var sfMiniToolbar = document.getElementById('sfMiniToolbar-<?= /* @noEscape */ $token ?>');
+                    if (sfMiniToolbar) {
+                        sfMiniToolbar.style.display = 'none';
+                    }
                 }
                 Sfjs.addEventListener(document.getElementById('sfToolbarHideButton-<?= /* @noEscape */ $token ?>'), 'click', function (event) {
                     event.preventDefault();

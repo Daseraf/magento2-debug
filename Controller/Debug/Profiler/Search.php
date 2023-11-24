@@ -1,13 +1,13 @@
 <?php
 
-namespace Daseraf\Debug\Controller\Profiler;
+namespace Daseraf\Debug\Controller\Debug\Profiler;
 
 use Daseraf\Debug\Model\Profile\Criteria;
 use Daseraf\Debug\Model\Profiler;
-use Magento\Framework\App\Action\Action;
+use Daseraf\Debug\App\AbstractAction;
 use Magento\Framework\Controller\ResultFactory;
 
-class Search extends Action
+class Search extends AbstractAction implements \Magento\Framework\App\ActionInterface
 {
     /**
      * @var \Magento\Framework\View\LayoutInterface
@@ -20,7 +20,7 @@ class Search extends Action
     private $profileRepository;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
+        \Daseraf\Debug\App\Action\Context $context,
         \Magento\Framework\View\LayoutInterface $layout,
         \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository
     ) {
@@ -39,7 +39,7 @@ class Search extends Action
         $request = $this->getRequest();
 
         if (!empty($token = $request->getParam('_token'))) {
-            return $this->_redirect('_debug/profiler/info', [Profiler::URL_TOKEN_PARAMETER => $token]);
+            return $this->_redirect('debug/profiler/info', [Profiler::URL_TOKEN_PARAMETER => $token]);
         }
 
         /** @var \Magento\Framework\View\Result\Page $page */

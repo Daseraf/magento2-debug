@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
     <container name="root">
         <block class="Magento\Framework\View\Element\Template" name="debug.toolbar.content"
-               template="Daseraf_Debug::toolbar.phtml">
+               template="Daseraf_Debug::toolbar.phtml" before="-">
             <arguments>
                 <argument name="view_model" xsi:type="object">Daseraf\Debug\Model\View\Toolbar</argument>
             </arguments>

@@ -13,7 +13,8 @@
         "filp/whoops": "^2.1",
         "jdorn/sql-formatter": "^1.2",
         "symfony/var-dumper": "*",
-        "symfony/stopwatch": "^2.8 || ^3.0 || ^4.0 || ^5.0"
+        "symfony/stopwatch": "^2.8 || ^3.0 || ^4.0 || ^5.0",
+        "daseraf/magento2-debug-theme": "^1.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.3",
@@ -24,12 +25,16 @@
     "config": {
         "preferred-install": "source"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "magento": {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        "dbg-theme": {
+            "type": "git",
+            "url": "https://github.com/daseraf/magento2-debug-theme.git"
         }
-    ],
+    },
     "autoload": {
         "files": [
             "registration.php"

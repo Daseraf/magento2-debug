@@ -28,7 +28,7 @@ $viewModel = $block->getViewModel();
             <th class="text-center"><?= $block->escapeHtml(__('Current Status')) ?></th>
             <th class="text-center"><?= $block->escapeHtml(__('Valid')) ?></th>
             <th class="text-right">
-                <a data-url="<?= $block->escapeUrl($block->getUrl('_debug/cache/clean', ['type' => 'all'])) ?>"
+                <a data-url="<?= $block->escapeUrl($block->getUrl('debug/cache/clean', ['type' => 'all'])) ?>"
                    class="btn btn-sm ajax-action">Clean all</a>
             </th>
         </tr>
@@ -73,14 +73,14 @@ $viewModel = $block->getViewModel();
                 <td class="text-right">
                     <?php if ($collector->getCacheCurrentStatus($cache->getId())): ?>
                         <a href="#"
-                           data-url="<?= $block->escapeUrl($block->getUrl('_debug/cache/clean', ['type' => $cache->getId()])) ?>"
+                           data-url="<?= $block->escapeUrl($block->getUrl('debug/cache/clean', ['type' => $cache->getId()])) ?>"
                            class="btn btn-sm ajax-action"><?= $block->escapeHtml(__('Clean')) ?></a>
                         <a href="#"
-                           data-url="<?= $block->escapeUrl($block->getUrl('_debug/cache/disable', ['type' => $cache->getId()])) ?>"
+                           data-url="<?= $block->escapeUrl($block->getUrl('debug/cache/disable', ['type' => $cache->getId()])) ?>"
                            class="btn btn-sm ajax-action"><?= $block->escapeHtml(__('Disable')) ?></a>
                     <?php else: ?>
                         <a href="#"
-                           data-url="<?= $block->escapeUrl($block->getUrl('_debug/cache/enable', ['type' => $cache->getId()])) ?>"
+                           data-url="<?= $block->escapeUrl($block->getUrl('debug/cache/enable', ['type' => $cache->getId()])) ?>"
                            class="btn btn-sm ajax-action"><?= $block->escapeHtml(__('Enable')) ?></a>
                     <?php endif; ?>
                 </td>
