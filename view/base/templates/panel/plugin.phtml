@@ -2,10 +2,16 @@
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Daseraf\Debug\Model\Collector\PluginCollector $collector */
 $collector = $block->getCollector();
+$pluginsWithoutTime = !((int)$collector->getBeforePluginsExecutionTime() && (int)$collector->getAroundPluginsExecutionTime() && (int)$collector->getAfterPluginsExecutionTime());
 ?>
 <div>
     <h2><?= $block->escapeHtml(__('Plugins')) ?></h2>
 </div>
+<?php if ($pluginsWithoutTime): ?>
+<div>
+    <h5><?= $block->escapeHtml(__('Plugins have no runtime. This happens if the structure of interceptor generation is changed by some module.')); ?></h5>
+</div>
+<?php endif; ?>
 
 <?php if (!$collector->hasPlugins()): ?>
     <div class="empty">
@@ -16,7 +22,9 @@ $collector = $block->getCollector();
         <div class="tab">
             <h3 class="tab-title">
                 <?= $block->escapeHtml(__('BEFORE')) ?>
-                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getBeforePluginsExecutionTime(); ?> ms</span>
+                <?php if (!$pluginsWithoutTime): ?>
+                    <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getBeforePluginsExecutionTime(); ?> ms</span>
+                <?php endif; ?>
                 <span class="badge">Count: <?= /* @noEscape */ $collector->getBeforePluginsCount(); ?></span>
             </h3>
             <div class="tab-content">
@@ -24,14 +32,19 @@ $collector = $block->getCollector();
                     <?php foreach ($collector->getBeforePlugins() as $type => $plugins): ?>
                         <thead>
                         <tr>
-                            <th><?= /* @noEscape */$type; ?>
-                                <?= $block->escapeHtml(__('in')); ?>
-                                <?= $collector->getTypePluginsExecutionTime($type, 1) ?> ms
+                            <th>
+                                <?= /* @noEscape */$type; ?>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 1) ?> ms
+                                <?php endif; ?>
                             </th>
                             <th><?= $block->escapeHtml(__('Name')) ?></th>
                             <th><?= $block->escapeHtml(__('Sort order')) ?></th>
                             <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php if (!$pluginsWithoutTime): ?>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php endif; ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,7 +55,9 @@ $collector = $block->getCollector();
                                 <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -53,7 +68,9 @@ $collector = $block->getCollector();
         <div class="tab">
             <h3 class="tab-title">
                 <?= $block->escapeHtml(__('AROUND')) ?>
-                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAroundPluginsExecutionTime(); ?> ms</span>
+                <?php if (!$pluginsWithoutTime): ?>
+                    <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAroundPluginsExecutionTime(); ?> ms</span>
+                <?php endif; ?>
                 <span class="badge">Count: <?= /* @noEscape */ $collector->getAroundPluginsCount() ?></span>
             </h3>
             <div class="tab-content">
@@ -61,14 +78,19 @@ $collector = $block->getCollector();
                     <?php foreach ($collector->getAroundPlugins() as $type => $plugins): ?>
                         <thead>
                         <tr>
-                            <th><?= /* @noEscape */$type; ?>
-                                <?= $block->escapeHtml(__('in')); ?>
-                                <?= $collector->getTypePluginsExecutionTime($type, 2) ?> ms
+                            <th>
+                                <?= /* @noEscape */$type; ?>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 2) ?> ms
+                                <?php endif; ?>
                             </th>
                             <th><?= $block->escapeHtml(__('Name')) ?></th>
                             <th><?= $block->escapeHtml(__('Sort order')) ?></th>
                             <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php if (!$pluginsWithoutTime): ?>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php endif; ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -79,7 +101,9 @@ $collector = $block->getCollector();
                                 <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -90,7 +114,9 @@ $collector = $block->getCollector();
         <div class="tab">
             <h3 class="tab-title">
                 <?= $block->escapeHtml(__('AFTER')) ?>
-                <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAfterPluginsExecutionTime(); ?> ms</span>
+                <?php if (!$pluginsWithoutTime): ?>
+                    <span><?= $block->escapeHtml(__('in')); ?> <?= /* @noEscape */ $collector->getAfterPluginsExecutionTime(); ?> ms</span>
+                <?php endif; ?>
                 <span class="badge">Count: <?= /* @noEscape */ $collector->getAfterPluginsCount() ?></span>
             </h3>
             <div class="tab-content">
@@ -98,14 +124,19 @@ $collector = $block->getCollector();
                     <?php foreach ($collector->getAfterPlugins() as $type => $plugins): ?>
                         <thead>
                         <tr>
-                            <th><?= /* @noEscape */$type; ?>
-                                <?= $block->escapeHtml(__('in')); ?>
-                                <?= $collector->getTypePluginsExecutionTime($type, 4) ?> ms
+                            <th>
+                                <?= /* @noEscape */$type; ?>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <?= $block->escapeHtml(__('in')); ?>
+                                    <?= $collector->getTypePluginsExecutionTime($type, 4) ?> ms
+                                <?php endif; ?>
                             </th>
                             <th><?= $block->escapeHtml(__('Name')) ?></th>
                             <th><?= $block->escapeHtml(__('Sort order')) ?></th>
                             <th><?= $block->escapeHtml(__('Execution Count')) ?></th>
-                            <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php if (!$pluginsWithoutTime): ?>
+                                <th><?= $block->escapeHtml(__('Total Execution Time')) ?></th>
+                            <?php endif; ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -116,7 +147,9 @@ $collector = $block->getCollector();
                                 <td><?= /* @noEscape */ $plugin->getName(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getSortOrder(); ?></td>
                                 <td class="text-center"><?= /* @noEscape */ $plugin->getExecutionCount(); ?></td>
-                                <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php if (!$pluginsWithoutTime): ?>
+                                    <td class="text-center"><?= /* @noEscape */ $collector->formatTime($plugin->getExecutionTime()); ?> ms</td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

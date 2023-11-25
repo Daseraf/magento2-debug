@@ -38,12 +38,20 @@ class PluginInfo
      */
     private $debug;
 
+    private $pluginDataCollector;
+    /**
+     * @var true
+     */
+    private $pluginsWithoutTime;
+
     public function __construct(
         \Magento\Framework\Interception\PluginList\PluginList $pluginList,
-        \Daseraf\Debug\Helper\Debug $debug
+        \Daseraf\Debug\Helper\Debug $debug,
+        \Daseraf\Debug\Interception\PluginDataCollector $pluginDataCollector
     ) {
         $this->pluginList = $pluginList;
         $this->debug = $debug;
+        $this->pluginDataCollector = $pluginDataCollector;
     }
 
     public function getBeforePlugins(): array
@@ -77,6 +85,10 @@ class PluginInfo
     public function getPluginsExecutionTime($definition = null): float
     {
         $this->resolvePlugins();
+
+        if ($this->pluginsWithoutTime) {
+            return 0.00;
+        }
 
         if (isset($this->totalExecutionTimeList)) {
             if ($definition && isset($this->totalExecutionTimeList[$definition])) {
@@ -122,23 +134,23 @@ class PluginInfo
         }
 
         $reflection = new \ReflectionClass($this->pluginList);
-        
+
         $processed = $reflection->getProperty('_processed');
         $processed->setAccessible(true);
         $processed = $processed->getValue($this->pluginList);
-        
+
         $inherited = $reflection->getProperty('_inherited');
         $inherited->setAccessible(true);
         $inherited = $inherited->getValue($this->pluginList);
-        
-        $execution = $reflection->getProperty('execution');
-        $execution->setAccessible(true);
-        $executionTime = $execution->getValue($this->pluginList);
-        
-        $executedTypes = $reflection->getProperty('executedTypes');
-        $executedTypes->setAccessible(true);
-        $executedTypesList = $executedTypes->getValue($this->pluginList);
-        
+
+        $executionTime = $this->pluginDataCollector->getPluginExecutionTime();
+        $executedTypesList = $this->pluginDataCollector->getExecutedTypes();
+
+        if (!$executedTypesList) {
+            $this->resolvePluginsWithoutTime();
+            return;
+        }
+
         $definitionTypes = [
             DefinitionInterface::LISTENER_BEFORE => PluginCollector::BEFORE,
             DefinitionInterface::LISTENER_AROUND => PluginCollector::AROUND,
@@ -213,6 +225,57 @@ class PluginInfo
             }
         }
         $this->sortPluginsByExecutionTime();
+    }
+
+    private function resolvePluginsWithoutTime(): void
+    {
+        if ($this->plugins !== null) {
+            return;
+        }
+
+        $this->pluginsWithoutTime = true;
+
+        $reflection = new \ReflectionClass($this->pluginList);
+        $processed = $reflection->getProperty('_processed');
+        $processed->setAccessible(true);
+        $processed = $processed->getValue($this->pluginList);
+        $inherited = $reflection->getProperty('_inherited');
+        $inherited->setAccessible(true);
+        $inherited = $inherited->getValue($this->pluginList);
+        $definitionTypes = [
+            DefinitionInterface::LISTENER_BEFORE => PluginCollector::BEFORE,
+            DefinitionInterface::LISTENER_AROUND => PluginCollector::AROUND,
+            DefinitionInterface::LISTENER_AFTER  => PluginCollector::AFTER,
+        ];
+
+        foreach ($processed as $plugin => $definition) {
+            if (!preg_match('/^(.*?)_(.*?)_(.*)$/', $plugin, $matches)) {
+                continue;
+            }
+            $type = $matches[1];
+            $method = $matches[2];
+
+            if ($this->debug->isDebugClass($type)) {
+                continue;
+            }
+
+            foreach ($definition as $definitionType => $plugins) {
+                foreach ((array) $plugins as $name) {
+                    if (isset($inherited[$type][$name])) {
+                        if ($this->debug->isDebugClass($inherited[$type][$name]['instance'])) {
+                            continue;
+                        }
+                        $this->plugins[$definitionTypes[$definitionType]][$type][] = new Plugin(
+                            $inherited[$type][$name]['instance'],
+                            $name,
+                            $inherited[$type][$name]['sortOrder'],
+                            $definitionTypes[$definitionType] . ucfirst($method),
+                            $type
+                        );
+                    }
+                }
+            }
+        }
     }
 
     private function sortPluginsByExecutionTime()
