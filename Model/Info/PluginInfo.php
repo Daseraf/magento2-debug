@@ -58,6 +58,10 @@ class PluginInfo
     {
         $this->resolvePlugins();
 
+        if (!isset($this->plugins[PluginCollector::BEFORE])) {
+            return [];
+        }
+
         return $this->plugins[PluginCollector::BEFORE];
     }
 
@@ -65,12 +69,20 @@ class PluginInfo
     {
         $this->resolvePlugins();
 
+        if (!isset($this->plugins[PluginCollector::AROUND])) {
+            return [];
+        }
+
         return $this->plugins[PluginCollector::AROUND];
     }
 
     public function getAfterPlugins(): array
     {
         $this->resolvePlugins();
+
+        if (!isset($this->plugins[PluginCollector::AFTER])) {
+            return [];
+        }
 
         return $this->plugins[PluginCollector::AFTER];
     }
@@ -236,12 +248,12 @@ class PluginInfo
         $this->pluginsWithoutTime = true;
 
         $reflection = new \ReflectionClass($this->pluginList);
-        $processed = $reflection->getProperty('_processed');
+        $processed = $reflection->getProperty('_processed') ;
         $processed->setAccessible(true);
-        $processed = $processed->getValue($this->pluginList);
+        $processed = $processed->getValue($this->pluginList) ?? [];
         $inherited = $reflection->getProperty('_inherited');
         $inherited->setAccessible(true);
-        $inherited = $inherited->getValue($this->pluginList);
+        $inherited = $inherited->getValue($this->pluginList) ?? [];
         $definitionTypes = [
             DefinitionInterface::LISTENER_BEFORE => PluginCollector::BEFORE,
             DefinitionInterface::LISTENER_AROUND => PluginCollector::AROUND,

@@ -35,6 +35,9 @@
             "url": "https://github.com/daseraf/magento2-debug-theme.git"
         }
     },
+    "suggested": {
+        "daseraf/magento2-debug-creatuity": "A required module if you use the interceptor generator from Creatuity in your project"
+    },
     "autoload": {
         "files": [
             "registration.php"

@@ -8,7 +8,6 @@ Module for debugging Magento 2 performance. It works without overwriting any cor
 
 <img alt="hyva" height="135" width="300" src="./view/base/web/images/readme/hyva.png"/>
 
-
 #### Important - the module is not intended to work in a production environment!
 ## Installation
 1. Enable developer mode `php bin/magento deploy:mode:set developer`
@@ -17,8 +16,10 @@ Module for debugging Magento 2 performance. It works without overwriting any cor
 4. Enable profiler in configuration: `Stores -> Configuration -> Advanced -> Debug`
 5. Clear cache `php bin/magento c:c`
 
-# If you want to see Callmap
-For this functionality you will need to install the xhprof extension for your PHP interpreter
+#### Important! If you use the interceptor generator from [Creatuity](https://github.com/creatuity/magento2-interceptors), you need to additionally install this package - [daseraf/magento2-debug-creatuity](https://github.com/Daseraf/magento2-debug-creatuity).
+
+## If you want to see Callmap
+For this functionality you will need to install the xhprof extension for your PHP interpreter.
 I recommend using PECL for these purposes.
 https://pecl.php.net/package/xhprof
 
@@ -31,7 +32,7 @@ Just enable extension:
 Xhprof flags are set from the Magento admin panel
 > Advanced -> Debug -> Data collectors -> Xhprof Flags
 
-# If you want to monitor queries to the database, run this command
+## If you want to monitor queries to the database, run this command
 > php bin/magento debug:db-profiler:enable
 
 This will add a profiler flag to the database section of the env.php file
