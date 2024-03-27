@@ -6,7 +6,7 @@ class DefaultPath implements \Magento\Framework\App\DefaultPathInterface
     /**
      * @var array
      */
-    protected $_parts;
+    protected $parts;
 
     /**
      * @param \Magento\Backend\App\ConfigInterface $config
