@@ -9,7 +9,7 @@ class ParametersRenderer implements RendererInterface
     public const TEMPLATE = 'Daseraf_Debug::renderer/parameters.phtml';
 
     /**
-     * @var \Zend\Stdlib\ParametersInterface
+     * @var \Laminas\Stdlib\ParametersInterface
      */
     private $parameters;
 
@@ -24,7 +24,7 @@ class ParametersRenderer implements RendererInterface
     private $varRendererFactory;
 
     public function __construct(
-        \Zend\Stdlib\ParametersInterface $parameters,
+        \Laminas\Stdlib\ParametersInterface $parameters,
         \Magento\Framework\View\LayoutInterface $layout,
         \Daseraf\Debug\Model\View\Renderer\VarRendererFactory $varRendererFactory
     ) {
