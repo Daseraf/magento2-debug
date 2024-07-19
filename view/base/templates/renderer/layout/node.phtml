@@ -1,4 +1,4 @@
-<?php 
+<?php
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Daseraf\Debug\Model\ValueObject\LayoutNode $node */
 $node = $block->getNode();
@@ -23,8 +23,8 @@ switch ($cacheStatus) {
 <div class="node" style="padding: 2px 0;">
     <?php if (!$node->getParentId()): ?>
         <span>
-            <strong><?= $node->getName() ?></strong>
-            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : '' ?></span>
+            <strong><?= $node->getName() ?></strong> |
+            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : ' | ' ?></span>
             <span> | <?= __('Cache:') ?></span>
             <span style="text-transform: uppercase; display: inline-block; background-color: <?= $cacheStatusColor ?>">
                 <?= $cacheStatus ?>
@@ -33,25 +33,25 @@ switch ($cacheStatus) {
     <?php else: ?>
         <?= $node->getPrefix() ?>└
         <span>
-            <strong><?= $node->getName() ?></strong>
-            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : '' ?></span>
+            <strong><?= $node->getName() ?></strong> |
+            <span><?= $node->getClass() ?><?= $nodeTemplate ? ' | ' . $nodeTemplate : ' | ' ?></span>
             <span> | <?= __('Cache:') ?></span>
             <span style="text-transform: uppercase; display: inline-block; background-color: <?= $cacheStatusColor ?>">
                 <?= $cacheStatus ?>
             </span>
         </span>
     <?php endif; ?>
-    <span>
+    <span> |
         <?= $block->getFormatter()->microtime($node->getRenderTime()) ?> ms
         <?php if (!$node->getParentId()): ?>
-            (<?= $block->getFormatter()->percentage($node->getRenderPercent()) ?>)
+            | (<?= $block->getFormatter()->percentage($node->getRenderPercent()) ?>)
         <?php endif; ?>
     </span>
     <?php if ($node->getChildren()): ?>
-    <div style="padding: 0 5px; border-bottom: 1px solid #b6b6b6;">
-        <?php foreach ($node->getChildren() as $child): ?>
-            <?= $block->getLayoutNodeRenderer()->create(['node' => $child])->render(); ?>
-        <?php endforeach; ?>
-    </div>
+        <div style="padding: 0 5px; border-bottom: 1px solid #b6b6b6;">
+            <?php foreach ($node->getChildren() as $child): ?>
+                <?= $block->getLayoutNodeRenderer()->create(['node' => $child])->render(); ?>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
 </div>
