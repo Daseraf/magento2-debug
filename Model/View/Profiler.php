@@ -5,7 +5,7 @@ namespace Daseraf\Debug\Model\View;
 use Daseraf\Debug\Api\Data\ProfileInterface;
 use Daseraf\Debug\Helper\Formatter;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Zend\Stdlib\ParametersInterface;
+use Laminas\Stdlib\ParametersInterface;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
