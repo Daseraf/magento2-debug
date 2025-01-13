@@ -43,7 +43,6 @@ jobs:
                     path: ${{ steps.composercache.outputs.dir }}
                     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
                     restore-keys: ${{ runner.os }}-composer-
-                if: matrix.composer-deps == 'lock'
                 env:
                     COMPOSER_AUTH: '{"http-basic":{"repo.magento.com":{"username":"${{secrets.MAGENTO_AUTH_USER}}","password":"${{secrets.MAGENTO_AUTH_PASS}}"}}}'
                 run: |
