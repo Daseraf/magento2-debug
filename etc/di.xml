@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Framework\Interception\Code\Generator\Interceptor" type="Daseraf\Debug\Interception\Code\Generator\Interceptor"/>
+    <preference for="Magento\Framework\Console\Cli" type="Daseraf\Debug\Interception\CliProfiler"/>
     <preference for="Magento\Setup\Module\Di\Code\Generator\Interceptor" type="Daseraf\Debug\Interception\Code\Generator\SetupInterceptor" />
 
     <type name="Magento\Framework\App\AreaList">
@@ -24,6 +25,12 @@
     <type name="Daseraf\Debug\Model\Session">
         <arguments>
             <argument name="storage" xsi:type="object">Daseraf\Debug\Model\Session\Storage</argument>
+        </arguments>
+    </type>
+    <type name="Daseraf\Debug\Model\Profiler">
+        <arguments>
+            <argument name="injector" xsi:type="object">Daseraf\Debug\Helper\Injector\Proxy</argument>
+            <argument name="httpStorage" xsi:type="object">Daseraf\Debug\Model\Storage\HttpStorage\Proxy</argument>
         </arguments>
     </type>
     <type name="Daseraf\Debug\Logger\Handler">

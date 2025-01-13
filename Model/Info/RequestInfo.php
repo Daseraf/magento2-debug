@@ -4,8 +4,8 @@ namespace Daseraf\Debug\Model\Info;
 
 use Daseraf\Debug\Model\Collector\RequestCollector;
 use Daseraf\Debug\Model\ValueObject\Redirect;
-use Zend\Stdlib\Parameters;
-use Zend\Stdlib\ParametersInterface;
+use Laminas\Stdlib\Parameters;
+use Laminas\Stdlib\ParametersInterface;
 
 class RequestInfo
 {
@@ -32,6 +32,11 @@ class RequestInfo
     ) {
         $this->httpStorage = $httpStorage;
         $this->session = $session;
+    }
+
+    public function getRequest()
+    {
+        return $this->httpStorage->getRequest();
     }
 
     public function getRequestGet(): ParametersInterface

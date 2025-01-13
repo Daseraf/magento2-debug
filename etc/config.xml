@@ -4,13 +4,30 @@
         <daseraf_debug>
             <general>
                 <active>1</active>
-                <active_adminhtml>0</active_adminhtml>
+                <active_for_cli>1</active_for_cli>
+                <active_adminhtml>1</active_adminhtml>
                 <allowed_ips>127.0.0.1</allowed_ips>
                 <error_handler>whoops</error_handler>
             </general>
             <time>
                 <precision>2</precision>
             </time>
+            <collector>
+                <ajax>1</ajax>
+                <cache>1</cache>
+                <config>1</config>
+                <customer>1</customer>
+                <database>1</database>
+                <event>1</event>
+                <plugin>1</plugin>
+                <layout>1</layout>
+                <memory>1</memory>
+                <model>1</model>
+                <time>1</time>
+                <translation>1</translation>
+                <callmap>1</callmap>
+                <xhprof_flags>1,4</xhprof_flags>
+            </collector>
             <collector>
                 <ajax>1</ajax>
                 <cache>1</cache>
@@ -56,6 +73,18 @@
                     <plugin>Daseraf\Debug\Model\Collector\PluginCollector</plugin>
                     <callmap>Daseraf\Debug\Model\Collector\CallmapCollector</callmap>
                 </collectors>
+                <cli_collectors>
+                    <request>Daseraf\Debug\Model\Collector\RequestCollector</request>
+                    <config>Daseraf\Debug\Model\Collector\ConfigCollector</config>
+                    <memory>Daseraf\Debug\Model\Collector\MemoryCollector</memory>
+                    <time>Daseraf\Debug\Model\Collector\TimeCollector</time>
+                    <database>Daseraf\Debug\Model\Collector\DatabaseCollector</database>
+                    <cache>Daseraf\Debug\Model\Collector\CacheCollector</cache>
+                    <model>Daseraf\Debug\Model\Collector\ModelCollector</model>
+                    <event>Daseraf\Debug\Model\Collector\EventCollector</event>
+                    <plugin>Daseraf\Debug\Model\Collector\PluginCollector</plugin>
+                    <callmap>Daseraf\Debug\Model\Collector\CallmapCollector</callmap>
+                </cli_collectors>
             </profiler>
         </daseraf_debug>
     </default>

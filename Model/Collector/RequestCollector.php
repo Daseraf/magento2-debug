@@ -7,6 +7,7 @@ use Daseraf\Debug\Model\ValueObject\Redirect;
 class RequestCollector implements CollectorInterface
 {
     public const NAME = 'request';
+    public const IS_CLI = 'is_cli';
 
     public const REQUEST_METHOD = 'request_method';
     public const REQUEST_GET = 'request_get';
@@ -64,26 +65,38 @@ class RequestCollector implements CollectorInterface
 
     public function collect(): CollectorInterface
     {
-        $this->dataCollector->setData([
-            self::REQUEST_METHOD => $this->requestInfo->getMethod(),
-            self::REQUEST_GET => $this->requestInfo->getRequestGet(),
-            self::REQUEST_POST => $this->requestInfo->getRequestPost(),
-            self::REQUEST_HEADERS => $this->requestInfo->getRequestHeaders(),
-            self::REQUEST_SERVER => $this->requestInfo->getServer(),
-            self::REQUEST_COOKIES => $this->requestInfo->getCookie(),
-            self::REQUEST_ATTRIBUTES => $this->requestInfo->getRequestAttributes(),
-            self::RESPONSE_HEADERS => $this->requestInfo->getResponseHeaders(),
-            self::CONTENT => $this->requestInfo->getContent(),
-            self::CONTENT_TYPE => $this->requestInfo->getContentType(),
-            self::STATUS_TEXT => $this->requestInfo->getStatusText(),
-            self::STATUS_CODE => $this->requestInfo->getStatusCode(),
-            self::SESSION_ATTRIBUTES => $this->requestInfo->getSessionAttributes(),
-            self::PATH_INFO => $this->requestInfo->getPathInfo(),
-            self::FPC_HIT => $this->requestInfo->isFPCRequest(),
-            self::REDIRECT => $this->requestInfo->getRedirect(),
-        ]);
+        if (!$this->requestInfo->getRequest()) {
+            $this->dataCollector->setData([
+                self::IS_CLI => true,
+            ]);
+        } else {
+            $this->dataCollector->setData([
+                self::IS_CLI => false,
+                self::REQUEST_METHOD => $this->requestInfo->getMethod(),
+                self::REQUEST_GET => $this->requestInfo->getRequestGet(),
+                self::REQUEST_POST => $this->requestInfo->getRequestPost(),
+                self::REQUEST_HEADERS => $this->requestInfo->getRequestHeaders(),
+                self::REQUEST_SERVER => $this->requestInfo->getServer(),
+                self::REQUEST_COOKIES => $this->requestInfo->getCookie(),
+                self::REQUEST_ATTRIBUTES => $this->requestInfo->getRequestAttributes(),
+                self::RESPONSE_HEADERS => $this->requestInfo->getResponseHeaders(),
+                self::CONTENT => $this->requestInfo->getContent(),
+                self::CONTENT_TYPE => $this->requestInfo->getContentType(),
+                self::STATUS_TEXT => $this->requestInfo->getStatusText(),
+                self::STATUS_CODE => $this->requestInfo->getStatusCode(),
+                self::SESSION_ATTRIBUTES => $this->requestInfo->getSessionAttributes(),
+                self::PATH_INFO => $this->requestInfo->getPathInfo(),
+                self::FPC_HIT => $this->requestInfo->isFPCRequest(),
+                self::REDIRECT => $this->requestInfo->getRedirect(),
+            ]);
+        }
 
         return $this;
+    }
+
+    public function isCli(): bool
+    {
+        return $this->dataCollector->getData(self::IS_CLI);
     }
 
     public function getMethod(): string

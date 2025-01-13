@@ -81,6 +81,8 @@ class ConfigCollector implements CollectorInterface
 
     public function collect(): CollectorInterface
     {
+        $response = $this->httpStorage->getResponse();
+        
         $this->dataCollector->setData([
             self::STORE_ID => $this->storeManager->getStore()->getId(),
             self::STORE_NAME => $this->storeManager->getStore()->getName(),
@@ -89,7 +91,7 @@ class ConfigCollector implements CollectorInterface
             self::WEBSITE_NAME => $this->storeManager->getWebsite()->getName(),
             self::WEBSITE_CODE => $this->storeManager->getWebsite()->getCode(),
             self::DEVELOPER_MODE => $this->magentoInfo->isDeveloperMode(),
-            self::TOKEN => $this->httpStorage->getResponse()->getHeader('X-Debug-Token')->getFieldValue(),
+            self::TOKEN => $response ? $response->getHeader('X-Debug-Token')->getFieldValue() : '',
             self::VERSION => $this->magentoInfo->getVersion(),
             self::MODULES => $this->magentoInfo->getModules(),
             self::XDEBUG_ENABLED => $this->extensionInfo->isXdebugEnabled(),

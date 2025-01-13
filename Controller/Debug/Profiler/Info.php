@@ -45,7 +45,7 @@ class Info extends AbstractAction implements \Magento\Framework\App\ActionInterf
             ? $this->profileRepository->findLatest()
             : $this->profileRepository->getById($token));
 
-        $panel = $request->getParam('panel', 'request');
+        $panel = $request->getParam('panel', 'config');
 
         if (!$profile->hasCollector($panel)) {
             throw new LocalizedException(__('Panel "%s" is not available for token "%s".', $panel, $token));
