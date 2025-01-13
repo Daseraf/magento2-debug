@@ -9,12 +9,13 @@ $finder = (new Finder())
     ->ignoreDotFiles(false)
     ->ignoreVCSIgnored(true)
     ->exclude(['dev-tools/phpstan', 'tests/Fixtures'])
-    ->in('./app/')
+    ->in('.')
     ->name('*.phtml')
     ->notName(['autoload.php', 'bootstrap.php'])
     ->exclude('i18n')
     ->exclude('design')
-    ->exclude('etc');
+    ->exclude('etc')
+    ->exclude('vendor');
 
 $rules = ['@PSR2' => true,
     'array_syntax' => ['syntax' => 'short'],
