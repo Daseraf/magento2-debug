@@ -7,6 +7,8 @@ use Daseraf\Debug\Model\Collector\LateCollectorInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 use Magento\Framework\HTTP\PhpEnvironment\Response;
 use Magento\Framework\Profiler as MagentoProfiler;
+use Symfony\Component\Console\Input\InputInterface;
+use Daseraf\Debug\Interception\CliCallmap;
 
 class Profiler
 {
@@ -73,7 +75,8 @@ class Profiler
         \Daseraf\Debug\Model\Storage\ProfileMemoryStorage $profileMemoryStorage,
         \Daseraf\Debug\Api\ProfileRepositoryInterface $profileRepository,
         \Daseraf\Debug\Model\Storage\HttpStorage $httpStorage,
-        \Daseraf\Debug\Logger\Logger $logger
+        \Daseraf\Debug\Logger\Logger $logger,
+        CliCallmap $callmapCollector
     ) {
         $this->objectManager = $objectManager;
         $this->config = $config;
@@ -84,6 +87,7 @@ class Profiler
         $this->profileRepository = $profileRepository;
         $this->httpStorage = $httpStorage;
         $this->logger = $logger;
+        $this->callmapCollector = $callmapCollector;
     }
 
     public function run(Request $request, Response $response)
@@ -125,26 +129,88 @@ class Profiler
 
         return $collectors[$name] ?? false;
     }
+    
+    public function isCliArea()
+    {
+        try {
+            $this->config->isFrontend();
+            return false;
+        } catch (\Throwable $e) {
+            unset($e);
+            return true;
+        }
+    }
 
     public function getDataCollectors()
     {
+        $isCliArea = $this->isCliArea();
+        
         if ($this->dataCollectors === null) {
             $this->dataCollectors = [];
-
-            $collectors = $this->config->getCollectors();
+            
+            if (!$isCliArea) {
+                $collectors = $this->config->getCollectors();
+            } else {
+                $collectors = $this->config->getCliCollectors();
+            }
             foreach ($collectors as $class) {
-                $collector = $this->objectManager->get($class);
-                if (!$collector instanceof CollectorInterface) {
-                    throw new \InvalidArgumentException('Collector must implement "CollectorInterface"');
-                }
-
-                if ($collector->isEnabled()) {
-                    $this->dataCollectors[$collector->getName()] = $collector;
+                try {
+                    $collector = $this->objectManager->get($class);
+                    if ($collector->isEnabled()) {
+                        $this->dataCollectors[$collector->getName()] = $collector;
+                    }
+                } catch (\Throwable $e) {
+                    unset($e);
+                    continue;
                 }
             }
         }
 
         return $this->dataCollectors;
+    }
+    
+    public function collectCli($exitCode, $name)
+    {
+        if (!$name) {
+            return;
+        }
+        
+        if (!$this->config->isActive()) {
+            return;
+        }
+
+        $this->callmapCollector->startTracking();
+
+        $start = microtime(true);
+        /** @var \Daseraf\Debug\Model\Profile $profile */
+        $profile = $this->profileFactory->create(['token' => substr(hash('sha256', uniqid(mt_rand(), true)), 0, 6)]);
+        $profile->setUrl($name);
+        $profile->setMethod('CLI');
+        $profile->setRoute('/');
+        $profile->setStatusCode($exitCode);
+        $profile->setIp('127.0.0.1');
+
+
+        $profileKey = 'DEBUG::profiler::collect';
+        MagentoProfiler::start($profileKey);
+        foreach ($this->getDataCollectors() as $collector) {
+            $profileCollectorKey = $profileKey . '::' . $collector->getName();
+            /** @var CollectorInterface $collector */
+            MagentoProfiler::start($profileCollectorKey);
+            $collector->collect();
+            MagentoProfiler::stop($profileCollectorKey);
+            $profile->addCollector($collector);
+        }
+        MagentoProfiler::stop($profileKey);
+        $profile->setTime(time());
+        $collectTime = microtime(true) - $start;
+        $profile->setCollectTime($collectTime);
+
+        $this->profileMemoryStorage->write($profile);
+
+        $this->callmapCollector->finishTracking();
+
+        $this->onTerminate();
     }
 
     /**

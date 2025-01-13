@@ -34,6 +34,11 @@ class RequestInfo
         $this->session = $session;
     }
 
+    public function getRequest()
+    {
+        return $this->httpStorage->getRequest();
+    }
+
     public function getRequestGet(): ParametersInterface
     {
         return $this->httpStorage->getRequest()->getQuery();

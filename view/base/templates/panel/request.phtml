@@ -4,6 +4,10 @@
 $collector = $block->getCollector();
 /** @var \Daseraf\Debug\Model\View\Profiler $viewModel */
 $viewModel = $block->getViewModel();
+$isCli = $collector->isCli();
+if ($isCli) {
+    return '';
+}
 ?>
 <div class="sf-tabs">
     <div class="tab">

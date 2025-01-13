@@ -25,7 +25,7 @@ class HttpStorage
     /**
      * @return \Magento\Framework\HTTP\PhpEnvironment\Request
      */
-    public function getRequest(): Request
+    public function getRequest(): ?Request
     {
         return $this->request;
     }
@@ -44,7 +44,7 @@ class HttpStorage
     /**
      * @return \Magento\Framework\HTTP\PhpEnvironment\Response
      */
-    public function getResponse(): Response
+    public function getResponse(): ?Response
     {
         return $this->response;
     }

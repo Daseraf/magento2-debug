@@ -14,6 +14,7 @@ use Magento\Framework\Exception\LocalizedException;
 class Config
 {
     public const CONFIG_ENABLED = 'daseraf_debug/general/active';
+    public const CONFIG_FOR_CLI_ENABLED = 'daseraf_debug/general/active_for_cli';
     public const CONFIG_ENABLED_ADMINHTML = 'daseraf_debug/general/active_adminhtml';
     public const CONFIG_ALLOWED_IPS = 'daseraf_debug/general/allowed_ips';
     public const CONFIG_ERROR_HANDLER = 'daseraf_debug/general/error_handler';
@@ -35,6 +36,7 @@ class Config
     public const XHPROF_FLAGS_CONFIG = 'daseraf_debug/collector/xhprof_flags';
 
     public const COLLECTORS = 'daseraf_debug/profiler/collectors';
+    public const CLI_COLLECTORS = 'daseraf_debug/profiler/cli_collectors';
 
     /**
      * @var \Magento\Framework\PhraseFactory
@@ -106,6 +108,11 @@ class Config
         return $this->scopeConfig->isSetFlag(self::CONFIG_ENABLED, ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
     }
 
+    public function isActiveForCli(): bool
+    {
+        return $this->scopeConfig->isSetFlag(self::CONFIG_FOR_CLI_ENABLED, ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+    }
+
     public function isAdminhtmlActive(): bool
     {
         return $this->scopeConfig->isSetFlag(self::CONFIG_ENABLED_ADMINHTML, ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
@@ -152,6 +159,11 @@ class Config
     public function getCollectors(): array
     {
         return $this->scopeConfig->getValue(self::COLLECTORS, ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+    }
+
+    public function getCliCollectors(): array
+    {
+        return $this->scopeConfig->getValue(self::CLI_COLLECTORS, ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
     }
 
     /**
