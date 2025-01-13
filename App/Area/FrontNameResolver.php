@@ -1,7 +1,13 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 
 namespace Daseraf\Debug\App\Area;
 
+use Magento\Backend\App\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Store\Model\ScopeInterface;
@@ -37,13 +43,11 @@ class FrontNameResolver implements \Magento\Framework\App\Area\FrontNameResolver
      */
     protected $config;
 
-
     /** @var ScopeConfigInterface */
     private $scopeConfig;
 
     /**
-     * @param \Magento\Backend\App\Config $config
-     * @param DeploymentConfig $deploymentConfig
+     * @param Config $config
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
@@ -58,17 +62,18 @@ class FrontNameResolver implements \Magento\Framework\App\Area\FrontNameResolver
      * Retrieve area front name
      *
      * @param bool $checkHost If true, verify front name is valid for this url (hostname is correct)
-     * @return string|bool
+     * @return bool|string
      */
     public function getFrontName($checkHost = false)
     {
         if ($checkHost && !$this->isHostDebugBackend()) {
             return false;
         }
-        $isCustomPathUsed = (bool)(string)$this->config->getValue(self::XML_PATH_USE_CUSTOM_DEBUG_PATH);
+        $isCustomPathUsed = (bool) (string) $this->config->getValue(self::XML_PATH_USE_CUSTOM_DEBUG_PATH);
         if ($isCustomPathUsed) {
-            return (string)$this->config->getValue(self::XML_PATH_CUSTOM_DEBUG_PATH);
+            return (string) $this->config->getValue(self::XML_PATH_CUSTOM_DEBUG_PATH);
         }
+
         return $this->defaultFrontName;
     }
 
@@ -85,14 +90,15 @@ class FrontNameResolver implements \Magento\Framework\App\Area\FrontNameResolver
             $debugUrl = $this->scopeConfig->getValue(Store::XML_PATH_UNSECURE_BASE_URL, ScopeInterface::SCOPE_STORE);
         }
 
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+        $host = $_SERVER['HTTP_HOST'] ?? '';
+
         return stripos($this->getHostNameWithPort($debugUrl), $host) !== false;
     }
 
     /**
      * Get host with port
      *
-     * @param string $url
+     * @param mixed $debugUrl
      * @return mixed|string
      */
     private function getHostNameWithPort($debugUrl)
@@ -101,8 +107,9 @@ class FrontNameResolver implements \Magento\Framework\App\Area\FrontNameResolver
         $hostVar = parse_url(trim($debugUrl), PHP_URL_HOST);
         $portVar = parse_url(trim($debugUrl), PHP_URL_PORT);
         if (!$portVar) {
-            $portVar = isset($this->standardPorts[$schemeVar]) ? $this->standardPorts[$schemeVar] : null;
+            $portVar = $this->standardPorts[$schemeVar] ?? null;
         }
+
         return isset($portVar) ? $hostVar . ':' . $portVar : $hostVar;
     }
 }

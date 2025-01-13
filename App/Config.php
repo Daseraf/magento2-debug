@@ -1,4 +1,9 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 
 namespace Daseraf\Debug\App;
 
@@ -39,13 +44,14 @@ class Config implements ConfigInterface
         if ($path) {
             $configPath .= '/' . $path;
         }
+
         return $this->appConfig->get(System::CONFIG_TYPE, $configPath);
     }
 
     /**
      * @inheritdoc
      */
-    public function setValue($path, $value)
+    public function setValue($path, $value): void
     {
         $this->data[$path] = $value;
     }
@@ -59,6 +65,7 @@ class Config implements ConfigInterface
         if ($path) {
             $configPath .= '/' . $path;
         }
+
         return (bool) $this->appConfig->get(System::CONFIG_TYPE, $configPath);
     }
 }

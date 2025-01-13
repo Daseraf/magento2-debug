@@ -62,14 +62,15 @@ class Info extends AbstractAction implements \Magento\Framework\App\ActionInterf
             'profiler' => 'info',
         ], 'debug');
 
+        /** @var \Magento\Framework\View\Element\Template $panelBlock */
         $panelBlock = $this->layout->getBlock('debug.profiler.panel.content');
 
         if (!$panelBlock) {
             throw new LocalizedException(__('Panel Block for "%1" is not available for token "%2".', $panel, $token));
         }
 
-        $panelBlock->setCollector($collector);
-        $panelBlock->setProfile($profile);
+        $panelBlock->setData('collector', $collector);
+        $panelBlock->setData('profile', $profile);
 
         return $page;
     }
