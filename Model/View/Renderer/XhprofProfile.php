@@ -407,7 +407,7 @@ class XhprofProfile
     {
         $valid = array_merge($this->keys, $this->exclusiveKeys);
         if (!in_array($metric, $valid)) {
-            throw new Exception("Unknown metric '${metric}'. Cannot generate callgraph.");
+            throw new Exception("Unknown metric '{$metric}'. Cannot generate callgraph.");
         }
         $this->calculateSelf();
 
