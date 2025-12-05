@@ -51,7 +51,9 @@ class Search extends AbstractAction implements \Magento\Framework\App\ActionInte
 
         $criteria = Criteria::createFromRequest($request);
 
-        $this->layout->getBlock('debug.profiler.panel.content')->addData([
+        /** @var \Magento\Framework\View\Element\Template $block */
+        $block = $this->layout->getBlock('debug.profiler.panel.content');
+        $block->addData([
             'results' => $this->profileRepository->find($criteria),
             'criteria' => $criteria,
         ]);

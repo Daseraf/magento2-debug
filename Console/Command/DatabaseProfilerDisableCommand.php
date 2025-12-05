@@ -31,10 +31,12 @@ class DatabaseProfilerDisableCommand extends Command
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->profilerWriter->save(false);
 
         $output->writeLn('<info>Database profiler disabled!</info>');
+
+        return 1;
     }
 }
