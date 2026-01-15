@@ -37,7 +37,8 @@ class Purge extends AbstractAction implements \Magento\Framework\App\ActionInter
         }
 
         /** @var $resultRedirect */
-        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)
-            ->setUrl($this->_redirect->getRefererUrl());
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        return $resultRedirect;
     }
 }

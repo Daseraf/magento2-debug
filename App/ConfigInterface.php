@@ -1,4 +1,9 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 
 namespace Daseraf\Debug\App;
 
@@ -22,7 +27,7 @@ interface ConfigInterface
      * @param mixed $value
      * @return void
      */
-    public function setValue($path, $value);
+    public function setValue($path, $value): void;
 
     /**
      * Retrieve config flag

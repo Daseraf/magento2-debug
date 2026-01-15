@@ -1,4 +1,9 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 
 namespace Daseraf\Debug\App;
 
@@ -51,7 +56,7 @@ class Router extends \Magento\Framework\App\Router\Base
     protected function parseRequest(\Magento\Framework\App\RequestInterface $request)
     {
         $output = [];
-
+        /** @var \Magento\Framework\App\Request\Http $request */
         $path = trim($request->getPathInfo(), '/');
         $path = FrontNameResolver::AREA_CODE . '/' . $path;
 
@@ -63,6 +68,7 @@ class Router extends \Magento\Framework\App\Router\Base
         for ($i = 0, $l = sizeof($params); $i < $l; $i += 2) {
             $output['variables'][$params[$i]] = isset($params[$i + 1]) ? urldecode($params[$i + 1]) : '';
         }
+
         return $output;
     }
 }

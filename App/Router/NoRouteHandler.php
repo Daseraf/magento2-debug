@@ -1,5 +1,13 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 namespace Daseraf\Debug\App\Router;
+
+use Daseraf\Debug\App\Area\FrontNameResolver;
+use Magento\Framework\App\Route\ConfigInterface;
 
 class NoRouteHandler implements \Magento\Framework\App\Router\NoRouteHandlerInterface
 {
@@ -14,8 +22,8 @@ class NoRouteHandler implements \Magento\Framework\App\Router\NoRouteHandlerInte
     protected $routeConfig;
 
     /**
-     * @param \Magento\Backend\Helper\Data $helper
-     * @param \Magento\Framework\App\Route\ConfigInterface $routeConfig
+     * @param FrontNameResolver $frontNameResolver
+     * @param ConfigInterface $routeConfig
      */
     public function __construct(
         \Daseraf\Debug\App\Area\FrontNameResolver $frontNameResolver,
@@ -33,6 +41,7 @@ class NoRouteHandler implements \Magento\Framework\App\Router\NoRouteHandlerInte
      */
     public function process(\Magento\Framework\App\RequestInterface $request)
     {
+        /** @var \Magento\Framework\App\Request\Http $request */
         $requestPathParams = explode('/', trim($request->getPathInfo(), '/'));
         $areaFrontName = array_shift($requestPathParams);
 
@@ -41,8 +50,10 @@ class NoRouteHandler implements \Magento\Framework\App\Router\NoRouteHandlerInte
             $actionNamespace = 'noroute';
             $actionName = 'index';
             $request->setModuleName($moduleName)->setControllerName($actionNamespace)->setActionName($actionName);
+
             return true;
         }
+
         return false;
     }
 }
