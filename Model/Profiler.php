@@ -65,6 +65,7 @@ class Profiler
      * @var \Daseraf\Debug\Logger\Logger
      */
     private $logger;
+    private $callmapCollector;
 
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
