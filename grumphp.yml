@@ -1,0 +1,60 @@
+grumphp:
+  process_timeout: 480
+  tasks:
+    git_blacklist:
+      keywords:
+        - "die("
+        - "var_dump("
+        - "print_r("
+        - "exit;"
+        - "console.log"
+        - "_objectManager"
+        - "ObjectManagerInterface"
+      triggered_by: [ php, js, html, phtml ]
+    phpcsfixer:
+      config: '.php-cs-fixer.project.php'
+    phpmd:
+      ruleset: [ dev/tests/static/testsuite/Magento/Test/Php/_files/phpmd/ruleset.xml ]
+      whitelist_patterns:
+      - /^app\/code\/FoundationCommerce*\/(.*)/
+      - /^app\/design\/(.*)/
+    phpcs:
+      standard: vendor/magento/magento-coding-standard/Magento2/ruleset.xml
+      tab_width: 4
+      severity: 5
+      error_severity: 5
+      warning_severity: ~
+      report: full
+      triggered_by:
+        - php
+        - phtml
+    phpstan:
+      autoload_file: ~
+      configuration: ./phpstan.neon
+      level: 2
+      triggered_by: [ 'php' ]
+      memory_limit: "-1"
+    # validate git branch names
+    git_branch_name:
+      blacklist:
+        - "develop"
+        - "production"
+        - "master"
+        - "staging"
+      allow_detached_head: true
+    # validate git commit message
+    git_commit_message:
+      allow_empty_message: false
+      enforce_capitalized_subject: false
+      enforce_no_subject_punctuations: false
+      enforce_no_subject_trailing_period: true
+      enforce_single_lined_subject: true
+      type_scope_conventions: [ ]
+      max_body_width: 120
+      max_subject_width: 120
+      matchers:
+        "Commit message must contain issue number, indicate hotfix or task changes, like TEST-407: Replace search to external service": /^([a-zA-Z0-9]+-[a-zA-Z0-9]+\:\s).*/
+      case_insensitive: true
+      multiline: true
+      additional_modifiers: ''
+      skip_on_merge_commit: true

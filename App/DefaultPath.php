@@ -1,4 +1,9 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 namespace Daseraf\Debug\App;
 
 class DefaultPath implements \Magento\Framework\App\DefaultPathInterface
@@ -9,18 +14,18 @@ class DefaultPath implements \Magento\Framework\App\DefaultPathInterface
     protected $parts;
 
     /**
-     * @param \Magento\Backend\App\ConfigInterface $config
+     * @param ConfigInterface $config
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function __construct(\Daseraf\Debug\App\ConfigInterface $config)
     {
-        $pathParts = explode('/', (string)$config->getValue('web/default/debug'));
+        $pathParts = explode('/', (string) $config->getValue('web/default/debug'));
 
         $this->parts = [
-            'area' => isset($pathParts[0]) ? $pathParts[0] : '',
-            'module' => isset($pathParts[1]) ? $pathParts[1] : 'debug',
-            'controller' => isset($pathParts[2]) ? $pathParts[2] : 'index',
-            'action' => isset($pathParts[3]) ? $pathParts[3] : 'index',
+            'area' => $pathParts[0] ?? '',
+            'module' => $pathParts[1] ?? 'debug',
+            'controller' => $pathParts[2] ?? 'index',
+            'action' => $pathParts[3] ?? 'index',
         ];
     }
 
@@ -32,6 +37,6 @@ class DefaultPath implements \Magento\Framework\App\DefaultPathInterface
      */
     public function getPart($code)
     {
-        return isset($this->parts[$code]) ? $this->parts[$code] : null;
+        return $this->parts[$code] ?? null;
     }
 }

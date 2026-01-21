@@ -1,9 +1,11 @@
 <?php
-namespace Daseraf\Debug\App\Action\Frontend;
+/**
+ * Designed by Stanislav Matiavin
+ */
 
-use Magento\Framework\Controller\ResultFactory;
+declare(strict_types=1);
+namespace Daseraf\Debug\App\Action\Frontend;
 
 class Context extends \Magento\Framework\App\Action\Context
 {
-
 }

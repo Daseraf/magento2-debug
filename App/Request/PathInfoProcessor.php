@@ -1,11 +1,20 @@
 <?php
+/**
+ * Designed by Stanislav Matiavin
+ */
+
+declare(strict_types=1);
 namespace Daseraf\Debug\App\Request;
 
-class PathInfoProcessor implements \Magento\Framework\App\Request\PathInfoProcessorInterface
-{
+use Daseraf\Debug\App\Area\FrontNameResolver;
+use Magento\Backend\Helper\Data;
+use Magento\Framework\App\Request\PathInfoProcessorInterface;
+use Magento\Framework\App\RequestInterface;
 
+class PathInfoProcessor implements PathInfoProcessorInterface
+{
     /**
-     * @var \Magento\Backend\Helper\Data
+     * @var Data
      */
     private $frontname;
 
@@ -16,11 +25,11 @@ class PathInfoProcessor implements \Magento\Framework\App\Request\PathInfoProces
 
     /**
      * @param \Magento\Store\App\Request\PathInfoProcessor $subject
-     * @param \Magento\Backend\Helper\Data $helper
+     * @param FrontNameResolver $frontNameResolver
      */
     public function __construct(
         \Magento\Store\App\Request\PathInfoProcessor $subject,
-        \Daseraf\Debug\App\Area\FrontNameResolver $frontNameResolver
+        FrontNameResolver $frontNameResolver
     ) {
         $this->subject = $subject;
         $this->frontname = $frontNameResolver;
@@ -29,18 +38,19 @@ class PathInfoProcessor implements \Magento\Framework\App\Request\PathInfoProces
     /**
      * Process path info
      *
-     * @param \Magento\Framework\App\RequestInterface $request
+     * @param RequestInterface $request
      * @param string $pathInfo
      * @return string
      */
-    public function process(\Magento\Framework\App\RequestInterface $request, $pathInfo)
+    public function process(RequestInterface $request, $pathInfo)
     {
         $pathParts = explode('/', ltrim($pathInfo, '/'), 2);
         $firstPart = $pathParts[0];
 
-        if ($firstPart != $this->frontNameResolver->getFrontName()) {
+        if ($firstPart != $this->frontname->getFrontName()) {
             return $this->subject->process($request, $pathInfo);
         }
+
         return $pathInfo;
     }
 }

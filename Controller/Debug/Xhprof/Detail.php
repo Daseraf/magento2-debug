@@ -61,13 +61,15 @@ class Detail extends AbstractAction
 
         $this->profileMemoryStorage->write($profile);
         $collector = $profile->getCollector($panel);
+
+        /** @var \Magento\Framework\View\Element\Template $panelBlock */
         $panelBlock = $this->layout->getBlock('debug.profiler.panel.content');
 
         if (!$panelBlock) {
             throw new LocalizedException(__('Panel Block for "%1" is not available for token "%2".', $panel, $token));
         }
 
-        $panelBlock->setCollector($collector);
+        $panelBlock->setData('collector',$collector);
         $resultRaw = $this->resultFactory->create(ResultFactory::TYPE_RAW);
 
         return $resultRaw->setContents($panelBlock->toHtml());
